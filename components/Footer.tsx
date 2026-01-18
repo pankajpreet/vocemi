@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import BookCallButton from "./BookCallButton";
 
@@ -11,9 +12,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-primary-accent mb-4">
-              vocemi
-            </h3>
+            <div className="mb-4">
+              <Image
+                src="/logo.png"
+                alt="Vocemi"
+                width={320}
+                height={96}
+                className="h-28 w-auto mb-2"
+              />
+            </div>
             <p className="text-gray-300 mb-4 max-w-md">
               {siteConfig.tagline}
             </p>

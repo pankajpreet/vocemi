@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import BookCallButton from "./BookCallButton";
 
@@ -29,9 +30,16 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-2xl font-bold text-primary-accent hover:text-primary-accent-cyan transition-colors"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            Vocemi
+            <Image
+              src="/logo.png"
+              alt="Vocemi"
+              width={320}
+              height={96}
+              className="h-28 w-auto"
+              priority
+            />
           </a>
 
           {/* Desktop Navigation */}
