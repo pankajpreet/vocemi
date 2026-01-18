@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocemi - Visual Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7D3CFE;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #7D3CFE;
+        }
+        
+        .book-call-btn {
+            background: linear-gradient(135deg, #7D3CFE 0%, #6B1DAF 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .book-call-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(125,60,254,0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #1A1A2E 0%, #11121A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(125,60,254,0.15) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            color: #B0B0B0;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #7D3CFE 0%, #6B1DAF 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(125,60,254,0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid #7D3CFE;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: #7D3CFE;
+            color: white;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(125,60,254,0.2);
+            border-color: #7D3CFE;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7D3CFE 0%, #6B1DAF 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f5f7fa;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #666;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #7D3CFE 0%, #6B1DAF 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 5%;
+            border-radius: 20px;
+            margin: 5rem 5%;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .services-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">vocemi</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#" class="book-call-btn">Book a Call</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Empowering Businesses through Voice AI</h1>
+            <p>Transform your customer interactions with intelligent voice-powered solutions that understand, respond, and elevate your business.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Book a Call</a>
+                <a href="#services" class="btn-secondary">View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive Voice AI solutions tailored to your business needs</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎤</div>
+                <h3>Voice Bot Development</h3>
+                <p>Create intelligent conversational voice bots for customer support, lead qualification, and automated assistance.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Voice Analytics & Insights</h3>
+                <p>Turn voice interactions into actionable data with sentiment analysis, transcription, and performance metrics.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>Voice Integration</h3>
+                <p>Seamlessly integrate voice AI into your existing systems, IVR, smart assistants, and mobile applications.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Custom Voice Solutions</h3>
+                <p>Build unique voice experiences with custom voice cloning, tone tuning, and branded interactions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section" style="background: #f5f7fa;">
+        <h2 class="section-title">Why Choose Vocemi</h2>
+        <p class="section-subtitle">The key benefits of Voice AI for your business growth</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Increased Productivity</h3>
+                <p>Automate routine tasks and free your team to focus on high-value work.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">😊</div>
+                <h3>Better Customer Experience</h3>
+                <p>24/7 personalized interactions that improve satisfaction and engagement.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🌐</div>
+                <h3>Always Available</h3>
+                <p>Round-the-clock support and automated workflows without downtime.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Cost Reduction</h3>
+                <p>Minimize manual work and optimize resource allocation for better profitability.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>Data-Driven Insights</h3>
+                <p>Leverage AI to analyze interactions and make smarter business decisions.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>Scalable Growth</h3>
+                <p>Scale efficiently without proportional increases in workload or costs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq" style="background: #f5f7fa;">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to common Voice AI questions</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>What is Voice AI and how can it help my business?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Voice AI uses natural language processing and speech recognition to enable computers to understand and respond to human speech. It can automate customer service, provide 24/7 support, handle routine inquiries, and improve operational efficiency.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>How long does it take to implement a voice AI solution?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Implementation time varies based on complexity. Simple voice bots typically take 2-4 weeks, while comprehensive custom solutions may take 6-12 weeks. We'll provide a detailed timeline during the discovery phase.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>Do I need technical expertise to use Voice AI solutions?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    No technical expertise required. We handle all development, integration, and provide user-friendly dashboards for monitoring and management. Training and documentation are included.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>How do you ensure data privacy and security?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We implement enterprise-grade security with encryption, anonymization, and compliance with GDPR, CCPA, and other regulations. You retain full ownership of your data.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <span>What industries can benefit from Voice AI?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Voice AI is valuable across industries including healthcare, retail, finance, hospitality, real estate, and customer service. Any business with customer interactions can benefit.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Let's discuss how Voice AI can elevate your customer experience and streamline operations.</p>
+        <a href="#" class="btn-secondary" style="background: white; color: #7D3CFE; border-color: white;">Book a Free Consultation</a>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
+        
+        <div style="max-width: 600px; margin: 3rem auto; background: white; padding: 3rem; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <form>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Name</label>
+                    <input type="text" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" placeholder="Your name">
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email</label>
+                    <input type="email" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" placeholder="your@email.com">
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Company</label>
+                    <input type="text" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;" placeholder="Your company">
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Message</label>
+                    <textarea rows="5" style="width: 100%; padding: 0.75rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; resize: vertical;" placeholder="Tell us about your project..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="margin-bottom: 2rem;">
+            <div class="logo" style="color: white; margin-bottom: 1rem;">vocemi</div>
+            <p style="opacity: 0.8; margin-bottom: 1rem;">Empowering Businesses through Voice AI</p>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+            <a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">Home</a>
+            <a href="#services" style="color: white; text-decoration: none; margin: 0 1rem;">Services</a>
+            <a href="#faq" style="color: white; text-decoration: none; margin: 0 1rem;">FAQ</a>
+            <a href="#contact" style="color: white; text-decoration: none; margin: 0 1rem;">Contact</a>
+        </div>
+        
+        <p style="opacity: 0.6;">© 2024 Vocemi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
