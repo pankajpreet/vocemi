@@ -117,7 +117,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4 text-white">What's Included</h2>
+            <h2 className="text-4xl font-bold mb-4 text-white">What&apos;s Included</h2>
             <p className="text-xl text-gray-300">
               Comprehensive features for each service
             </p>
@@ -198,7 +198,7 @@ export default function ServicesPage() {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-white/90 mb-10">
-              Let's discuss how our Voice AI services can transform your business
+              Let&apos;s discuss how our Voice AI services can transform your business
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BookCallButton

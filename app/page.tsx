@@ -138,7 +138,7 @@ export default function Home() {
               Get in Touch
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Have questions? We'd love to hear from you.
+              Have questions? We&apos;d love to hear from you.
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

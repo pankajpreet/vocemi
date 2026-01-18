@@ -44,7 +44,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
             >
               <Quote className="text-primary-accent mb-4" size={32} />
               <p className="text-gray-300 mb-6 leading-relaxed italic">
-                "{testimonial.quote}"
+                &quot;{testimonial.quote}&quot;
               </p>
               <div className="border-t border-primary-accent/20 pt-4">
                 <p className="font-semibold text-white">{testimonial.name}</p>
