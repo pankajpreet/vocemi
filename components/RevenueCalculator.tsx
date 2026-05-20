@@ -73,9 +73,9 @@ interface PrimaryStatProps {
 
 function PrimaryStat({ label, value, suffix }: PrimaryStatProps) {
   return (
-    <div className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 rounded-2xl p-6 text-center">
-      <p className="text-sm text-gray-400 mb-2">{label}</p>
-      <p className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-primary-accent to-primary-accent-cyan bg-clip-text text-transparent">
+    <div className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 rounded-xl p-4 text-center">
+      <p className="text-xs text-gray-400 mb-1">{label}</p>
+      <p className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-primary-accent to-primary-accent-cyan bg-clip-text text-transparent">
         {value}
       </p>
       {suffix && <p className="text-xs text-gray-500 mt-1">{suffix}</p>}
@@ -90,8 +90,8 @@ interface SecondaryStatProps {
 
 function SecondaryStat({ value, label }: SecondaryStatProps) {
   return (
-    <div className="bg-primary-dark/40 border border-primary-accent/10 rounded-xl p-4 text-center">
-      <p className="text-xl sm:text-2xl font-bold text-white">{value}</p>
+    <div className="bg-primary-dark/40 border border-primary-accent/10 rounded-lg p-3 text-center">
+      <p className="text-lg sm:text-xl font-bold text-white">{value}</p>
       <p className="text-xs text-gray-400 mt-1">{label}</p>
     </div>
   );
@@ -211,16 +211,16 @@ export default function RevenueCalculator() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ duration: 0.3 }}
-              className="space-y-8"
+              className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10"
             >
-              <div>
+              <div className="lg:col-span-2">
                 <h3 className="text-2xl font-bold text-white mb-2">
                   Missed Call Calculator
                 </h3>
-                <p className="text-gray-400 mb-8">
+                <p className="text-gray-400 mb-6">
                   Estimate revenue lost from unanswered calls.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="space-y-6">
                   <SliderField
                     label="Missed Calls / Day"
                     value={missedCallsPerDay}
@@ -254,8 +254,8 @@ export default function RevenueCalculator() {
                 </div>
               </div>
 
-              <div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="lg:col-span-3 flex flex-col">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <PrimaryStat
                     label="Daily Loss"
                     value={currency.format(missed.daily)}
@@ -271,7 +271,7 @@ export default function RevenueCalculator() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+                <div className="grid grid-cols-3 gap-3 mt-4">
                   <SecondaryStat
                     value={number.format(missed.missedCallsMonthly)}
                     label="Missed Calls / mo"
@@ -285,18 +285,20 @@ export default function RevenueCalculator() {
                     label="Hours Wasted / mo"
                   />
                 </div>
-              </div>
 
-              <div className="bg-gradient-to-br from-primary-accent/15 to-primary-accent-cyan/10 border border-primary-accent/30 rounded-2xl p-6 text-center">
-                <h4 className="text-lg font-bold text-white mb-2">
-                  Want to plug this leak?
-                </h4>
-                <p className="text-sm text-gray-300 mb-4">
-                  Book a free 15-minute strategy call and we&apos;ll show you how Voice AI recovers this revenue.
-                </p>
-                <BookCallButton variant="primary" className="w-full sm:w-auto">
-                  Book Your Call
-                </BookCallButton>
+                <div className="mt-auto pt-6">
+                  <div className="bg-gradient-to-br from-primary-accent/15 to-primary-accent-cyan/10 border border-primary-accent/30 rounded-2xl p-5 text-center">
+                    <h4 className="text-lg font-bold text-white mb-2">
+                      Want to plug this leak?
+                    </h4>
+                    <p className="text-sm text-gray-300 mb-4">
+                      Book a free 15-minute strategy call and we&apos;ll show you how Voice AI recovers this revenue.
+                    </p>
+                    <BookCallButton variant="primary" className="w-full sm:w-auto">
+                      Book Your Call
+                    </BookCallButton>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ) : (
@@ -306,16 +308,16 @@ export default function RevenueCalculator() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.3 }}
-              className="space-y-8"
+              className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10"
             >
-              <div>
+              <div className="lg:col-span-2">
                 <h3 className="text-2xl font-bold text-white mb-2">
                   Lead Reactivation Calculator
                 </h3>
-                <p className="text-gray-400 mb-8">
+                <p className="text-gray-400 mb-6">
                   Estimate hidden revenue sitting in your CRM.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="space-y-6">
                   <SliderField
                     label="Dormant Leads in Database"
                     value={dormantLeads}
@@ -349,8 +351,8 @@ export default function RevenueCalculator() {
                 </div>
               </div>
 
-              <div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="lg:col-span-3 flex flex-col">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <PrimaryStat
                     label="Recoverable Revenue"
                     value={currency.format(reactivation.recoverableRevenue)}
@@ -367,7 +369,7 @@ export default function RevenueCalculator() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                <div className="grid grid-cols-2 gap-3 mt-4">
                   <SecondaryStat
                     value={number.format(reactivation.leadsReengaged)}
                     label="Leads Re-engaged"
@@ -377,18 +379,20 @@ export default function RevenueCalculator() {
                     label="Hours Saved vs. Manual"
                   />
                 </div>
-              </div>
 
-              <div className="bg-gradient-to-br from-primary-accent/15 to-primary-accent-cyan/10 border border-primary-accent/30 rounded-2xl p-6 text-center">
-                <h4 className="text-lg font-bold text-white mb-2">
-                  Ready to wake up your dormant leads?
-                </h4>
-                <p className="text-sm text-gray-300 mb-4">
-                  Our voice agents call every old lead, qualify them, and book the live ones — all on autopilot.
-                </p>
-                <BookCallButton variant="primary" className="w-full sm:w-auto">
-                  Book Your Call
-                </BookCallButton>
+                <div className="mt-auto pt-6">
+                  <div className="bg-gradient-to-br from-primary-accent/15 to-primary-accent-cyan/10 border border-primary-accent/30 rounded-2xl p-5 text-center">
+                    <h4 className="text-lg font-bold text-white mb-2">
+                      Ready to wake up your dormant leads?
+                    </h4>
+                    <p className="text-sm text-gray-300 mb-4">
+                      Our voice agents call every old lead, qualify them, and book the live ones — all on autopilot.
+                    </p>
+                    <BookCallButton variant="primary" className="w-full sm:w-auto">
+                      Book Your Call
+                    </BookCallButton>
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
