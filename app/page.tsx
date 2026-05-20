@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import Testimonials from "@/components/Testimonials";
 import BookCallButton from "@/components/BookCallButton";
+import RevenueCalculator from "@/components/RevenueCalculator";
 import { siteConfig } from "@/lib/config";
 
 export default function Home() {
@@ -82,6 +83,11 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Revenue Lost Calculator */}
+      <section id="calculator" className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
+        <RevenueCalculator />
       </section>
 
       {/* Testimonials */}

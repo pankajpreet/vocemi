@@ -12,3 +12,52 @@
   }
 }
 
+/* Revenue Calculator slider styling */
+.vocemi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.vocemi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid #7D3CFE;
+  box-shadow: 0 2px 8px rgba(125, 60, 254, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vocemi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(125, 60, 254, 0.7);
+}
+
+.vocemi-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid #7D3CFE;
+  box-shadow: 0 2px 8px rgba(125, 60, 254, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vocemi-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(125, 60, 254, 0.7);
+}
+
+.vocemi-slider::-moz-range-track {
+  background: transparent;
+}
+

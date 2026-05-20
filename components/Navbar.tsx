@@ -62,6 +62,13 @@ export default function Navbar() {
               Services
             </a>
             <a
+              href="#calculator"
+              onClick={(e) => handleNavClick(e, "#calculator")}
+              className="text-gray-300 hover:text-white transition-colors font-medium"
+            >
+              ROI Calculator
+            </a>
+            <a
               href="#faq"
               onClick={(e) => handleNavClick(e, "#faq")}
               className="text-gray-300 hover:text-white transition-colors font-medium"
@@ -112,6 +119,13 @@ export default function Navbar() {
               className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
             >
               Services
+            </a>
+            <a
+              href="#calculator"
+              onClick={(e) => handleNavClick(e, "#calculator")}
+              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
+            >
+              ROI Calculator
             </a>
             <a
               href="#faq"
