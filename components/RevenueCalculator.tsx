@@ -73,9 +73,9 @@ interface PrimaryStatProps {
 
 function PrimaryStat({ label, value, suffix }: PrimaryStatProps) {
   return (
-    <div className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 rounded-2xl p-6 text-center">
+    <div className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 rounded-2xl p-4 sm:p-5 text-center min-w-0">
       <p className="text-sm text-gray-400 mb-2">{label}</p>
-      <p className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-primary-accent to-primary-accent-cyan bg-clip-text text-transparent">
+      <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold bg-gradient-to-r from-primary-accent to-primary-accent-cyan bg-clip-text text-transparent truncate">
         {value}
       </p>
       {suffix && <p className="text-xs text-gray-500 mt-1">{suffix}</p>}
@@ -90,8 +90,8 @@ interface SecondaryStatProps {
 
 function SecondaryStat({ value, label }: SecondaryStatProps) {
   return (
-    <div className="bg-primary-dark/40 border border-primary-accent/10 rounded-xl p-4 text-center">
-      <p className="text-2xl font-bold text-white">{value}</p>
+    <div className="bg-primary-dark/40 border border-primary-accent/10 rounded-xl p-3 sm:p-4 text-center min-w-0">
+      <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white truncate">{value}</p>
       <p className="text-xs text-gray-400 mt-1">{label}</p>
     </div>
   );
@@ -254,8 +254,8 @@ export default function RevenueCalculator() {
                 </div>
               </div>
 
-              <div className="flex flex-col">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex flex-col min-w-0">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <PrimaryStat
                     label="Daily Loss"
                     value={currency.format(missed.daily)}
@@ -271,7 +271,7 @@ export default function RevenueCalculator() {
                   />
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
                   <SecondaryStat
                     value={number.format(missed.missedCallsMonthly)}
                     label="Missed Calls / mo"
@@ -351,8 +351,8 @@ export default function RevenueCalculator() {
                 </div>
               </div>
 
-              <div className="flex flex-col">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex flex-col min-w-0">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <PrimaryStat
                     label="Recoverable Revenue"
                     value={currency.format(reactivation.recoverableRevenue)}
