@@ -4,10 +4,27 @@ export const siteConfig = {
   description:
     "Transform your customer interactions with intelligent voice-powered solutions that understand, respond, and elevate your business.",
   url: "https://vocemi.com",
+  location: "Calgary, Alberta",
   contact: {
     email: "business@vocemi.com",
+    // Leave unset until there is a number we're happy to publish. The
+    // tap-to-call / tap-to-text block on /start hides itself when empty.
+    phone: process.env.NEXT_PUBLIC_PHONE || "",
   },
   bookCallUrl: process.env.NEXT_PUBLIC_BOOK_CALL_URL || "#",
+
+  // --- /start landing page ---------------------------------------------
+  // YouTube id for the VSL. The video section is omitted entirely until
+  // this is set, so /start ships without a half-finished player.
+  startVideoId: process.env.NEXT_PUBLIC_START_VIDEO_ID || "",
+  // ElevenLabs ConvAI agent powering the live demo. Falls back to the
+  // MediSpa receptionist so the demo works out of the box; override per
+  // environment to point at a general-purpose agent.
+  elevenLabsAgentId:
+    process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ||
+    "agent_6601ktj573qmfpbry50mamrm82dm",
+  // Google Form for visitors who aren't ready to book. Link hides when empty.
+  leadFormUrl: process.env.NEXT_PUBLIC_LEAD_FORM_URL || "",
   // Social media links (add your actual links)
   social: {
     twitter: "", // e.g., "https://twitter.com/vocemi"

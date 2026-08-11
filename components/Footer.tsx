@@ -66,8 +66,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10 text-[13px] text-ink/40">
-        &copy; {currentYear} Vocemi. All rights reserved.
+      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/40">
+        <span>&copy; {currentYear} Vocemi. All rights reserved.</span>
+        <a href="/privacy" className="hover:text-brand transition-colors">
+          Privacy
+        </a>
       </div>
     </footer>
   );

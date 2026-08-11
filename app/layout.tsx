@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/lib/config";
 
@@ -47,9 +46,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${manrope.variable} font-sans`}>
         <StructuredData />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {children}
+        <Analytics />
       </body>
     </html>
   );
