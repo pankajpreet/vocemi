@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0;background:#FAFAF7;font-family:'Inter',system-ui,-apple-system,sans-serif;color:#16181C;-webkit-font-smoothing:antialiased}
+  a{color:#3B54F4;text-decoration:none}
+  a:hover{color:#2338C7}
+  ::selection{background:#3B54F4;color:#fff}
+  @keyframes wave{0%,100%{transform:scaleY(0.3)}50%{transform:scaleY(1)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+  @keyframes popIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+  @keyframes drawLine{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+  @keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes slideInLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes slideInRight{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(59,84,244,0.5)}50%{box-shadow:0 0 0 6px rgba(59,84,244,0)}}
+</style>
+</helmet>
+
+<div style="position:sticky;top:0;z-index:50;background:rgba(250,250,247,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(22,24,28,0.08)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px">
+    <div style="display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em;flex-shrink:0">
+      <span style="width:28px;height:28px;border-radius:8px;background:#3B54F4;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="width:9px;height:9px;border-radius:50%;background:#fff"></span>
+      </span>
+      Vocemi
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500;color:rgba(22,24,28,0.7);flex-wrap:wrap;justify-content:center;min-width:0">
+      <a href="#how-it-works" style="color:inherit;white-space:nowrap">How it works</a>
+      <a href="#services" style="color:inherit;white-space:nowrap">Services</a>
+      <a href="#calculator" style="color:inherit;white-space:nowrap">ROI Calculator</a>
+      <a href="#pricing" style="color:inherit;white-space:nowrap">Pricing</a>
+      <a href="#faq" style="color:inherit;white-space:nowrap">FAQ</a>
+    </div>
+    <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="background:#16181C;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;white-space:nowrap;flex-shrink:0" style-hover="background:#3B54F4">Book a Call</a>
+  </div>
+</div>
+
+<div style="max-width:1180px;margin:0 auto;padding:88px 32px 96px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
+  <div style="animation:fadeUp 0.7s ease both">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#EEF0FE;color:#3B54F4;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:22px">
+      <span style="width:7px;height:7px;border-radius:50%;background:#3B54F4;animation:pulseDot 1.6s ease-in-out infinite"></span>
+      Voice AI for growing businesses
+    </div>
+    <h1 style="font-family:Manrope,sans-serif;font-size:60px;line-height:1.03;letter-spacing:-0.025em;font-weight:800;margin:0 0 22px">Never miss another <span style="background:linear-gradient(90deg,#3B54F4,#7C90FF);-webkit-background-clip:text;background-clip:text;color:transparent">call, lead, or booking</span>.</h1>
+    <p style="font-size:18px;line-height:1.6;color:rgba(22,24,28,0.65);max-width:520px;margin:0 0 32px">Vocemi builds voice AI employees that answer, qualify, and book &mdash; then hand you a clear daily report. You keep the judgment calls; the AI handles the repeatable ones.</p>
+    <div style="display:flex;gap:14px;margin-bottom:36px">
+      <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="background:#3B54F4;color:#fff;padding:14px 26px;border-radius:9px;font-size:15.5px;font-weight:600" style-hover="background:#2338C7">Book a Call</a>
+      <a href="#how-it-works" style="border:1px solid rgba(22,24,28,0.15);color:#16181C;padding:14px 26px;border-radius:9px;font-size:15.5px;font-weight:600" style-hover="border-color:rgba(22,24,28,0.35)">See how it works</a>
+    </div>
+    <div style="display:flex;gap:32px;font-size:13.5px;color:rgba(22,24,28,0.5)">
+      <div><span style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#16181C">24/7</span><br>always answering</div>
+      <div><span style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#16181C">2&ndash;4 wks</span><br>to first launch</div>
+      <div><span style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#16181C">100%</span><br>calls logged &amp; reported</div>
+    </div>
+  </div>
+
+  <div style="background:#14161B;border-radius:20px;padding:28px;position:relative;animation:fadeUp 0.7s ease 0.15s both;box-shadow:0 40px 80px -24px rgba(20,22,27,0.55)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:10px;color:#fff;font-size:14px;font-weight:600">
+        <span style="width:8px;height:8px;border-radius:50%;background:#37D67A;animation:pulseDot 1.6s ease-in-out infinite"></span>
+        Live call &mdash; incoming
+      </div>
+      <span style="color:rgba(255,255,255,0.4);font-size:12.5px;font-family:'Manrope',monospace">00:14</span>
+    </div>
+    <div style="display:flex;align-items:end;gap:4px;height:56px;padding:0 4px;margin-bottom:22px">
+      <sc-for list="{{ waveBars }}" as="bar" hint-placeholder-count="24">
+        <span style="width:5px;border-radius:3px;background:linear-gradient(180deg,#3B54F4,#7C90FF);height:100%;transform-origin:bottom;animation:wave {{ bar.dur }}s ease-in-out infinite;animation-delay:{{ bar.delay }}s"></span>
+      </sc-for>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:16px 18px;margin-bottom:14px">
+      <div style="color:rgba(255,255,255,0.4);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">Caller</div>
+      <div style="color:#fff;font-size:14.5px;line-height:1.5">"Hi, I'd like to book a Botox consult and ask about your laser package pricing."</div>
+    </div>
+    <div style="background:rgba(59,84,244,0.15);border-radius:12px;padding:16px 18px;border:1px solid rgba(59,84,244,0.3)">
+      <div style="color:#7C90FF;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">Vocemi AI</div>
+      <div style="color:#fff;font-size:14.5px;line-height:1.5">Happy to help &mdash; I can book your consult for Thursday 2pm or Friday 11am, and I'll send our laser package pricing right after. Which time works?</div>
+    </div>
+  </div>
+</div>
+
+<div style="border-top:1px solid rgba(22,24,28,0.08);border-bottom:1px solid rgba(22,24,28,0.08);background:#F3F1EC;padding:28px 0">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="text-align:center;font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:rgba(22,24,28,0.4);margin-bottom:20px">Built for teams who answer the phone for a living</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px">
+      <sc-for list="{{ logoSlots }}" as="slot" hint-placeholder-count="6">
+        <image-slot id="{{ slot.id }}" shape="rect" style="width:100%;height:44px;opacity:0.8" placeholder="Client logo"></image-slot>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div id="how-it-works" ref="{{ setWorkflowRef }}" style="max-width:1180px;margin:0 auto;padding:110px 32px 90px;{{ revealWorkflow }}">
+  <div style="max-width:620px;margin:0 auto 64px;text-align:center">
+    <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">How it works</div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:36px;font-weight:800;letter-spacing:-0.02em;margin:0 0 14px">One workflow, fully handled</h2>
+    <p style="font-size:16.5px;color:rgba(22,24,28,0.6);line-height:1.6;margin:0">Start with the repeatable work &mdash; answering, qualifying, booking &mdash; and watch it run end to end.</p>
+  </div>
+  <div style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:28px">
+    <div style="position:absolute;top:27px;left:12.5%;right:12.5%;height:1px;background:repeating-linear-gradient(90deg,rgba(22,24,28,0.18) 0 8px,transparent 8px 16px)"></div>
+    <div style="position:absolute;top:26px;left:12.5%;right:12.5%;height:3px;border-radius:2px;background:rgba(59,84,244,0.15)">
+      <div style="height:100%;border-radius:2px;background:#3B54F4;width:{{ workflowLineWidth }};transition:width 1s cubic-bezier(.65,0,.35,1)"></div>
+    </div>
+    <sc-for list="{{ workflowSteps }}" as="step" hint-placeholder-count="4">
+      <div style="position:relative;z-index:1;{{ step.anim }}">
+        <div style="width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:18px;margin-bottom:20px;transition:all 0.5s ease;background:{{ step.badgeBg }};color:{{ step.badgeColor }};box-shadow:{{ step.badgeShadow }};transform:{{ step.badgeScale }}">{{ step.num }}</div>
+        <h3 style="font-family:Manrope,sans-serif;font-size:17.5px;font-weight:700;margin:0 0 8px;letter-spacing:-0.01em;transition:color 0.5s ease;color:{{ step.textColor }}">{{ step.title }}</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:rgba(22,24,28,0.6);margin:0">{{ step.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<div id="services" style="background:#F3F1EC;padding:100px 0">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="max-width:620px;margin:0 auto 56px;text-align:center">
+      <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Services</div>
+      <h2 style="font-family:Manrope,sans-serif;font-size:36px;font-weight:800;letter-spacing:-0.02em;margin:0 0 14px">Voice AI, built around your workflow</h2>
+      <p style="font-size:16.5px;color:rgba(22,24,28,0.6);line-height:1.6;margin:0">Comprehensive solutions, deployed one workflow at a time.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid rgba(22,24,28,0.08);border-radius:16px;padding:30px;transition:transform 0.25s cubic-bezier(.16,1,.3,1),box-shadow 0.25s ease;{{ s.anim }}" style-hover="transform:translateY(-6px);box-shadow:0 20px 40px -14px rgba(22,24,28,0.18)">
+          <div style="width:44px;height:44px;border-radius:11px;background:{{ s.tint }};display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <sc-if value="{{ s.isCircle }}" hint-placeholder-val="{{ false }}"><div style="width:22px;height:22px;border-radius:50%;border:3px solid #3B54F4"></div></sc-if>
+            <sc-if value="{{ s.isSquare }}" hint-placeholder-val="{{ false }}"><div style="width:20px;height:20px;border-radius:5px;background:#1F8F5F"></div></sc-if>
+            <sc-if value="{{ s.isDiamond }}" hint-placeholder-val="{{ false }}"><div style="width:16px;height:16px;background:#C97A12;transform:rotate(45deg)"></div></sc-if>
+            <sc-if value="{{ s.isTarget }}" hint-placeholder-val="{{ false }}"><div style="width:22px;height:22px;border-radius:50%;border:3px solid #8B4FD1;display:flex;align-items:center;justify-content:center"><div style="width:8px;height:8px;border-radius:50%;background:#8B4FD1"></div></div></sc-if>
+            <sc-if value="{{ s.isBars }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:end;gap:3px;height:22px"><div style="width:5px;height:10px;background:#2C6FB0;border-radius:1px"></div><div style="width:5px;height:18px;background:#2C6FB0;border-radius:1px"></div><div style="width:5px;height:14px;background:#2C6FB0;border-radius:1px"></div></div></sc-if>
+            <sc-if value="{{ s.isRefresh }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:22px;height:22px"><div style="position:absolute;left:0;top:0;width:15px;height:15px;border-radius:50%;border:3px solid #D14F87"></div><div style="position:absolute;right:0;bottom:0;width:15px;height:15px;border-radius:50%;background:#D14F87;opacity:0.35"></div></div></sc-if>
+          </div>
+          <h3 style="font-family:Manrope,sans-serif;font-size:17px;font-weight:700;margin:0 0 8px">{{ s.title }}</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:rgba(22,24,28,0.6);margin:0">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div ref="{{ setDashboardRef }}" style="max-width:1180px;margin:0 auto;padding:110px 32px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;{{ revealDashboard }}">
+  <div>
+    <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Owner visibility</div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.025em;margin:0 0 18px;line-height:1.1">See exactly what your AI employee did today.</h2>
+    <p style="font-size:16.5px;line-height:1.65;color:rgba(22,24,28,0.6);margin:0 0 26px">Every call, booking, and edge case rolls up into one daily report. Anything outside your rules waits for your sign-off &mdash; nothing happens without an approved path.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ dashboardPoints }}" as="p" hint-placeholder-count="3">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="width:20px;height:20px;border-radius:50%;background:#EEF0FE;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center">
+            <span style="width:7px;height:7px;border-radius:50%;background:#3B54F4"></span>
+          </span>
+          <div>
+            <div style="font-weight:600;font-size:15px;margin-bottom:2px">{{ p.title }}</div>
+            <div style="font-size:14px;color:rgba(22,24,28,0.55);line-height:1.5">{{ p.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="background:#fff;border:1px solid rgba(22,24,28,0.08);border-radius:18px;box-shadow:0 24px 50px -20px rgba(22,24,28,0.18);overflow:hidden">
+    <div style="background:#16181C;padding:16px 22px;display:flex;align-items:center;justify-content:between;gap:10px">
+      <div style="display:flex;gap:6px">
+        <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25)"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25)"></span>
+        <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25)"></span>
+      </div>
+      <span style="color:rgba(255,255,255,0.6);font-size:12.5px;margin-left:8px">Daily Owner Report &middot; Today</span>
+    </div>
+    <div style="padding:26px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px">
+        <sc-for list="{{ reportStats }}" as="r" hint-placeholder-count="4">
+          <div style="background:#F3F1EC;border-radius:12px;padding:16px">
+            <div key="{{ r.value }}" style="font-family:Manrope,sans-serif;font-size:26px;font-weight:800;animation:popIn 0.3s ease">{{ r.value }}</div>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.55);margin-top:4px">{{ r.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border:1px solid #F0D9A8;background:#FDF6E8;border-radius:12px;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#C97A12"></span>
+          <span style="font-size:13px;font-weight:700;color:#8A5A0C">Waiting for your approval</span>
+        </div>
+        <div style="font-size:14px;color:#5C4210;line-height:1.5">Quoted price falls outside your standard range for a re-roof job. Vocemi is holding the reply until you confirm.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1180px;margin:0 auto;padding:20px 32px 110px">
+  <div style="max-width:620px;margin:0 auto 56px;text-align:center">
+    <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Why Vocemi</div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:46px;font-weight:800;letter-spacing:-0.025em;margin:0 0 14px">Built for growth, not just uptime</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+    <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
+      <div style="padding:26px 4px;{{ b.anim }}">
+        <div style="font-family:Manrope,sans-serif;font-size:15px;font-weight:800;color:#3B54F4;margin-bottom:14px">{{ b.num }}</div>
+        <h3 style="font-family:Manrope,sans-serif;font-size:17px;font-weight:700;margin:0 0 8px">{{ b.title }}</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:rgba(22,24,28,0.6);margin:0">{{ b.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<div id="calculator" ref="{{ setCalcRef }}" style="background:#14161B;padding:100px 0;{{ revealCalc }}">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="max-width:640px;margin:0 auto 50px;text-align:center">
+      <div style="font-size:13px;font-weight:700;color:#7C90FF;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">ROI Calculator</div>
+      <h2 style="font-family:Manrope,sans-serif;font-size:46px;font-weight:800;letter-spacing:-0.025em;color:#fff;margin:0 0 14px">Run the numbers on what you're losing</h2>
+      <p style="font-size:16.5px;color:rgba(255,255,255,0.55);line-height:1.6;margin:0">Most businesses don't realize how much revenue slips through missed calls and cold leads.</p>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:32px">
+      <button onClick="{{ setTabMissed }}" style="{{ tabMissedStyle }}">Missed Calls</button>
+      <button onClick="{{ setTabReactivation }}" style="{{ tabReactivationStyle }}">Reactivation Calls</button>
+    </div>
+
+    <sc-if value="{{ isTabMissed }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+        <div>
+          <div style="margin-bottom:28px">
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Missed Calls / Day</span><span style="color:#3B54F4">{{ missedCalls }}</span></div>
+            <input type="range" min="1" max="100" value="{{ missedCalls }}" onInput="{{ onMissedCalls }}" style="width:100%;accent-color:#3B54F4"></input>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-top:6px">Missed calls happen 7 days a week, even when you're closed.</div>
+          </div>
+          <div style="margin-bottom:28px">
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Avg Customer Value</span><span style="color:#3B54F4">${{ avgValue }}</span></div>
+            <input type="range" min="50" max="5000" step="50" value="{{ avgValue }}" onInput="{{ onAvgValue }}" style="width:100%;accent-color:#3B54F4"></input>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-top:6px">What a customer is typically worth to your business.</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Close Rate</span><span style="color:#3B54F4">{{ closeRate }}%</span></div>
+            <input type="range" min="1" max="100" value="{{ closeRate }}" onInput="{{ onCloseRate }}" style="width:100%;accent-color:#3B54F4"></input>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-top:6px">What % of answered calls typically convert.</div>
+          </div>
+        </div>
+        <div style="background:#F3F1EC;border-radius:16px;padding:28px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+            <div>
+              <div key="{{ dailyLoss }}" style="font-family:Manrope,sans-serif;font-size:24px;font-weight:800;animation:popIn 0.3s ease">${{ dailyLoss }}</div>
+              <div style="font-size:12.5px;color:rgba(22,24,28,0.55)">Daily Loss</div>
+            </div>
+            <div>
+              <div key="{{ monthlyLoss }}" style="font-family:Manrope,sans-serif;font-size:24px;font-weight:800;animation:popIn 0.3s ease">${{ monthlyLoss }}</div>
+              <div style="font-size:12.5px;color:rgba(22,24,28,0.55)">Monthly Loss</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid rgba(22,24,28,0.1);padding-top:20px;margin-bottom:20px">
+            <div key="{{ yearlyLoss }}" style="font-family:Manrope,sans-serif;font-size:38px;font-weight:800;color:#3B54F4;animation:popIn 0.3s ease">${{ yearlyLoss }}</div>
+            <div style="font-size:13px;color:rgba(22,24,28,0.55)">Total Yearly Loss</div>
+          </div>
+          <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="background:#16181C;color:#fff;text-align:center;padding:13px;border-radius:9px;font-weight:600;font-size:14.5px" style-hover="background:#3B54F4">Book Your Call</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isTabReactivation }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+        <div>
+          <div style="margin-bottom:28px">
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Dormant Leads / Month</span><span style="color:#3B54F4">{{ dormantLeads }}</span></div>
+            <input type="range" min="10" max="1000" step="10" value="{{ dormantLeads }}" onInput="{{ onDormantLeads }}" style="width:100%;accent-color:#3B54F4"></input>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-top:6px">Past leads and customers who never converted or came back.</div>
+          </div>
+          <div style="margin-bottom:28px">
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Avg Customer Value</span><span style="color:#3B54F4">${{ reactAvgValue }}</span></div>
+            <input type="range" min="50" max="5000" step="50" value="{{ reactAvgValue }}" onInput="{{ onReactAvgValue }}" style="width:100%;accent-color:#3B54F4"></input>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;margin-bottom:8px"><span>Reactivation Rate</span><span style="color:#3B54F4">{{ reactRate }}%</span></div>
+            <input type="range" min="1" max="50" value="{{ reactRate }}" onInput="{{ onReactRate }}" style="width:100%;accent-color:#3B54F4"></input>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-top:6px">% of dormant leads a re-engagement call typically wins back.</div>
+          </div>
+        </div>
+        <div style="background:#F3F1EC;border-radius:16px;padding:28px;display:flex;flex-direction:column;justify-content:center">
+          <div style="margin-bottom:20px">
+            <div key="{{ reactWon }}" style="font-family:Manrope,sans-serif;font-size:24px;font-weight:800;animation:popIn 0.3s ease">{{ reactWon }}</div>
+            <div style="font-size:12.5px;color:rgba(22,24,28,0.55)">Customers Reactivated / mo</div>
+          </div>
+          <div style="border-top:1px solid rgba(22,24,28,0.1);padding-top:20px;margin-bottom:20px">
+            <div key="{{ reactRevenue }}" style="font-family:Manrope,sans-serif;font-size:38px;font-weight:800;color:#3B54F4;animation:popIn 0.3s ease">${{ reactRevenue }}</div>
+            <div style="font-size:13px;color:rgba(22,24,28,0.55)">Recovered Revenue / Month</div>
+          </div>
+          <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="background:#16181C;color:#fff;text-align:center;padding:13px;border-radius:9px;font-weight:600;font-size:14.5px" style-hover="background:#3B54F4">Book Your Call</a>
+        </div>
+      </div>
+    </sc-if>
+    <div style="text-align:center;font-size:12.5px;color:rgba(255,255,255,0.35);margin-top:22px">Estimates only. Actual results depend on your industry, lead quality, and current process.</div>
+  </div>
+</div>
+
+<div ref="{{ setCompareRef }}" style="max-width:1180px;margin:0 auto;padding:110px 32px;{{ revealCompare }}">
+  <div style="max-width:640px;margin:0 auto 56px;text-align:center">
+    <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Vocemi vs. a human hire</div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:46px;font-weight:800;letter-spacing:-0.025em;margin:0 0 14px">Use people for judgment. Use AI for repeatable work.</h2>
+    <p style="font-size:16.5px;color:rgba(22,24,28,0.6);line-height:1.6;margin:0">Vocemi doesn't replace your team &mdash; it takes the repetitive call handling off their plate.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="border:1px solid rgba(22,24,28,0.1);border-radius:16px;padding:32px;animation:slideInLeft 0.6s cubic-bezier(.16,1,.3,1) both">
+      <h3 style="font-family:Manrope,sans-serif;font-size:18px;font-weight:700;margin:0 0 6px">Human hire</h3>
+      <div style="font-size:26px;font-weight:800;font-family:Manrope,sans-serif;color:rgba(22,24,28,0.35);text-decoration:line-through;margin-bottom:4px">~$4,500&ndash;$6,000/mo</div>
+      <div style="font-size:12.5px;color:rgba(22,24,28,0.45);margin-bottom:20px">Illustrative employer-cost comparison, not a guaranteed figure.</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ humanCons }}" as="c" hint-placeholder-count="5">
+          <div style="display:flex;gap:10px;font-size:14.5px;color:rgba(22,24,28,0.65)"><span style="color:rgba(22,24,28,0.3)">&mdash;</span>{{ c }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="border:1.5px solid #3B54F4;border-radius:16px;padding:32px;background:#EEF0FE;animation:slideInRight 0.6s cubic-bezier(.16,1,.3,1) both">
+      <h3 style="font-family:Manrope,sans-serif;font-size:18px;font-weight:700;margin:0 0 6px">Vocemi AI Employee</h3>
+      <div style="font-size:26px;font-weight:800;font-family:Manrope,sans-serif;color:#3B54F4;margin-bottom:4px">From $750/mo</div>
+      <div style="font-size:12.5px;color:rgba(22,24,28,0.5);margin-bottom:20px">Plus a one-time setup fee, scoped to your workflow.</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ aiPros }}" as="c" hint-placeholder-count="5">
+          <div style="display:flex;gap:10px;font-size:14.5px;color:#16181C;font-weight:500"><span style="color:#3B54F4">&#10003;</span>{{ c }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pricing" ref="{{ setPricingRef }}" style="background:#F3F1EC;padding:110px 0;{{ revealPricing }}">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="max-width:640px;margin:0 auto 56px;text-align:center">
+      <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Pricing</div>
+      <h2 style="font-family:Manrope,sans-serif;font-size:46px;font-weight:800;letter-spacing:-0.025em;margin:0 0 14px">Start small, prove it, then expand</h2>
+      <p style="font-size:16.5px;color:rgba(22,24,28,0.6);line-height:1.6;margin:0 auto;max-width:520px">Illustrative pricing &mdash; every engagement is scoped to your actual call volume and tools on a free call.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch">
+      <sc-for list="{{ pricingTiers }}" as="t" hint-placeholder-count="3">
+        <div style="background:#fff;border-radius:18px;padding:32px;border:{{ t.border }};display:flex;flex-direction:column;position:relative;transition:transform 0.25s ease,box-shadow 0.25s ease;{{ t.anim }}" style-hover="transform:translateY(-6px);box-shadow:0 20px 40px -16px rgba(22,24,28,0.15)">
+          <sc-if value="{{ t.featured }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:-13px;left:32px;background:#3B54F4;color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;animation:badgePulse 2.2s ease-in-out infinite">Most common start</div>
+          </sc-if>
+          <h3 style="font-family:Manrope,sans-serif;font-size:17px;font-weight:700;margin:0 0 6px">{{ t.name }}</h3>
+          <p style="font-size:13.5px;color:rgba(22,24,28,0.55);margin:0 0 20px;min-height:36px">{{ t.tagline }}</p>
+          <div style="font-family:Manrope,sans-serif;font-size:32px;font-weight:800;margin-bottom:2px">{{ t.price }}</div>
+          <div style="font-size:13px;color:rgba(22,24,28,0.5);margin-bottom:24px">{{ t.priceSub }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:28px;flex:1">
+            <sc-for list="{{ t.features }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;gap:9px;font-size:14px;color:rgba(22,24,28,0.75)"><span style="color:#3B54F4">&#10003;</span>{{ f }}</div>
+            </sc-for>
+          </div>
+          <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="{{ t.ctaStyle }}">{{ t.ctaLabel }}</a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div ref="{{ setProofRef }}" style="max-width:1180px;margin:0 auto;padding:110px 32px;{{ revealProof }}">
+  <div style="max-width:640px;margin:0 auto 56px;text-align:center">
+    <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Results</div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:46px;font-weight:800;letter-spacing:-0.025em;margin:0 0 14px">Case studies, coming as we launch</h2>
+    <p style="font-size:16.5px;color:rgba(22,24,28,0.6);line-height:1.6;margin:0">Drop in real client logos and results as they come in &mdash; these slots are ready to go.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+    <sc-for list="{{ caseStudySlots }}" as="cs" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid rgba(22,24,28,0.08);border-radius:16px;padding:26px">
+        <image-slot id="{{ cs.id }}" shape="rounded" radius="10" style="width:100%;height:120px;margin-bottom:18px" placeholder="Client logo or result screenshot"></image-slot>
+        <div style="font-size:14px;color:rgba(22,24,28,0.55);line-height:1.55">{{ cs.placeholder }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<div id="faq" ref="{{ setFaqRef }}" style="background:#F3F1EC;padding:110px 0;{{ revealFaq }}">
+  <div style="max-width:800px;margin:0 auto;padding:0 32px">
+    <div style="text-align:center;margin-bottom:48px">
+      <div style="font-size:13px;font-weight:700;color:#3B54F4;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">FAQ</div>
+      <h2 style="font-family:Manrope,sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.025em;margin:0">Questions before you build</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid rgba(22,24,28,0.08);border-radius:14px;overflow:hidden">
+          <div onClick="{{ f.toggle }}" style="display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer">
+            <span style="font-family:Manrope,sans-serif;font-weight:800;color:rgba(22,24,28,0.25);font-size:14px">{{ f.num }}</span>
+            <span style="flex:1;font-weight:600;font-size:15.5px">{{ f.q }}</span>
+            <span style="font-size:20px;color:rgba(22,24,28,0.4);transform:{{ f.iconTransform }};transition:transform 0.2s ease">+</span>
+          </div>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 24px 22px 60px;font-size:14.5px;line-height:1.65;color:rgba(22,24,28,0.6)">{{ f.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1180px;margin:0 auto;padding:100px 32px">
+  <div style="background:#16181C;border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(59,84,244,0.35),transparent 70%);animation:floatSlow 6s ease-in-out infinite"></div>
+    <h2 style="font-family:Manrope,sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.025em;color:#fff;margin:0 0 14px;position:relative">Ready to stop missing calls?</h2>
+    <p style="font-size:16.5px;color:rgba(255,255,255,0.6);margin:0 0 30px;position:relative">Book a free 15-minute call. We'll map your first workflow together.</p>
+    <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="position:relative;display:inline-block;background:#3B54F4;color:#fff;padding:15px 30px;border-radius:9px;font-weight:600;font-size:15.5px" style-hover="background:#5A70FF">Book a Call</a>
+  </div>
+</div>
+
+<div style="border-top:1px solid rgba(22,24,28,0.08);padding:56px 0 40px">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;font-size:18px;margin-bottom:14px">
+        <span style="width:24px;height:24px;border-radius:7px;background:#3B54F4;display:inline-flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#fff"></span></span>
+        Vocemi
+      </div>
+      <p style="font-size:14px;color:rgba(22,24,28,0.55);line-height:1.6;max-width:320px">Empowering businesses through voice AI &mdash; intelligent, always-on customer interactions.</p>
+    </div>
+    <div>
+      <div style="font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:rgba(22,24,28,0.4);margin-bottom:14px">Explore</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+        <a href="#how-it-works" style="color:rgba(22,24,28,0.7)">How it works</a>
+        <a href="#services" style="color:rgba(22,24,28,0.7)">Services</a>
+        <a href="#calculator" style="color:rgba(22,24,28,0.7)">ROI Calculator</a>
+        <a href="#pricing" style="color:rgba(22,24,28,0.7)">Pricing</a>
+        <a href="#faq" style="color:rgba(22,24,28,0.7)">FAQ</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:rgba(22,24,28,0.4);margin-bottom:14px">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:rgba(22,24,28,0.7)">
+        <a href="mailto:business@vocemi.com" style="color:rgba(22,24,28,0.7)">business@vocemi.com</a>
+        <a href="https://calendar.app.google/KQ5ydjXCmb1mARHq7" style="color:rgba(22,24,28,0.7)">Book a Call</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1180px;margin:36px auto 0;padding:24px 32px 0;border-top:1px solid rgba(22,24,28,0.08);font-size:13px;color:rgba(22,24,28,0.4)">&copy; 2026 Vocemi. All rights reserved.</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    missedCalls: 20, avgValue: 500, closeRate: 30,
+    dormantLeads: 200, reactAvgValue: 500, reactRate: 12,
+    calcTab: 'missed',
+    openFaqIdx: 0,
+    revealed: {},
+    activeWorkflowStep: 0
+  };
+
+  componentDidMount() {
+    this.workflowInterval = setInterval(() => {
+      this.setState(s => ({ activeWorkflowStep: (s.activeWorkflowStep + 1) % 4 }));
+    }, 2200);
+  }
+
+  noop() {}
+
+  componentWillUnmount() {
+    if (this.workflowInterval) clearInterval(this.workflowInterval);
+  }
+
+  revealStyle(key) {
+    return '';
+  }
+
+  renderVals() {
+    const s = this.state;
+    const dailyLoss = Math.round(s.missedCalls * (s.closeRate / 100) * s.avgValue);
+    const monthlyLoss = dailyLoss * 30;
+    const yearlyLoss = dailyLoss * 365;
+    const reactWon = Math.round(s.dormantLeads * (s.reactRate / 100));
+    const reactRevenue = reactWon * s.reactAvgValue;
+
+    const fmt = (n) => n.toLocaleString('en-US');
+    const stagger = (i, delay = 0.1) => `animation:fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${(i * delay).toFixed(2)}s both`;
+
+    const tabBtn = (active) => `padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;background:${active ? '#3B54F4' : 'rgba(255,255,255,0.08)'};color:${active ? '#fff' : 'rgba(255,255,255,0.6)'}`;
+
+    const services = [
+      { title: 'Voice Bot Development', desc: 'Custom conversational voice bots for support, lead qualification, and automated assistance.', tint: '#EEF0FE', isCircle: true },
+      { title: 'AI Receptionist', desc: '24/7 virtual receptionist that answers, schedules, routes callers, and handles inquiries.', tint: '#EAF6EE', isSquare: true },
+      { title: 'Appointment Management', desc: 'Automated scheduling, confirmations, and reminders that reduce no-shows.', tint: '#FDF6E8', isDiamond: true },
+      { title: 'Qualification & Lead Gen', desc: 'Voice systems that qualify leads, capture details, and route hot prospects to sales.', tint: '#F3ECFB', isTarget: true },
+      { title: 'Lead Reactivation', desc: 'AI calls dormant leads and past customers to re-engage them and book them back in.', tint: '#FBEAF0', isRefresh: true },
+      { title: 'Voice Analytics & Insights', desc: 'Turn calls into data with sentiment analysis, transcription, and performance metrics.', tint: '#EAF3FB', isBars: true }
+    ];
+
+    const benefits = [
+      { num: '01', title: 'Increased Productivity', desc: 'Automate routine calls and free your team for higher-value work.' },
+      { num: '02', title: 'Better Customer Experience', desc: '24/7 personalized interactions that improve satisfaction.' },
+      { num: '03', title: 'Always Available', desc: 'Round-the-clock coverage without downtime or missed shifts.' },
+      { num: '04', title: 'Cost Reduction', desc: 'Cut manual overhead and route budget to growth instead.' },
+      { num: '05', title: 'Data-Driven Insights', desc: 'Every call becomes a data point you can act on.' },
+      { num: '06', title: 'Scalable Growth', desc: 'Handle more volume without a proportional headcount increase.' }
+    ];
+
+    const workflowSteps = [
+      { num: '01', title: 'Inquiry arrives', desc: 'Call, text, form, or web chat — Vocemi is listening on every channel.' },
+      { num: '02', title: 'AI qualifies', desc: 'Service, urgency, and details are captured in a natural conversation.' },
+      { num: '03', title: 'Next step is booked', desc: 'Only inside your approved rules — anything else waits for a human.' },
+      { num: '04', title: 'You get the report', desc: 'Tools update automatically and a daily summary lands in your inbox.' }
+    ];
+
+    const dashboardPoints = [
+      { title: 'Approval required', desc: 'Pricing exceptions and unusual jobs pause for your sign-off.' },
+      { title: 'Nothing hidden', desc: 'Every call is transcribed, logged, and searchable.' },
+      { title: 'Improves monthly', desc: 'We tune the workflow based on real calls, not guesses.' }
+    ];
+
+    const reportStats = [
+      { value: '38', label: 'Inquiries answered' },
+      { value: '21', label: 'Visits booked' },
+      { value: '6', label: 'Follow-ups open' },
+      { value: '3', label: 'Needing approval' }
+    ];
+
+    const humanCons = ['Months to hire and train', 'Works scheduled hours only', 'One person, one queue', 'Sick days and turnover', 'Manual tool updates'];
+    const aiPros = ['Live in 2\u20134 weeks', 'Answers 24/7, every day', 'Handles unlimited concurrent calls', 'Never calls in sick', 'Updates your tools automatically'];
+
+    const pricingTiers = [
+      { name: 'AI Employee Audit', tagline: 'Map the first workflow worth automating.', price: '$250', priceSub: 'one-time, credited toward setup', border: '1px solid rgba(22,24,28,0.1)', featured: false, ctaLabel: 'Book the audit', ctaStyle: 'text-align:center;padding:13px;border-radius:9px;font-weight:600;font-size:14.5px;border:1px solid rgba(22,24,28,0.15);color:#16181C', features: ['Workflow & channel map', 'Approval rules defined', 'Clear finish line', 'Build recommendation'] },
+      { name: 'One-Workflow AI Employee', tagline: 'One defined workflow, fully handled.', price: '$1,500', priceSub: 'setup + $750/mo', border: '1.5px solid #3B54F4', featured: true, ctaLabel: 'Book a Call', ctaStyle: 'text-align:center;padding:13px;border-radius:9px;font-weight:600;font-size:14.5px;background:#3B54F4;color:#fff', features: ['One AI employee role', 'Phone, inbox, or forms', 'Approval gates', 'Daily owner report'] },
+      { name: 'Managed AI Employee', tagline: 'A managed employee across your tools.', price: '$3,000', priceSub: 'setup + $1,500/mo', border: '1px solid rgba(22,24,28,0.1)', featured: false, ctaLabel: 'Book a Call', ctaStyle: 'text-align:center;padding:13px;border-radius:9px;font-weight:600;font-size:14.5px;border:1px solid rgba(22,24,28,0.15);color:#16181C', features: ['Phone, inbox, calendar, CRM', 'Booking & follow-up', 'Escalation rules', 'Monthly improvement review'] }
+    ];
+
+    const faqData = [
+      { q: 'What is Voice AI and how can it help my business?', a: 'Voice AI uses natural language processing and speech recognition to understand and respond to callers. It automates support, provides 24/7 coverage, and handles routine inquiries so your team can focus on judgment calls.' },
+      { q: 'How long does it take to implement?', a: 'Simple voice bots typically launch in 2\u20134 weeks. Comprehensive custom builds can take 6\u201312 weeks. We confirm a timeline during your audit.' },
+      { q: 'Do I need technical expertise?', a: 'No. We handle development, integration, and give you a plain-language dashboard. Training and documentation are included.' },
+      { q: 'How do you handle data privacy and security?', a: 'Enterprise-grade encryption, anonymization, and compliance with GDPR, CCPA, and other regulations. You retain full ownership of your data.' },
+      { q: 'What industries can benefit?', a: 'Healthcare, retail, finance, hospitality, real estate, home services, and any business with regular customer calls.' }
+    ];
+    const faqs = faqData.map((f, i) => ({
+      num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a,
+      open: s.openFaqIdx === i,
+      iconTransform: s.openFaqIdx === i ? 'rotate(45deg)' : 'rotate(0deg)',
+      toggle: () => this.setState(st => ({ openFaqIdx: st.openFaqIdx === i ? -1 : i }))
+    }));
+
+    services.forEach((sv, i) => { sv.anim = stagger(i); });
+    benefits.forEach((b, i) => { b.anim = stagger(i); });
+    workflowSteps.forEach((st, i) => {
+      st.anim = stagger(i, 0.15);
+      const active = i === s.activeWorkflowStep;
+      st.badgeBg = active ? '#3B54F4' : '#16181C';
+      st.badgeColor = '#fff';
+      st.badgeShadow = active ? '0 0 0 7px rgba(59,84,244,0.18),0 10px 20px -8px rgba(22,24,28,0.4)' : '0 10px 20px -8px rgba(22,24,28,0.4)';
+      st.badgeScale = active ? 'scale(1.08)' : 'scale(1)';
+      st.textColor = active ? '#3B54F4' : '#16181C';
+    });
+    const workflowLineWidth = `${((s.activeWorkflowStep + 1) / 4) * 100}%`;
+    pricingTiers.forEach((t, i) => { t.anim = stagger(i, 0.12); });
+
+    return {
+      waveBars: Array.from({ length: 24 }, (_, i) => ({ dur: 0.7 + (i % 5) * 0.15, delay: (i % 7) * 0.08 })),
+      logoSlots: Array.from({ length: 6 }, (_, i) => ({ id: `logo-${i}` })),
+      caseStudySlots: [
+        { id: 'case-1', placeholder: 'Add a client result: e.g. "Answered 340 calls in month one, 0 missed."' },
+        { id: 'case-2', placeholder: 'Add a client result: e.g. "Booked 62 appointments without adding staff."' },
+        { id: 'case-3', placeholder: 'Add a client result: e.g. "Recovered $18k from dormant leads in 30 days."' }
+      ],
+      services, benefits, workflowSteps, dashboardPoints, reportStats, humanCons, aiPros, pricingTiers, faqs, workflowLineWidth,
+
+      setWorkflowRef: this.noop, setDashboardRef: this.noop, setCalcRef: this.noop,
+      setCompareRef: this.noop, setPricingRef: this.noop, setProofRef: this.noop, setFaqRef: this.noop,
+      revealWorkflow: '', revealDashboard: '', revealCalc: '', revealCompare: '', revealPricing: '', revealProof: '', revealFaq: '',
+
+      missedCalls: s.missedCalls, avgValue: s.avgValue, closeRate: s.closeRate,
+      dormantLeads: s.dormantLeads, reactAvgValue: s.reactAvgValue, reactRate: s.reactRate,
+      dailyLoss: fmt(dailyLoss), monthlyLoss: fmt(monthlyLoss), yearlyLoss: fmt(yearlyLoss),
+      reactWon: fmt(reactWon), reactRevenue: fmt(reactRevenue),
+      onMissedCalls: (e) => this.setState({ missedCalls: Number(e.target.value) }),
+      onAvgValue: (e) => this.setState({ avgValue: Number(e.target.value) }),
+      onCloseRate: (e) => this.setState({ closeRate: Number(e.target.value) }),
+      onDormantLeads: (e) => this.setState({ dormantLeads: Number(e.target.value) }),
+      onReactAvgValue: (e) => this.setState({ reactAvgValue: Number(e.target.value) }),
+      onReactRate: (e) => this.setState({ reactRate: Number(e.target.value) }),
+
+      isTabMissed: s.calcTab === 'missed',
+      isTabReactivation: s.calcTab === 'reactivation',
+      setTabMissed: () => this.setState({ calcTab: 'missed' }),
+      setTabReactivation: () => this.setState({ calcTab: 'reactivation' }),
+      tabMissedStyle: tabBtn(s.calcTab === 'missed'),
+      tabReactivationStyle: tabBtn(s.calcTab === 'reactivation')
+    };
+  }
+}
+
+
+</script>
+</body>
+</html>
