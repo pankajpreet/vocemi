@@ -14,9 +14,9 @@ export const siteConfig = {
   bookCallUrl: process.env.NEXT_PUBLIC_BOOK_CALL_URL || "#",
 
   // --- /start landing page ---------------------------------------------
-  // YouTube id for the VSL. The video section is omitted entirely until
-  // this is set, so /start ships without a half-finished player.
-  startVideoId: process.env.NEXT_PUBLIC_START_VIDEO_ID || "",
+  // YouTube id for the VSL. The video section is omitted entirely when this
+  // is empty, so /start degrades cleanly if the video is ever pulled.
+  startVideoId: process.env.NEXT_PUBLIC_START_VIDEO_ID || "3mtG0Fhc0Lg",
   // ElevenLabs ConvAI agent powering the live demo. Falls back to the
   // MediSpa receptionist so the demo works out of the box; override per
   // environment to point at a general-purpose agent.
