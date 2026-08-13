@@ -1,5 +1,6 @@
 import StartHeader from "@/components/start/StartHeader";
 import StartHero from "@/components/start/StartHero";
+import ClientStrip from "@/components/start/ClientStrip";
 import VslSection from "@/components/start/VslSection";
 import Capabilities from "@/components/start/Capabilities";
 import VoiceDemo from "@/components/start/VoiceDemo";
@@ -15,6 +16,7 @@ export default function StartPage() {
       <StartHeader />
       <main>
         <StartHero />
+        <ClientStrip />
         <VslSection />
         <Capabilities />
         <VoiceDemo />

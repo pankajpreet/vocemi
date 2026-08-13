@@ -1,3 +1,24 @@
+export interface ClientLogo {
+  /** The client's name, set as a wordmark. Doubles as alt text when src is set. */
+  name: string;
+  /** The leading word, picked out in brand blue so each mark reads distinctly. */
+  accent?: string;
+  /** Location or role, set smaller beneath the name. */
+  sub: string;
+  /**
+   * Set once a real logo file exists in public/logos and the client has
+   * agreed to it being shown. Until then the wordmark is used — better an
+   * honest piece of type than an approximation of someone's trademark.
+   */
+  src?: string;
+}
+
+export const clientLogos: ClientLogo[] = [
+  { name: "3D Lifestyle", accent: "3D", sub: "Calgary NE" },
+  { name: "iSmart Insurance", accent: "iSmart", sub: "Jag Duggal" },
+  { name: "Jag Duggal", accent: "Jag", sub: "Real Estate Expert" },
+];
+
 export type ServiceIcon =
   | "circle"
   | "square"
