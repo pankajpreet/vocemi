@@ -8,18 +8,16 @@ import Link from "next/link";
 export default function StartHeader() {
   return (
     <header className="border-b border-ink/10 bg-cream">
-      <div className="max-w-[860px] mx-auto px-6 flex items-center justify-between py-4">
-        <span className="flex items-center gap-2.5 font-display font-extrabold text-lg tracking-tight text-ink">
+      <div className="max-w-[860px] mx-auto px-6 flex items-center py-4">
+        {/* The mark is the way back to the main site — no separate text link. */}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-display font-extrabold text-lg tracking-tight text-ink hover:opacity-80 transition-opacity"
+        >
           <span className="w-7 h-7 rounded-lg bg-brand inline-flex items-center justify-center flex-shrink-0">
             <span className="w-[9px] h-[9px] rounded-full bg-white" />
           </span>
           Vocemi
-        </span>
-        <Link
-          href="/"
-          className="text-[13.5px] font-medium text-ink/50 hover:text-brand transition-colors"
-        >
-          vocemi.com
         </Link>
       </div>
     </header>

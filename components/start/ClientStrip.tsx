@@ -7,38 +7,49 @@ import { clientLogos } from "@/lib/homeContent";
  * Sits directly under the hero: someone who just scanned a card off a stranger
  * wants evidence other businesses already said yes, before they'll spend a
  * minute talking to a demo. Shares clientLogos with the homepage strip.
+ *
+ * Cream, not sand — the video section below it is sand, and two sand bands in
+ * a row merge into one block separated only by a hairline.
  */
 export default function ClientStrip() {
   return (
-    // Cream, not sand: the VSL section below is sand, and two sand bands in a
-    // row merge into one block separated only by a hairline.
     <section className="border-t border-ink/10 bg-cream">
-      <div className="max-w-[860px] mx-auto px-6 py-7">
+      <div className="max-w-[860px] mx-auto px-6 py-8">
         <div className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink/40 mb-4">
           Already answering calls for
         </div>
-        <div className="flex flex-wrap gap-x-8 gap-y-4">
+        <div className="flex flex-wrap gap-2.5">
           {clientLogos.map((client) => (
-            <div key={client.name + client.sub}>
+            <div
+              key={client.name + client.sub}
+              className="flex items-center gap-2.5 bg-white border border-ink/10 rounded-full pl-1.5 pr-4 py-1.5"
+            >
               {client.src ? (
                 <Image
                   src={client.src}
                   alt={client.name}
-                  width={140}
-                  height={36}
-                  className="h-9 w-auto object-contain"
+                  width={110}
+                  height={32}
+                  className="h-8 w-auto object-contain"
                 />
               ) : (
-                <div className="font-display text-[16px] font-extrabold tracking-[-0.02em] text-ink leading-tight">
-                  {client.accent && (
-                    <span className="text-brand">{client.accent}</span>
-                  )}
-                  {client.accent
-                    ? client.name.slice(client.accent.length)
-                    : client.name}
-                </div>
+                <>
+                  <span
+                    className="w-8 h-8 rounded-full flex items-center justify-center font-display font-extrabold text-[12px] flex-shrink-0"
+                    style={{ background: client.tint, color: client.ink }}
+                  >
+                    {client.initials}
+                  </span>
+                  <span className="text-left leading-tight">
+                    <span className="block font-display text-[13.5px] font-bold text-ink">
+                      {client.name}
+                    </span>
+                    <span className="block text-[11.5px] text-ink/45">
+                      {client.industry}
+                    </span>
+                  </span>
+                </>
               )}
-              <div className="text-[12px] text-ink/45 mt-0.5">{client.sub}</div>
             </div>
           ))}
         </div>

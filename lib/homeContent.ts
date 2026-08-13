@@ -5,6 +5,19 @@ export interface ClientLogo {
   accent?: string;
   /** Location or role, set smaller beneath the name. */
   sub: string;
+  /** Monogram used in place of a logo mark. */
+  initials: string;
+  /** Monogram tile background and letter colour. */
+  tint: string;
+  ink: string;
+  /** Sector label, used on the case-study cards. */
+  industry: string;
+  /**
+   * What the AI employee actually handles for them. Written as work done,
+   * not as performance claims — the only number here is the one the client
+   * gave us, and nothing else should be invented to sit alongside it.
+   */
+  outcomes: string[];
   /**
    * Set once a real logo file exists in public/logos and the client has
    * agreed to it being shown. Until then the wordmark is used — better an
@@ -14,9 +27,47 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
-  { name: "3D Lifestyle", accent: "3D", sub: "Calgary NE" },
-  { name: "iSmart Insurance", accent: "iSmart", sub: "Jag Duggal" },
-  { name: "Jag Duggal", accent: "Jag", sub: "Real Estate Expert" },
+  {
+    name: "3D Lifestyle",
+    accent: "3D",
+    sub: "Calgary NE",
+    initials: "3D",
+    tint: "#FBEAF0",
+    ink: "#D14F87",
+    industry: "Med spa",
+    outcomes: [
+      "Answers every call, so a client is never missed because the front desk was busy with someone in the room.",
+      "A lead reactivation agent works through past clients and brings them back in.",
+    ],
+  },
+  {
+    name: "iSmart Insurance",
+    accent: "iSmart",
+    sub: "Jag Duggal",
+    initials: "iS",
+    tint: "#EAF3FB",
+    ink: "#2C6FB0",
+    industry: "Insurance",
+    outcomes: [
+      "Collects quote details without a broker on the call — roughly 10 minutes saved on every quote.",
+      "Clients start a quote request whenever it suits them, instead of waiting for a broker to be free.",
+    ],
+  },
+  {
+    name: "Jag Duggal",
+    accent: "Jag",
+    sub: "Real Estate Expert",
+    initials: "JD",
+    tint: "#EAF6EE",
+    ink: "#1F8F5F",
+    // Not "Real estate" — that stutters against the "Real Estate Expert"
+    // sub-label, and property management is what the AI actually handles.
+    industry: "Property management",
+    outcomes: [
+      "Handles tenant enquiries and complaints as they come in, day or night.",
+      "Takes the routine property management admin off the team, cutting the hours and staffing cost behind it.",
+    ],
+  },
 ];
 
 export type ServiceIcon =
@@ -188,21 +239,6 @@ export const pricingTiers: PricingTier[] = [
       "Escalation rules",
       "Monthly improvement review",
     ],
-  },
-];
-
-export const caseStudySlots = [
-  {
-    id: "case-1",
-    placeholder: 'Add a client result: e.g. "Answered 340 calls in month one, 0 missed."',
-  },
-  {
-    id: "case-2",
-    placeholder: 'Add a client result: e.g. "Booked 62 appointments without adding staff."',
-  },
-  {
-    id: "case-3",
-    placeholder: 'Add a client result: e.g. "Recovered $18k from dormant leads in 30 days."',
   },
 ];
 
