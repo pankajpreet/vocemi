@@ -216,7 +216,7 @@ export const pricingTiers: PricingTier[] = [
     name: "One-Workflow AI Employee",
     tagline: "One defined workflow, fully handled.",
     price: "$1,500",
-    priceSub: "setup + $750/mo",
+    priceSub: "one-time setup + from $300/mo",
     featured: true,
     ctaLabel: "Book a Call",
     features: [

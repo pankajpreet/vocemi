@@ -63,7 +63,7 @@ export default function Comparison() {
             Vocemi AI Employee
           </h3>
           <div className="text-[26px] font-extrabold font-display text-brand mb-1">
-            From $750/mo
+            From $300/mo
           </div>
           <div className="text-[12.5px] text-ink/50 mb-5">
             Plus a one-time setup fee, scoped to your workflow.
