@@ -21,7 +21,7 @@ export default function StartCta() {
             Ready to stop missing calls?
           </h2>
           <p className="text-[16px] md:text-[16.5px] text-white/60 leading-[1.6] m-0 mb-8 relative max-w-[440px] mx-auto">
-            Book a free 15-minute assessment. We&apos;ll map the first workflow
+            Book a free 15-minute consultation. We&apos;ll map the first workflow
             worth automating in your business &mdash; no charge, no pitch deck.
           </p>
           <TrackedLink
@@ -30,7 +30,7 @@ export default function StartCta() {
             external
             className="relative inline-block bg-brand text-white px-[30px] py-4 rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
           >
-            Book a free assessment
+            Book a free consultation
           </TrackedLink>
 
           {siteConfig.leadFormUrl && (
@@ -79,15 +79,6 @@ export default function StartCta() {
         </a>
       </div>
 
-      <div className="mt-5 text-center">
-        <TrackedLink
-          href="/pankajpreet-vocemi.vcf"
-          event="save_contact"
-          className="text-[13.5px] text-ink/45 hover:text-brand transition-colors"
-        >
-          Save our contact card
-        </TrackedLink>
-      </div>
     </section>
   );
 }

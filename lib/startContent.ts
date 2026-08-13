@@ -49,13 +49,15 @@ export const capabilities: Capability[] = [
   },
 ];
 
+/** Ordered by where Vocemi sells best — the first two carry the most weight. */
 export const industries = [
-  "Home Services",
-  "HVAC & Plumbing",
-  "Roofing",
-  "Insurance",
   "Med Spas",
   "Dental",
+  "HVAC & Plumbing",
+  "Accounting",
+  "Insurance",
+  "Home Services",
+  "Roofing",
   "Automotive",
   "Professional Services",
 ];

@@ -38,7 +38,7 @@ export default function StartHero() {
             external
             className="border border-ink/15 text-ink px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:border-ink/35 transition-colors"
           >
-            Book a free assessment
+            Book a free consultation
           </TrackedLink>
         </div>
 

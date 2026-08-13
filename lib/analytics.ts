@@ -17,8 +17,7 @@ export type StartEvent =
   | "book_call_clicked"
   | "tap_to_call"
   | "tap_to_text"
-  | "lead_form_opened"
-  | "save_contact";
+  | "lead_form_opened";
 
 export function trackEvent(
   event: StartEvent,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play } from "lucide-react";
+import { Play, VolumeX } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
 import TrackedLink from "./TrackedLink";
@@ -65,21 +65,22 @@ export default function VslSection() {
               <span className="relative w-16 h-16 rounded-full bg-brand flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
                 <Play size={26} className="text-white ml-1" fill="currentColor" />
               </span>
-              <span className="relative text-white/70 text-[13.5px] font-medium">
-                Watch the 90-second demo
+              {/* Says "this is silent right now" without a caption to read. */}
+              <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/45 flex items-center justify-center">
+                <VolumeX size={17} className="text-white/80" aria-hidden="true" />
               </span>
             </button>
           )}
         </div>
 
-        <div className="mt-7">
+        <div className="mt-7 text-center">
           <TrackedLink
             href={siteConfig.bookCallUrl}
             event="book_call_clicked"
             external
-            className="inline-block bg-ink text-white px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand transition-colors"
+            className="inline-block bg-brand text-white px-[30px] py-4 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand-dark transition-colors"
           >
-            Book a free assessment
+            Book a free consultation
           </TrackedLink>
         </div>
       </div>
