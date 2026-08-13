@@ -20,7 +20,7 @@ export default function LogoStrip() {
           {clientLogos.map((client) => (
             <div
               key={client.name + client.sub}
-              className="flex items-center gap-3 bg-white border border-ink/10 rounded-full pl-2 pr-5 py-2 transition-all duration-200 hover:border-ink/25 hover:-translate-y-0.5"
+              className="flex items-center gap-3 bg-white border border-ink/10 rounded-full pl-2 pr-5 py-2 max-w-full transition-all duration-200 hover:border-ink/25 hover:-translate-y-0.5"
             >
               {client.src ? (
                 <Image
@@ -38,7 +38,9 @@ export default function LogoStrip() {
                   >
                     {client.initials}
                   </span>
-                  <span className="text-left leading-tight">
+                  {/* min-w-0 lets a long client label wrap inside the pill
+                      instead of pushing it past the viewport on narrow phones. */}
+                  <span className="text-left leading-tight min-w-0">
                     <span className="block font-display text-[15px] font-bold text-ink">
                       {client.name}
                     </span>

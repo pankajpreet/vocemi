@@ -22,7 +22,7 @@ export default function ClientStrip() {
           {clientLogos.map((client) => (
             <div
               key={client.name + client.sub}
-              className="flex items-center gap-2.5 bg-white border border-ink/10 rounded-full pl-1.5 pr-4 py-1.5"
+              className="flex items-center gap-2.5 bg-white border border-ink/10 rounded-full pl-1.5 pr-4 py-1.5 max-w-full"
             >
               {client.src ? (
                 <Image
@@ -40,12 +40,14 @@ export default function ClientStrip() {
                   >
                     {client.initials}
                   </span>
-                  <span className="text-left leading-tight">
+                  {/* min-w-0 lets a long client label wrap inside the pill
+                      instead of pushing it past the viewport at 320px. */}
+                  <span className="text-left leading-tight min-w-0">
                     <span className="block font-display text-[13.5px] font-bold text-ink">
                       {client.name}
                     </span>
                     <span className="block text-[11.5px] text-ink/45">
-                      {client.industry}
+                      {client.industry} &middot; {client.sub}
                     </span>
                   </span>
                 </>
