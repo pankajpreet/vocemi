@@ -48,14 +48,32 @@ const WIDGET_CSS = `
     z-index: auto !important;
     display: block !important;
   }
+  /* Retell fixes the window at 450x(panel width). Embedded that reads
+     oversized: the content is only ~220px wide, so on desktop it stretched
+     across the whole card. Cap the width and let the height follow the
+     content, with a ceiling so an active call can't run away. */
   [class*="_window_"] {
     position: relative !important;
     inset: auto !important;
     width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    max-height: 460px !important;
     box-shadow: none !important;
   }
+  /* Trim the internals so the smaller frame isn't just cropped. */
+  [class*="_voiceTopBar_"] { padding: 8px 12px 0 !important; }
+  [class*="_voicePanel_"] { padding: 6px 16px 18px !important; }
+  [class*="_voiceVisualizerFrame_"] {
+    width: 76px !important;
+    height: 76px !important;
+  }
+  [class*="_brandTitle_"] {
+    margin-top: 14px !important;
+    font-size: 19px !important;
+  }
+  [class*="_startCallButton_"] { margin-top: 18px !important; }
   /* Hide Retell's launcher only while the call window is open, so the two
      don't stack. Closed, the pill is what reopens the call, and it carries
      our data-fab-text. */
@@ -66,10 +84,13 @@ const WIDGET_CSS = `
     justify-content: center !important;
     padding: 12px !important;
   }
-  [class*="_brandSubtitle_"] { font-size: 0 !important; }
+  [class*="_brandSubtitle_"] {
+    font-size: 0 !important;
+    margin-top: 6px !important;
+  }
   [class*="_brandSubtitle_"]::after {
     content: "Ask about pricing, hours, or booking a visit";
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.4;
   }
 `;
