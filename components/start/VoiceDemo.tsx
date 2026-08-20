@@ -61,6 +61,11 @@ const WIDGET_CSS = `
     height: auto !important;
     max-height: 460px !important;
     box-shadow: none !important;
+    /* Load-bearing. Under 600px Retell switches the window to
+       position:fixed; left:50% with transform:translate(-50%). Overriding
+       position alone left the translate in place, which dragged the window
+       half its own width off the left of the panel. */
+    transform: none !important;
   }
   /* Trim the internals so the smaller frame isn't just cropped. */
   [class*="_voiceTopBar_"] { padding: 8px 12px 0 !important; }
@@ -237,10 +242,10 @@ export default function VoiceDemo() {
                   own chrome is built for a pale background. */}
               <div
                 ref={mountRef}
-                className="rounded-2xl bg-sand overflow-hidden min-h-[88px]"
+                className="rounded-2xl bg-sand overflow-hidden p-4"
               >
                 {!ready && (
-                  <div className="h-[88px] flex items-center justify-center text-ink/40 text-[13.5px]">
+                  <div className="h-[72px] flex items-center justify-center text-ink/40 text-[13.5px]">
                     Connecting&hellip;
                   </div>
                 )}
