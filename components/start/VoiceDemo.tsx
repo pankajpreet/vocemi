@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mic } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
@@ -16,18 +16,94 @@ const RECAPTCHA_SRC = "https://www.google.com/recaptcha/api.js";
 const RECAPTCHA_ID = "retell-recaptcha";
 
 /**
- * The live demo — the one thing this page can do that a printed card can't.
+ * Retell renders a fixed launcher pinned bottom-right, and there is no
+ * attribute to place it inline -- the same shape of problem the page had with
+ * ElevenLabs. Its shadow root is open, so we adopt it instead: move the host
+ * into the demo card and neutralise the fixed positioning from inside.
  *
- * Retell ships as a floating launcher, so we don't try to inline it. Instead
- * the script is injected only when the visitor taps, with data-auto-open set:
- * because we control *when* it loads, "auto open" becomes "open on tap", and
- * the visitor gets into the call in one tap rather than two.
+ * Two other things are patched here:
  *
- * Nothing third-party is fetched before that tap, which keeps a cold load
- * silent for someone who scanned the card standing in public.
+ * - "Your RetellAI assistant" is a hardcoded string in their bundle, read from
+ *   no attribute. Replaced via CSS rather than by rewriting textContent, since
+ *   the widget is a React tree that would overwrite the node on next render.
+ * - Class selectors are prefix matches so they survive their build hash
+ *   changing. If a future bundle renames these, the widget reverts to floating
+ *   rather than disappearing.
+ *
+ * Their "Powered by Retell" link is deliberately left alone: data-white-label
+ * is the supported way to drop attribution, and that needs a token from them.
  */
+const WIDGET_CSS = `
+  [class*="_container_"] {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    z-index: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  [class*="_window_"] {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 12px 0 !important;
+  }
+  [class*="_brandSubtitle_"] { font-size: 0 !important; }
+  [class*="_brandSubtitle_"]::after {
+    content: "Ask about pricing, hours, or booking a visit";
+    font-size: 14px;
+    line-height: 1.4;
+  }
+`;
+
+/** The widget mounts async, so poll briefly rather than assume it's there. */
+function adoptWidget(target: HTMLElement) {
+  let tries = 0;
+  const timer = window.setInterval(() => {
+    if (++tries > 40) return window.clearInterval(timer);
+
+    const host = Array.from(document.querySelectorAll<HTMLElement>("*")).find(
+      (el) => el.shadowRoot?.querySelector('[class*="_container_"]')
+    );
+    if (!host?.shadowRoot) return;
+    window.clearInterval(timer);
+
+    if (!host.shadowRoot.getElementById("vocemi-widget-css")) {
+      const style = document.createElement("style");
+      style.id = "vocemi-widget-css";
+      style.textContent = WIDGET_CSS;
+      host.shadowRoot.appendChild(style);
+    }
+    if (host.parentElement !== target) target.appendChild(host);
+  }, 200);
+  return () => window.clearInterval(timer);
+}
+
+/**
+ * Next.js navigates client-side, so nothing here unmounts on its own -- the
+ * call window would follow the visitor to the homepage. Tear the widget down
+ * when the section leaves.
+ */
+function teardownWidget() {
+  document.getElementById("retell-widget")?.remove();
+  document.getElementById(RECAPTCHA_ID)?.remove();
+  document
+    .querySelectorAll<HTMLElement>(".grecaptcha-badge")
+    .forEach((el) => el.remove());
+  Array.from(document.querySelectorAll<HTMLElement>("*"))
+    .filter((el) => el.shadowRoot?.querySelector('[class*="_container_"]'))
+    .forEach((el) => el.remove());
+}
+
 export default function VoiceDemo() {
   const [started, setStarted] = useState(false);
+  const mountRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => teardownWidget, []);
+
   const { retellPublicKey, retellVoiceAgentId, retellRecaptchaKey } =
     siteConfig;
 
@@ -44,13 +120,20 @@ export default function VoiceDemo() {
     s.dataset.voicePublicKey = retellPublicKey;
     s.dataset.voiceAgentId = retellVoiceAgentId;
     s.dataset.title = "Vocemi AI Employee";
-    s.dataset.color = "#3B54F4";
+    // Not data-color: that's shorthand and, per their bundle, it wins over
+    // data-theme-color -- which would paint the widget's background brand
+    // blue. It now sits on a light panel inside the card, so set the two
+    // separately: white ground, brand accents.
+    s.dataset.themeColor = "#FFFFFF";
+    s.dataset.componentColor = "#3B54F4";
+    s.dataset.logoUrl = `${window.location.origin}/logo.svg`;
     s.dataset.fabText = "Talk to an AI employee";
     s.dataset.botName = "Vocemi";
     s.dataset.autoOpen = "true";
     s.dataset.showAiPopup = "false";
     if (retellRecaptchaKey) s.dataset.recaptchaKey = retellRecaptchaKey;
     document.body.appendChild(s);
+    if (mountRef.current) adoptWidget(mountRef.current);
   };
 
   const startCall = () => {
@@ -103,15 +186,15 @@ export default function VoiceDemo() {
 
           {started ? (
             <>
-              <div className="rounded-xl bg-white/[0.06] border border-white/10 px-5 py-4">
-                <div className="flex items-center gap-2.5 text-white text-[14.5px] font-semibold mb-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#37D67A] animate-pulseDot" />
-                  Your call is opening
-                </div>
-                <p className="text-white/55 text-[14px] leading-[1.6] m-0">
-                  The call window is on screen now &mdash; allow the microphone
-                  when your browser asks, then talk to it like a customer would.
-                </p>
+              {/* The widget is moved in here once it mounts. Light panel:
+                  its own chrome is built for a pale background. */}
+              <div
+                ref={mountRef}
+                className="rounded-2xl bg-sand p-3 min-h-[88px] flex items-center justify-center"
+              >
+                <span className="text-ink/40 text-[13.5px]">
+                  Connecting&hellip;
+                </span>
               </div>
 
               <ul className="mt-6 m-0 p-0 list-none flex flex-col gap-2">
