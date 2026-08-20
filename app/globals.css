@@ -6,9 +6,13 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-background-white text-text-dark;
+    @apply bg-cream text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand text-white;
   }
 }
 

@@ -1,9 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import BookCallButton from "./BookCallButton";
+import { siteConfig } from "@/lib/config";
+
+const navLinks = [
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Services", href: "#services" },
+  { label: "ROI Calculator", href: "#calculator" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "FAQ", href: "#faq" },
+];
+
+function LogoMark() {
+  return (
+    <span className="flex items-center gap-2.5 font-display font-extrabold text-xl tracking-tight text-ink">
+      <span className="w-7 h-7 rounded-lg bg-brand inline-flex items-center justify-center flex-shrink-0">
+        <span className="w-[9px] h-[9px] rounded-full bg-white" />
+      </span>
+      Vocemi
+    </span>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,76 +39,52 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-primary-dark/95 backdrop-blur-md shadow-lg border-b border-primary-secondary/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <a 
-            href="/" 
+    <nav className="sticky top-0 z-50 bg-cream/85 backdrop-blur-[10px] border-b border-ink/10">
+      <div className="max-w-[1180px] mx-auto px-6">
+        <div className="flex items-center justify-between gap-4 py-4">
+          <Link
+            href="/"
             onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="flex items-center hover:opacity-80 transition-opacity"
-          >
-            <Image
-              src="/logo.png"
-              alt="Vocemi"
-              width={320}
-              height={96}
-              className="h-28 w-auto"
-              priority
-            />
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/"
-              onClick={(e) => {
+              if (window.location.pathname === "/") {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              Home
-            </a>
+              }
+            }}
+            className="flex-shrink-0 hover:opacity-80 transition-opacity"
+          >
+            <LogoMark />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-[22px] text-sm font-medium text-ink/70">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="whitespace-nowrap hover:text-brand transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden lg:block flex-shrink-0">
             <a
-              href="#services"
-              onClick={(e) => handleNavClick(e, "#services")}
-              className="text-gray-300 hover:text-white transition-colors font-medium"
+              href={siteConfig.bookCallUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
             >
-              Services
+              Book a Call
             </a>
-            <a
-              href="#calculator"
-              onClick={(e) => handleNavClick(e, "#calculator")}
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              ROI Calculator
-            </a>
-            <a
-              href="#faq"
-              onClick={(e) => handleNavClick(e, "#faq")}
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              FAQ
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              Contact
-            </a>
-            <BookCallButton variant="primary" />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-ink/70 hover:text-ink transition-colors p-1"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -100,49 +95,27 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-primary-dark border-t border-primary-secondary/50">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            <a
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setIsOpen(false);
-              }}
-              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
-            >
-              Home
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => handleNavClick(e, "#services")}
-              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
-            >
-              Services
-            </a>
-            <a
-              href="#calculator"
-              onClick={(e) => handleNavClick(e, "#calculator")}
-              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
-            >
-              ROI Calculator
-            </a>
-            <a
-              href="#faq"
-              onClick={(e) => handleNavClick(e, "#faq")}
-              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
-            >
-              FAQ
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-primary-secondary/50 rounded-md transition-colors font-medium"
-            >
-              Contact
-            </a>
+        <div className="lg:hidden bg-cream border-t border-ink/10">
+          <div className="px-6 pt-2 pb-4 space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="block px-3 py-2.5 text-ink/70 hover:text-brand hover:bg-sand rounded-md transition-colors font-medium"
+              >
+                {link.label}
+              </a>
+            ))}
             <div className="pt-2">
-              <BookCallButton variant="primary" className="w-full" />
+              <a
+                href={siteConfig.bookCallUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
+              >
+                Book a Call
+              </a>
             </div>
           </div>
         </div>
@@ -150,4 +123,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

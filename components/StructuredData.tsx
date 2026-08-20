@@ -7,7 +7,7 @@ export default function StructuredData() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.png`,
+    logo: `${siteConfig.url}/logo.svg`,
     contactPoint: {
       '@type': 'ContactPoint',
       email: siteConfig.contact.email,

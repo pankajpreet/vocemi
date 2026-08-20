@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/lib/config";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteConfig.url}/og-image.jpg`,
+        url: `${siteConfig.url}/og-image.png`,
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} - ${siteConfig.tagline}`,
@@ -44,13 +44,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${manrope.variable} font-sans`}>
         <StructuredData />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {children}
+        <Analytics />
       </body>
     </html>
   );
 }
-
