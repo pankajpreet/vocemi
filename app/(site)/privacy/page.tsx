@@ -51,12 +51,15 @@ export default function PrivacyPage() {
             The AI voice demo
           </h2>
           <p className="text-[15.5px] leading-[1.7] text-ink/65 m-0">
-            The live demo is powered by ElevenLabs. When you start it, your
+            The live demo is powered by Retell AI. When you start it, your
             browser asks your permission to use the microphone, and your speech
-            is processed by ElevenLabs so the agent can reply. The demo is a
+            is processed by Retell so the agent can reply. The demo is a
             demonstration, not a real appointment line &mdash; please don&apos;t
-            share anything sensitive with it. ElevenLabs handles that audio
-            under their own privacy policy.
+            share anything sensitive with it. Retell handles that audio under
+            their own privacy policy. Starting the demo also loads Google
+            reCAPTCHA, which checks the request isn&apos;t automated and is
+            covered by Google&apos;s privacy policy and terms. Nothing from
+            either service loads until you choose to start the demo.
           </p>
         </div>
 
@@ -65,10 +68,9 @@ export default function PrivacyPage() {
             Booking a call
           </h2>
           <p className="text-[15.5px] leading-[1.7] text-ink/65 m-0">
-            Our booking links open Google Calendar&apos;s appointment
-            scheduling, which collects your name, email, and whatever you add to
-            the booking. That happens on Google&apos;s systems under their
-            privacy policy.
+            Our booking links open Cal.com, which collects your name, email,
+            and whatever you add to the booking so we can meet. That happens on
+            Cal.com&apos;s systems under their own privacy policy.
           </p>
         </div>
 

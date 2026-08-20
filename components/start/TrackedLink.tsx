@@ -13,7 +13,7 @@ interface TrackedLinkProps {
 /**
  * An anchor that reports the click before the browser leaves.
  *
- * Every booking CTA on /start points at Google Calendar, so the navigation
+ * Every booking CTA on /start points at our scheduling page, so the navigation
  * itself is invisible to us — without this the conversion can't be measured.
  */
 export default function TrackedLink({

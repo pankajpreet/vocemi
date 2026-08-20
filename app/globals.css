@@ -14,37 +14,6 @@
   ::selection {
     @apply bg-brand text-white;
   }
-
-  /*
-   * The ElevenLabs call widget on /start.
-   *
-   * It ships as a fixed, full-viewport floating launcher. ElevenLabs documents
-   * overriding that with CSS, but their `--elevenlabs-convai-widget-height`
-   * property isn't honoured by the current unpinned bundle, and the host
-   * collapses to 0 because its inner panels are `position:absolute; inset:32px`
-   * and size against the host. So we give the host an explicit height instead.
-   *
-   * 220px is load-bearing, not arbitrary: below ~200px the widget drops to an
-   * icon-only pill, which contradicts the "Start a call" copy in VoiceDemo.
-   * Don't lower it without re-checking that the labelled button still renders.
-   * (Note the `variant` attribute doesn't help here — every documented value
-   * still positions the host fixed, and "expanded" forced the compact pill.)
-   *
-   * If a future bundle changes this, the widget reverts to floating rather than
-   * disappearing, and the page still works. Worth re-checking on upgrade.
-   *
-   * --el-accent is the widget's own custom property; if it's renamed upstream
-   * the button simply falls back to its default black.
-   */
-  elevenlabs-convai {
-    position: relative !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-    height: 220px !important;
-    --el-accent: theme(colors.brand.DEFAULT) !important;
-    --el-accent-hover: theme(colors.brand.dark) !important;
-  }
 }
 
 /* Revenue Calculator slider styling */

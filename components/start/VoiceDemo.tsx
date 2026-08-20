@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Script from "next/script";
 import { Mic } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
@@ -12,27 +11,70 @@ const waveBars = Array.from({ length: 18 }, (_, i) => ({
   delay: (i % 7) * 0.08,
 }));
 
+const WIDGET_SRC = "https://dashboard.retellai.com/retell-widget-v2.js";
+const RECAPTCHA_SRC = "https://www.google.com/recaptcha/api.js";
+const RECAPTCHA_ID = "retell-recaptcha";
+
 /**
  * The live demo — the one thing this page can do that a printed card can't.
  *
- * The ElevenLabs bundle is unversioned third-party JS, so it loads only once
- * the visitor taps. Before that the card is pure CSS and costs nothing.
+ * Retell ships as a floating launcher, so we don't try to inline it. Instead
+ * the script is injected only when the visitor taps, with data-auto-open set:
+ * because we control *when* it loads, "auto open" becomes "open on tap", and
+ * the visitor gets into the call in one tap rather than two.
  *
- * The widget defaults to a fixed, full-viewport floating launcher. We pull it
- * into the card with the CSS override in globals.css, so the demo reads as
- * part of the page rather than a support bubble in the corner.
- *
- * Starting the call takes two taps — ours to load the widget, then the
- * widget's own "Start a call", which is also the browser's cue to ask for the
- * microphone. The bundle exposes no documented way to start a call
- * programmatically, and rendering the widget on load would pull third-party JS
- * into a page that should stay silent until asked.
+ * Nothing third-party is fetched before that tap, which keeps a cold load
+ * silent for someone who scanned the card standing in public.
  */
 export default function VoiceDemo() {
   const [started, setStarted] = useState(false);
-  const agentId = siteConfig.elevenLabsAgentId;
+  const { retellPublicKey, retellVoiceAgentId, retellRecaptchaKey } =
+    siteConfig;
 
-  if (!agentId) return null;
+  // Both credentials are required. Without them the section omits itself and
+  // StartHero drops its "Talk to an AI employee" CTA, so there's no dead link.
+  if (!retellPublicKey || !retellVoiceAgentId) return null;
+
+  const injectWidget = () => {
+    if (document.getElementById("retell-widget")) return;
+    const s = document.createElement("script");
+    s.id = "retell-widget";
+    s.src = WIDGET_SRC;
+    s.type = "module";
+    s.dataset.voicePublicKey = retellPublicKey;
+    s.dataset.voiceAgentId = retellVoiceAgentId;
+    s.dataset.title = "Vocemi AI Employee";
+    s.dataset.color = "#3B54F4";
+    s.dataset.fabText = "Talk to an AI employee";
+    s.dataset.botName = "Vocemi";
+    s.dataset.autoOpen = "true";
+    s.dataset.showAiPopup = "false";
+    if (retellRecaptchaKey) s.dataset.recaptchaKey = retellRecaptchaKey;
+    document.body.appendChild(s);
+  };
+
+  const startCall = () => {
+    trackEvent("voice_demo_started");
+    setStarted(true);
+    // Tell StickyCta to get out of the call widget's way.
+    window.dispatchEvent(new CustomEvent("vocemi:call-started"));
+
+    // Retell doesn't bundle reCAPTCHA — Google's script has to be loaded
+    // separately, and must be in place before the widget tries to verify.
+    if (retellRecaptchaKey && !document.getElementById(RECAPTCHA_ID)) {
+      const r = document.createElement("script");
+      r.id = RECAPTCHA_ID;
+      r.src = `${RECAPTCHA_SRC}?render=${retellRecaptchaKey}`;
+      // Inject the widget either way: if Google is blocked or slow, let Retell
+      // report the failure rather than leaving a button that does nothing.
+      r.onload = injectWidget;
+      r.onerror = injectWidget;
+      document.head.appendChild(r);
+      return;
+    }
+
+    injectWidget();
+  };
 
   return (
     <section id="talk" className="max-w-[860px] mx-auto px-6 py-14 md:py-20 scroll-mt-6">
@@ -61,20 +103,16 @@ export default function VoiceDemo() {
 
           {started ? (
             <>
-              <p className="text-white/70 text-[14.5px] leading-[1.6] m-0 mb-4">
-                Hit <span className="text-white font-semibold">Start a call</span>{" "}
-                below and talk to it exactly like a customer would.
-              </p>
-
-              {/* Light panel: the widget's own chrome is built for a pale
-                  background, and it keeps their UI visibly theirs. */}
-              <div className="rounded-2xl bg-sand overflow-hidden">
-                <elevenlabs-convai agent-id={agentId} />
+              <div className="rounded-xl bg-white/[0.06] border border-white/10 px-5 py-4">
+                <div className="flex items-center gap-2.5 text-white text-[14.5px] font-semibold mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#37D67A] animate-pulseDot" />
+                  Your call is opening
+                </div>
+                <p className="text-white/55 text-[14px] leading-[1.6] m-0">
+                  The call window is on screen now &mdash; allow the microphone
+                  when your browser asks, then talk to it like a customer would.
+                </p>
               </div>
-              <Script
-                src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-                strategy="afterInteractive"
-              />
 
               <ul className="mt-6 m-0 p-0 list-none flex flex-col gap-2">
                 {demoPrompts.map((prompt) => (
@@ -110,12 +148,7 @@ export default function VoiceDemo() {
 
               <button
                 type="button"
-                onClick={() => {
-                  trackEvent("voice_demo_started");
-                  setStarted(true);
-                  // Tell StickyCta to get out of the call bar's way.
-                  window.dispatchEvent(new CustomEvent("vocemi:call-started"));
-                }}
+                onClick={startCall}
                 className="inline-flex items-center gap-2.5 bg-brand text-white px-[30px] py-4 rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
               >
                 <Mic size={18} />

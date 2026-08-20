@@ -14,6 +14,10 @@ import TrackedLink from "./TrackedLink";
  * "Talk to AI" button would just scroll the visitor to where they already are.
  */
 export default function StickyCta() {
+  // Mirrors StartHero: with no demo on the page, "Talk to AI" leads nowhere.
+  const voiceDemo = Boolean(
+    siteConfig.retellPublicKey && siteConfig.retellVoiceAgentId
+  );
   const [pastHero, setPastHero] = useState(false);
   const [demoOnScreen, setDemoOnScreen] = useState(false);
   const [callStarted, setCallStarted] = useState(false);
@@ -47,7 +51,7 @@ export default function StickyCta() {
       : null;
     if (demo && observer) observer.observe(demo);
 
-    // Once the voice demo is live, the ElevenLabs call bar owns the bottom
+    // Once the voice demo is live, the Retell call window owns the bottom
     // of the screen — two stacked bars would fight for the same thumb.
     const onCallStarted = () => setCallStarted(true);
     window.addEventListener("vocemi:call-started", onCallStarted);
@@ -69,14 +73,16 @@ export default function StickyCta() {
       }`}
     >
       <div className="flex gap-2.5">
-        <a
-          href="#talk"
-          tabIndex={visible ? undefined : -1}
-          className="flex-1 inline-flex items-center justify-center gap-2 bg-ink text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
-        >
-          <Mic size={16} />
-          Talk to AI
-        </a>
+        {voiceDemo && (
+          <a
+            href="#talk"
+            tabIndex={visible ? undefined : -1}
+            className="flex-1 inline-flex items-center justify-center gap-2 bg-ink text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
+          >
+            <Mic size={16} />
+            Talk to AI
+          </a>
+        )}
         <TrackedLink
           href={siteConfig.bookCallUrl}
           event="book_call_clicked"

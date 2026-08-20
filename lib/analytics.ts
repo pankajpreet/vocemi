@@ -7,13 +7,12 @@ import { track } from "@vercel/analytics";
  * are the business cards worth printing more of? — and the headline number
  * is book_call_clicked per 100 pageviews.
  *
- * book_call_clicked matters most: every booking CTA is an outbound link to
- * Google Calendar, so without an explicit click event the conversion is
+ * book_call_clicked matters most: every booking CTA is an outbound link to our
+ * scheduling page, so without an explicit click event the conversion is
  * invisible to us.
  */
 export type StartEvent =
   | "voice_demo_started"
-  | "vsl_played"
   | "book_call_clicked"
   | "tap_to_call"
   | "tap_to_text"

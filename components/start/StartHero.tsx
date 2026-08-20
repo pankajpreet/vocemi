@@ -3,6 +3,12 @@ import { heroStats } from "@/lib/startContent";
 import TrackedLink from "./TrackedLink";
 
 export default function StartHero() {
+  // No credentials means VoiceDemo omits itself, so #talk would be a dead
+  // anchor. Promote booking to primary in that case.
+  const voiceDemo = Boolean(
+    siteConfig.retellPublicKey && siteConfig.retellVoiceAgentId
+  );
+
   return (
     <section className="max-w-[860px] mx-auto px-6 pt-12 pb-14 md:pt-16 md:pb-20">
       <div className="animate-fadeUp">
@@ -26,17 +32,23 @@ export default function StartHero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 mb-9">
-          <a
-            href="#talk"
-            className="bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
-          >
-            Talk to an AI employee
-          </a>
+          {voiceDemo && (
+            <a
+              href="#talk"
+              className="bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+            >
+              Talk to an AI employee
+            </a>
+          )}
           <TrackedLink
             href={siteConfig.bookCallUrl}
             event="book_call_clicked"
             external
-            className="border border-ink/15 text-ink px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:border-ink/35 transition-colors"
+            className={
+              voiceDemo
+                ? "border border-ink/15 text-ink px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:border-ink/35 transition-colors"
+                : "bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+            }
           >
             Book a free consultation
           </TrackedLink>
