@@ -5,6 +5,10 @@ import { Mic } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
 import { demoPrompts } from "@/lib/startContent";
+import {
+  loadRecaptchaScript,
+  patchRetellWebCallFetch,
+} from "@/lib/retellRecaptcha";
 
 const waveBars = Array.from({ length: 18 }, (_, i) => ({
   dur: 0.7 + (i % 5) * 0.15,
@@ -12,7 +16,6 @@ const waveBars = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 const WIDGET_SRC = "https://dashboard.retellai.com/retell-widget-v2.js";
-const RECAPTCHA_SRC = "https://www.google.com/recaptcha/api.js";
 const RECAPTCHA_ID = "retell-recaptcha";
 const WIDGET_ID = "retell-widget";
 
@@ -121,6 +124,10 @@ export default function VoiceDemo() {
     const target = mountRef.current;
     if (!target) return;
 
+    const unpatchFetch = retellRecaptchaKey
+      ? patchRetellWebCallFetch(retellRecaptchaKey)
+      : () => {};
+
     const injectWidget = () => {
       if (document.getElementById(WIDGET_ID)) return;
       const s = document.createElement("script");
@@ -150,19 +157,13 @@ export default function VoiceDemo() {
     };
 
     // Retell doesn't bundle reCAPTCHA -- their docs require Google's script
-    // separately, v3 only, and it must be in place before the widget verifies.
-    if (retellRecaptchaKey && !document.getElementById(RECAPTCHA_ID)) {
-      const r = document.createElement("script");
-      r.id = RECAPTCHA_ID;
-      r.src = `${RECAPTCHA_SRC}?render=${retellRecaptchaKey}`;
-      // Inject the widget either way: if Google is blocked, let Retell report
-      // the failure rather than leaving a button that does nothing.
-      r.onload = injectWidget;
-      r.onerror = injectWidget;
-      document.head.appendChild(r);
-    } else {
-      injectWidget();
-    }
+    // separately, v3 only. Wait until grecaptcha.ready() so Start Call can
+    // actually mint a token. Their voice path still omits the token header,
+    // which patchRetellWebCallFetch fills in.
+    let cancelled = false;
+    loadRecaptchaScript(retellRecaptchaKey, RECAPTCHA_ID).then(() => {
+      if (!cancelled) injectWidget();
+    });
 
     // The widget mounts async, so poll rather than assume it is there.
     const timer = window.setInterval(() => {
@@ -184,6 +185,8 @@ export default function VoiceDemo() {
     const giveUp = window.setTimeout(() => window.clearInterval(timer), 15000);
 
     return () => {
+      cancelled = true;
+      unpatchFetch();
       window.clearInterval(timer);
       window.clearTimeout(giveUp);
     };
