@@ -132,8 +132,13 @@ export default function VoiceDemo() {
       s.dataset.componentColor = "#3B54F4";
       s.dataset.logoUrl = `${window.location.origin}/logo.svg`;
       s.dataset.fabText = "Talk to an AI employee";
-      s.dataset.botName = "Vocemi";
+      // We inject on tap, so "open on page load" means "open on tap" -- one
+      // tap into the call rather than two.
       s.dataset.autoOpen = "true";
+      // The popup is a teaser that nags you to open the widget, which we have
+      // just opened. Disabling it also makes data-bot-name, data-popup-message
+      // and data-show-ai-popup-time inert: their bundle only reads those in
+      // the popup component, which renders null when this is off.
       s.dataset.showAiPopup = "false";
       if (retellRecaptchaKey) s.dataset.recaptchaKey = retellRecaptchaKey;
       document.body.appendChild(s);
