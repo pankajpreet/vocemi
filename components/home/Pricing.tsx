@@ -11,7 +11,7 @@ export default function Pricing() {
           <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-3">
             Pricing
           </div>
-          <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] text-ink m-0 mb-3.5">
+          <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0 mb-3.5">
             Start small, prove it, then expand
           </h2>
           <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0 mx-auto max-w-[520px]">

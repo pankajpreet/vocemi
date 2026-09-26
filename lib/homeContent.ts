@@ -162,13 +162,15 @@ export const reportStats = [
   { value: "3", label: "Needing approval" },
 ];
 
-export const homeBenefits = [
-  { num: "01", title: "Increased Productivity", desc: "Automate routine calls and free your team for higher-value work." },
-  { num: "02", title: "Better Customer Experience", desc: "24/7 personalized interactions that improve satisfaction." },
-  { num: "03", title: "Always Available", desc: "Round-the-clock coverage without downtime or missed shifts." },
-  { num: "04", title: "Cost Reduction", desc: "Cut manual overhead and route budget to growth instead." },
-  { num: "05", title: "Data-Driven Insights", desc: "Every call becomes a data point you can act on." },
-  { num: "06", title: "Scalable Growth", desc: "Handle more volume without a proportional headcount increase." },
+export type BenefitIcon = "productivity" | "experience" | "available" | "cost" | "insights" | "growth";
+
+export const homeBenefits: { icon: BenefitIcon; title: string; desc: string }[] = [
+  { icon: "productivity", title: "Increased Productivity", desc: "Automate routine calls and free your team for higher-value work." },
+  { icon: "experience", title: "Better Customer Experience", desc: "24/7 personalized interactions that improve satisfaction." },
+  { icon: "available", title: "Always Available", desc: "Round-the-clock coverage without downtime or missed shifts." },
+  { icon: "cost", title: "Cost Reduction", desc: "Cut manual overhead and route budget to growth instead." },
+  { icon: "insights", title: "Data-Driven Insights", desc: "Every call becomes a data point you can act on." },
+  { icon: "growth", title: "Scalable Growth", desc: "Handle more volume without a proportional headcount increase." },
 ];
 
 export const humanCons = [

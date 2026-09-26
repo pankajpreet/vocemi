@@ -16,7 +16,7 @@ export default function Comparison() {
         <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-3">
           Vocemi vs. a human hire
         </div>
-        <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] text-ink m-0 mb-3.5">
+        <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0 mb-3.5">
           Use people for judgment. Use AI for repeatable work.
         </h2>
         <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0">
