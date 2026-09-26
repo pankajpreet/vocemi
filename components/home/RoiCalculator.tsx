@@ -111,7 +111,7 @@ export default function RoiCalculator() {
           <div className="text-[13px] font-bold text-brand-light uppercase tracking-[0.06em] mb-3">
             ROI Calculator
           </div>
-          <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] text-white m-0 mb-3.5">
+          <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-white m-0 mb-3.5">
             Run the numbers on what you&apos;re losing
           </h2>
           <p className="text-[16.5px] text-white/55 leading-[1.6] m-0">

@@ -20,7 +20,7 @@ export default function HomeFaq() {
           <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-3">
             FAQ
           </div>
-          <h2 className="font-display text-3xl md:text-[42px] font-extrabold tracking-[-0.025em] text-ink m-0">
+          <h2 className="font-display text-3xl md:text-[42px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0">
             Questions before you build
           </h2>
         </motion.div>

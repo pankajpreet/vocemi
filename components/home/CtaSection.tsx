@@ -15,7 +15,7 @@ export default function CtaSection() {
                 "radial-gradient(circle, rgba(59,84,244,0.35), transparent 70%)",
             }}
           />
-          <h2 className="font-display text-3xl md:text-[42px] font-extrabold tracking-[-0.025em] text-white m-0 mb-3.5 relative">
+          <h2 className="font-display text-3xl md:text-[42px] font-extrabold tracking-[-0.025em] leading-[1.1] text-white m-0 mb-3.5 relative">
             Ready to stop missing calls?
           </h2>
           <p className="text-[16.5px] text-white/60 m-0 mb-[30px] relative">
