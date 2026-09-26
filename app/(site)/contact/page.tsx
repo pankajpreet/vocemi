@@ -190,7 +190,7 @@ export default function ContactPage() {
                   variant="primary"
                   className="w-full"
                 >
-                  Schedule Now
+                  Book a free call
                 </BookCallButton>
               </div>
             </motion.div>

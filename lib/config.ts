@@ -3,7 +3,9 @@ export const siteConfig = {
   tagline: "Empowering Businesses through Voice AI",
   description:
     "Transform your customer interactions with intelligent voice-powered solutions that understand, respond, and elevate your business.",
-  url: "https://vocemi.com",
+  // The live site redirects the bare domain to www, so canonicals, the
+  // sitemap, and OG URLs must use www or they all point at a redirect.
+  url: "https://www.vocemi.com",
   location: "Calgary, Alberta",
   contact: {
     email: "business@vocemi.com",
@@ -118,37 +120,14 @@ export const siteConfig = {
         "No technical expertise required. We handle all development, integration, and provide user-friendly dashboards for monitoring and management. Training and documentation are included.",
     },
     {
-      question: "How do you ensure data privacy and security?",
+      question: "How do you handle data privacy and security?",
       answer:
-        "We implement enterprise-grade security with encryption, anonymization, and compliance with GDPR, CCPA, and other regulations. You retain full ownership of your data.",
+        "Before anything goes live, we walk you through exactly what gets recorded, where it is stored, which providers process it, and who can access it. You retain ownership of your data.",
     },
     {
       question: "What industries can benefit from Voice AI?",
       answer:
         "Voice AI is valuable across industries including healthcare, retail, finance, hospitality, real estate, and customer service. Any business with customer interactions can benefit.",
-    },
-  ],
-  testimonials: [
-    {
-      name: "James Carter",
-      role: "CEO",
-      company: "TechFlow Solutions",
-      quote:
-        "Voice AI automation transformed our operations by eliminating repetitive tasks and improving efficiency. Scaling our workflow has never been easier!",
-    },
-    {
-      name: "Sophia Martinez",
-      role: "Operations Manager",
-      company: "NexaCorp",
-      quote:
-        "With Voice AI, we cut manual work and improved accuracy. Our team now focuses on high-impact tasks while automation handles the rest!",
-    },
-    {
-      name: "David Reynolds",
-      role: "Head of Sales",
-      company: "GrowthPeak",
-      quote:
-        "AI-driven insights doubled our sales efficiency. We now engage leads at the right time with smarter, data-backed decisions!",
     },
   ],
 };

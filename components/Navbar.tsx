@@ -4,13 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 
+// Rooted at "/" so they also work from /services, /faq and the other inner
+// pages; on the homepage itself handleNavClick smooth-scrolls instead.
 const navLinks = [
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Services", href: "#services" },
-  { label: "ROI Calculator", href: "#calculator" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Services", href: "/#services" },
+  { label: "ROI Calculator", href: "/#calculator" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Live demo", href: "/start#talk" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 function LogoMark() {
@@ -28,13 +32,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
+    setIsOpen(false);
+    if (!href.startsWith("/#") || window.location.pathname !== "/") return;
+    const element = document.querySelector(href.slice(1));
+    if (element) {
       e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      setIsOpen(false);
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -70,14 +73,14 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:block flex-shrink-0">
-            <a
+            <TrackedLink
               href={siteConfig.bookCallUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              event="book_call_clicked"
+              external
               className="inline-block bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
             >
-              Book a Call
-            </a>
+              Book a free call
+            </TrackedLink>
           </div>
 
           {/* Mobile menu button */}
@@ -108,14 +111,14 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-2">
-              <a
+              <TrackedLink
                 href={siteConfig.bookCallUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                event="book_call_clicked"
+                external
                 className="block text-center bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
               >
-                Book a Call
-              </a>
+                Book a free call
+              </TrackedLink>
             </div>
           </div>
         </div>

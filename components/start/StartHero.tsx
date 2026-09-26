@@ -50,7 +50,7 @@ export default function StartHero() {
                 : "bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
             }
           >
-            Book a free consultation
+            Book a free call
           </TrackedLink>
         </div>
 

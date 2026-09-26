@@ -1,5 +1,6 @@
 import { pricingTiers } from "@/lib/homeContent";
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 import Reveal from "./Reveal";
 
 export default function Pricing() {
@@ -52,10 +53,10 @@ export default function Pricing() {
                     </div>
                   ))}
                 </div>
-                <a
+                <TrackedLink
                   href={siteConfig.bookCallUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  event="book_call_clicked"
+                  external
                   className={`text-center py-[13px] rounded-[9px] font-semibold text-[14.5px] transition-colors ${
                     tier.featured
                       ? "bg-brand text-white hover:bg-brand-dark"
@@ -63,7 +64,7 @@ export default function Pricing() {
                   }`}
                 >
                   {tier.ctaLabel}
-                </a>
+                </TrackedLink>
               </div>
             </Reveal>
           ))}

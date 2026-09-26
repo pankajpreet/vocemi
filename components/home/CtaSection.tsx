@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 import Reveal from "./Reveal";
 
 export default function CtaSection() {
@@ -19,14 +21,22 @@ export default function CtaSection() {
           <p className="text-[16.5px] text-white/60 m-0 mb-[30px] relative">
             Book a free 15-minute call. We&apos;ll map your first workflow together.
           </p>
-          <a
-            href={siteConfig.bookCallUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative inline-block bg-brand text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
-          >
-            Book a Call
-          </a>
+          <div className="relative flex flex-col sm:flex-row gap-3 justify-center">
+            <TrackedLink
+              href={siteConfig.bookCallUrl}
+              event="book_call_clicked"
+              external
+              className="inline-block bg-brand text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
+            >
+              Book a free call
+            </TrackedLink>
+            <Link
+              href="/start#talk"
+              className="inline-block border border-white/25 text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:border-white/50 transition-colors"
+            >
+              Try the live demo
+            </Link>
+          </div>
         </div>
       </Reveal>
     </section>

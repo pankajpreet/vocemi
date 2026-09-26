@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
+  // Resolves each page's relative canonical against the www host. Canonicals
+  // live on the pages themselves: one set here would be inherited by every
+  // page that forgot to override it, pointing them all at the homepage.
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} - ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
@@ -28,7 +32,7 @@ export const metadata: Metadata = {
         alt: `${siteConfig.name} - ${siteConfig.tagline}`,
       },
     ],
-    locale: "en_US",
+    locale: "en_CA",
   },
   twitter: {
     card: "summary_large_image",

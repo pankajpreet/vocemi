@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 
 type TabId = "missed" | "reactivation";
 
@@ -63,14 +64,14 @@ function ResultValue({ value, label, size = "sm" }: { value: string; label: stri
 
 function BookButton() {
   return (
-    <a
+    <TrackedLink
       href={siteConfig.bookCallUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      event="book_call_clicked"
+      external
       className="block bg-ink text-white text-center py-[13px] rounded-[9px] font-semibold text-[14.5px] hover:bg-brand transition-colors"
     >
-      Book Your Call
-    </a>
+      Book a free call
+    </TrackedLink>
   );
 }
 

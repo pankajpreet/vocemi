@@ -53,7 +53,7 @@ export default function FAQPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BookCallButton variant="primary">
-                Book a Call
+                Book a free call
               </BookCallButton>
               <a
                 href="/contact"

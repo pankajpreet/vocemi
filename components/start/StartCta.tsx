@@ -30,7 +30,7 @@ export default function StartCta() {
             external
             className="relative inline-block bg-brand text-white px-[30px] py-4 rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
           >
-            Book a free consultation
+            Book a free call
           </TrackedLink>
 
           {siteConfig.leadFormUrl && (
