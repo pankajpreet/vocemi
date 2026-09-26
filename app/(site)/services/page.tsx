@@ -205,7 +205,7 @@ export default function ServicesPage() {
                 variant="secondary"
                 className="bg-white text-primary-accent hover:bg-gray-100 border-0"
               >
-                Book a Call
+                Book a free call
               </BookCallButton>
               <a
                 href="/contact"

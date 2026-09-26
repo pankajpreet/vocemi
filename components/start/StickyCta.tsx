@@ -89,7 +89,7 @@ export default function StickyCta() {
           external
           className="flex-1 inline-flex items-center justify-center bg-brand text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
         >
-          Book a call
+          Book a free call
         </TrackedLink>
       </div>
     </div>

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 
 const waveBars = Array.from({ length: 24 }, (_, i) => ({
   dur: 0.7 + (i % 5) * 0.15,
@@ -32,20 +34,20 @@ export default function Hero() {
           handles the repeatable ones.
         </p>
         <div className="flex flex-wrap gap-3.5 mb-9">
-          <a
-            href={siteConfig.bookCallUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/start#talk"
             className="bg-brand text-white px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand-dark transition-colors"
           >
-            Book a Call
-          </a>
-          <a
-            href="#how-it-works"
+            Try the live demo
+          </Link>
+          <TrackedLink
+            href={siteConfig.bookCallUrl}
+            event="book_call_clicked"
+            external
             className="border border-ink/15 text-ink px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:border-ink/35 transition-colors"
           >
-            See how it works
-          </a>
+            Book a free call
+          </TrackedLink>
         </div>
         <div className="flex gap-8 text-[13.5px] text-ink/50">
           {heroStats.map((stat) => (
@@ -102,6 +104,14 @@ export default function Hero() {
             after. Which time works?
           </div>
         </div>
+        {/* The card reads as a live call, so people try to click it. Give
+            them somewhere real to go. */}
+        <Link
+          href="/start#talk"
+          className="mt-5 inline-flex items-center gap-2 text-brand-light text-[13.5px] font-semibold hover:text-white transition-colors"
+        >
+          Talk to it yourself &rarr;
+        </Link>
       </div>
     </section>
   );

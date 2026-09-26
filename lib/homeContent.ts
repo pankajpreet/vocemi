@@ -182,7 +182,7 @@ export const humanCons = [
 export const aiPros = [
   "Live in 2–4 weeks",
   "Answers 24/7, every day",
-  "Handles unlimited concurrent calls",
+  "Answers several calls at once",
   "Never calls in sick",
   "Updates your tools automatically",
 ];
@@ -218,7 +218,7 @@ export const pricingTiers: PricingTier[] = [
     price: "$1,500",
     priceSub: "one-time setup + from $300/mo",
     featured: true,
-    ctaLabel: "Book a Call",
+    ctaLabel: "Book a free call",
     features: [
       "One AI employee role",
       "Phone, inbox, or forms",
@@ -232,7 +232,7 @@ export const pricingTiers: PricingTier[] = [
     price: "$3,000",
     priceSub: "setup + $1,500/mo",
     featured: false,
-    ctaLabel: "Book a Call",
+    ctaLabel: "Book a free call",
     features: [
       "Phone, inbox, calendar, CRM",
       "Booking & follow-up",
@@ -257,7 +257,7 @@ export const homeFaqs = [
   },
   {
     q: "How do you handle data privacy and security?",
-    a: "Enterprise-grade encryption, anonymization, and compliance with GDPR, CCPA, and other regulations. You retain full ownership of your data.",
+    a: "Before anything goes live, we walk you through exactly what gets recorded, where it is stored, which providers process it, and who can access it. You retain ownership of your data.",
   },
   {
     q: "What industries can benefit?",

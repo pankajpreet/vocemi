@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import { trackEvent } from "@/lib/analytics";
 
 interface BookCallButtonProps {
   variant?: "primary" | "secondary";
@@ -26,10 +29,10 @@ export default function BookCallButton({
       href={siteConfig.bookCallUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("book_call_clicked")}
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
-      {children || "Book a Call"}
+      {children || "Book a free call"}
     </Link>
   );
 }
-

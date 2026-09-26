@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/config";
+import TrackedLink from "@/components/start/TrackedLink";
 
 const exploreLinks = [
   { label: "How it works", href: "/#how-it-works" },
@@ -6,6 +7,7 @@ const exploreLinks = [
   { label: "ROI Calculator", href: "/#calculator" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Live demo", href: "/start#talk" },
 ];
 
 export default function Footer() {
@@ -54,14 +56,14 @@ export default function Footer() {
             >
               {siteConfig.contact.email}
             </a>
-            <a
+            <TrackedLink
               href={siteConfig.bookCallUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              event="book_call_clicked"
+              external
               className="text-ink/70 hover:text-brand transition-colors"
             >
-              Book a Call
-            </a>
+              Book a free call
+            </TrackedLink>
           </div>
         </div>
       </div>

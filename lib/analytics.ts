@@ -9,7 +9,7 @@ import { track } from "@vercel/analytics";
  *
  * book_call_clicked matters most: every booking CTA is an outbound link to our
  * scheduling page, so without an explicit click event the conversion is
- * invisible to us.
+ * invisible to us. The main site's booking buttons fire it too.
  */
 export type StartEvent =
   | "voice_demo_started"
