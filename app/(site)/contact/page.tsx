@@ -3,10 +3,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import BookCallButton from "@/components/BookCallButton";
+import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
+import { trackEvent } from "@/lib/analytics";
 import { Mail, Calendar } from "lucide-react";
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,18 +20,53 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // You can add actual form submission logic here
-    alert("Thank you for your message! We'll get back to you soon.");
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setStatus("submitting");
+    setStatusMessage("");
+
+    const form = e.currentTarget;
+    const website = new FormData(form).get("website");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, website }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(
+          result.error || "We could not send your message. Please try again."
+        );
+      }
+
+      trackEvent("contact_form_submitted", { page: "/contact" });
+      setStatus("success");
+      setStatusMessage(
+        "Your message was delivered. We’ll reply as soon as we can."
+      );
+      setFormData({ name: "", email: "", company: "", message: "" });
+      form.reset();
+    } catch (error) {
+      trackEvent("contact_form_failed", { page: "/contact" });
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : `The form is temporarily unavailable. Please email ${siteConfig.contact.email}.`
+      );
+    }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    if (status !== "idle") {
+      setStatus("idle");
+      setStatusMessage("");
+    }
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -70,7 +111,25 @@ export default function ContactPage() {
               className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-8 rounded-2xl shadow-lg"
             >
               <h2 className="text-3xl font-bold mb-6 text-white">Send us a message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+                aria-describedby="contact-form-status"
+              >
+                <div
+                  aria-hidden="true"
+                  hidden
+                  className="absolute -left-[10000px] h-px w-px overflow-hidden"
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <div>
                   <label
                     htmlFor="name"
@@ -144,10 +203,25 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-primary-accent to-primary-accent-alt text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-accent/40 hover:-translate-y-0.5 transition-all duration-300"
+                  disabled={status === "submitting"}
+                  className="w-full bg-gradient-to-r from-primary-accent to-primary-accent-alt text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-accent/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-wait disabled:hover:translate-y-0"
                 >
-                  Send Message
+                  {status === "submitting" ? "Sending…" : "Send Message"}
                 </button>
+                <div
+                  id="contact-form-status"
+                  role="status"
+                  aria-live="polite"
+                  className={`min-h-6 text-sm leading-relaxed ${
+                    status === "success"
+                      ? "text-green-300"
+                      : status === "error"
+                        ? "text-red-300"
+                        : "text-transparent"
+                  }`}
+                >
+                  {statusMessage || "\u00A0"}
+                </div>
               </form>
             </motion.div>
 
@@ -167,12 +241,14 @@ export default function ContactPage() {
                     <Mail className="text-primary-accent mr-4 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-white mb-1">Email</h3>
-                      <a
+                      <TrackedLink
                         href={`mailto:${siteConfig.contact.email}`}
+                        event="email_clicked"
+                        properties={{ placement: "contact_page" }}
                         className="text-primary-accent hover:text-primary-accent-cyan transition-colors"
                       >
                         {siteConfig.contact.email}
-                      </a>
+                      </TrackedLink>
                     </div>
                   </div>
                 </div>
@@ -189,6 +265,7 @@ export default function ContactPage() {
                 <BookCallButton
                   variant="primary"
                   className="w-full"
+                  placement="contact_page"
                 >
                   Book a free call
                 </BookCallButton>

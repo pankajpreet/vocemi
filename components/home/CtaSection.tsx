@@ -1,9 +1,10 @@
-import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
 import Reveal from "./Reveal";
 
 export default function CtaSection() {
+  const demoHref = siteConfig.voiceDemoAvailable ? "/start#talk" : "/start";
+
   return (
     <section className="max-w-[1180px] mx-auto px-6 md:px-8 py-16 md:py-[100px]">
       <Reveal>
@@ -25,17 +26,22 @@ export default function CtaSection() {
             <TrackedLink
               href={siteConfig.bookCallUrl}
               event="book_call_clicked"
+              properties={{ placement: "homepage_final_cta" }}
               external
               className="inline-block bg-brand text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
             >
               Book a free call
             </TrackedLink>
-            <Link
-              href="/start#talk"
+            <TrackedLink
+              href={demoHref}
+              event="demo_cta_clicked"
+              properties={{ placement: "homepage_final_cta" }}
               className="inline-block border border-white/25 text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:border-white/50 transition-colors"
             >
-              Try the live demo
-            </Link>
+              {siteConfig.voiceDemoAvailable
+                ? "Try the live demo"
+                : "See how it works"}
+            </TrackedLink>
           </div>
         </div>
       </Reveal>

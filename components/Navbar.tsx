@@ -5,16 +5,20 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
+import { trackEvent } from "@/lib/analytics";
 
 // Rooted at "/" so they also work from /services, /faq and the other inner
 // pages; on the homepage itself handleNavClick smooth-scrolls instead.
 const navLinks = [
   { label: "How it works", href: "/#how-it-works" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "ROI Calculator", href: "/#calculator" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Live demo", href: "/start#talk" },
-  { label: "FAQ", href: "/#faq" },
+  {
+    label: siteConfig.voiceDemoAvailable ? "Live demo" : "How AI works",
+    href: siteConfig.voiceDemoAvailable ? "/start#talk" : "/start",
+  },
+  { label: "FAQ", href: "/faq" },
 ];
 
 function LogoMark() {
@@ -31,8 +35,18 @@ function LogoMark() {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    placement: string
+  ) => {
     setIsOpen(false);
+    if (href.startsWith("/start")) {
+      trackEvent("demo_cta_clicked", {
+        page: window.location.pathname,
+        placement,
+      });
+    }
     if (!href.startsWith("/#") || window.location.pathname !== "/") return;
     const element = document.querySelector(href.slice(1));
     if (element) {
@@ -64,7 +78,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => handleNavClick(e, link.href, "navbar_desktop")}
                 className="whitespace-nowrap hover:text-brand transition-colors"
               >
                 {link.label}
@@ -76,6 +90,7 @@ export default function Navbar() {
             <TrackedLink
               href={siteConfig.bookCallUrl}
               event="book_call_clicked"
+              properties={{ placement: "navbar_desktop" }}
               external
               className="inline-block bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
             >
@@ -104,7 +119,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => handleNavClick(e, link.href, "navbar_mobile")}
                 className="block px-3 py-2.5 text-ink/70 hover:text-brand hover:bg-sand rounded-md transition-colors font-medium"
               >
                 {link.label}
@@ -114,6 +129,7 @@ export default function Navbar() {
               <TrackedLink
                 href={siteConfig.bookCallUrl}
                 event="book_call_clicked"
+                properties={{ placement: "navbar_mobile" }}
                 external
                 className="block text-center bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
               >

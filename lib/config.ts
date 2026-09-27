@@ -1,3 +1,7 @@
+const retellPublicKey = process.env.NEXT_PUBLIC_RETELL_PUBLIC_KEY || "";
+const retellVoiceAgentId =
+  process.env.NEXT_PUBLIC_RETELL_VOICE_AGENT_ID || "";
+
 export const siteConfig = {
   name: "Vocemi",
   tagline: "Empowering Businesses through Voice AI",
@@ -7,21 +11,30 @@ export const siteConfig = {
   // sitemap, and OG URLs must use www or they all point at a redirect.
   url: "https://www.vocemi.com",
   location: "Calgary, Alberta",
+  founder: {
+    name: "Pankajpreet Singh",
+    role: "Founder",
+    linkedin: "https://www.linkedin.com/in/pankajpreet-singh-76038113/",
+    image: "/founder-pankajpreet-singh.png",
+  },
   contact: {
     email: "business@vocemi.com",
     // Leave unset until there is a number we're happy to publish. The
     // tap-to-call / tap-to-text block on /start hides itself when empty.
     phone: process.env.NEXT_PUBLIC_PHONE || "",
   },
-  bookCallUrl: process.env.NEXT_PUBLIC_BOOK_CALL_URL || "#",
+  // Keep booking CTAs useful in preview deployments that do not have the
+  // scheduler URL configured yet.
+  bookCallUrl: process.env.NEXT_PUBLIC_BOOK_CALL_URL || "/contact",
 
   // --- /start landing page ---------------------------------------------
   // Retell AI powers the live voice demo. Both values are required before
   // the demo section renders, and the hero CTA adapts when it's absent.
   // The public key is designed for browser use, so it's safe in client code
   // -- but it is still account-scoped, so keep it in env rather than here.
-  retellPublicKey: process.env.NEXT_PUBLIC_RETELL_PUBLIC_KEY || "",
-  retellVoiceAgentId: process.env.NEXT_PUBLIC_RETELL_VOICE_AGENT_ID || "",
+  retellPublicKey,
+  retellVoiceAgentId,
+  voiceDemoAvailable: Boolean(retellPublicKey && retellVoiceAgentId),
   // reCAPTCHA v3 site key. Required whenever reCAPTCHA is switched on for the
   // agent in Retell -- v2 keys are not supported by their widget.
   retellRecaptchaKey: process.env.NEXT_PUBLIC_RETELL_RECAPTCHA_KEY || "",
@@ -101,33 +114,6 @@ export const siteConfig = {
       description:
         "Scale efficiently without proportional increases in workload or costs.",
       icon: "🚀",
-    },
-  ],
-  faqs: [
-    {
-      question: "What is Voice AI and how can it help my business?",
-      answer:
-        "Voice AI uses natural language processing and speech recognition to enable computers to understand and respond to human speech. It can automate customer service, provide 24/7 support, handle routine inquiries, and improve operational efficiency.",
-    },
-    {
-      question: "How long does it take to implement a voice AI solution?",
-      answer:
-        "Implementation time varies based on complexity. Simple voice bots typically take 2-4 weeks, while comprehensive custom solutions may take 6-12 weeks. We'll provide a detailed timeline during the discovery phase.",
-    },
-    {
-      question: "Do I need technical expertise to use Voice AI solutions?",
-      answer:
-        "No technical expertise required. We handle all development, integration, and provide user-friendly dashboards for monitoring and management. Training and documentation are included.",
-    },
-    {
-      question: "How do you handle data privacy and security?",
-      answer:
-        "Before anything goes live, we walk you through exactly what gets recorded, where it is stored, which providers process it, and who can access it. You retain ownership of your data.",
-    },
-    {
-      question: "What industries can benefit from Voice AI?",
-      answer:
-        "Voice AI is valuable across industries including healthcare, retail, finance, hospitality, real estate, and customer service. Any business with customer interactions can benefit.",
     },
   ],
 };

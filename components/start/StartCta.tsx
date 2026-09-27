@@ -27,6 +27,7 @@ export default function StartCta() {
           <TrackedLink
             href={siteConfig.bookCallUrl}
             event="book_call_clicked"
+            properties={{ placement: "start_final_cta" }}
             external
             className="relative inline-block bg-brand text-white px-[30px] py-4 rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
           >
@@ -38,6 +39,7 @@ export default function StartCta() {
               <TrackedLink
                 href={siteConfig.leadFormUrl}
                 event="lead_form_opened"
+                properties={{ placement: "start_final_cta" }}
                 external
                 className="text-white/50 text-[14px] underline underline-offset-4 hover:text-white/80 transition-colors"
               >
@@ -55,6 +57,7 @@ export default function StartCta() {
             <TrackedLink
               href={`tel:${phone}`}
               event="tap_to_call"
+              properties={{ placement: "start_direct_contact" }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 border border-ink/15 text-ink px-6 py-3.5 rounded-[9px] text-[15px] font-semibold hover:border-ink/35 transition-colors"
             >
               <Phone size={17} />
@@ -63,6 +66,7 @@ export default function StartCta() {
             <TrackedLink
               href={`sms:${phone}`}
               event="tap_to_text"
+              properties={{ placement: "start_direct_contact" }}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 border border-ink/15 text-ink px-6 py-3.5 rounded-[9px] text-[15px] font-semibold hover:border-ink/35 transition-colors"
             >
               <MessageSquare size={17} />
@@ -70,13 +74,15 @@ export default function StartCta() {
             </TrackedLink>
           </>
         )}
-        <a
+        <TrackedLink
           href={`mailto:${email}`}
+          event="email_clicked"
+          properties={{ placement: "start_direct_contact" }}
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 border border-ink/15 text-ink px-6 py-3.5 rounded-[9px] text-[15px] font-semibold hover:border-ink/35 transition-colors"
         >
           <Mail size={17} />
           {email}
-        </a>
+        </TrackedLink>
       </div>
 
     </section>

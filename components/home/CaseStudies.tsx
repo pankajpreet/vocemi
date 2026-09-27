@@ -14,7 +14,7 @@ export default function CaseStudies() {
     <section className="max-w-[1180px] mx-auto px-6 md:px-8 py-20 md:py-[110px]">
       <Reveal className="max-w-[640px] mx-auto mb-12 md:mb-14 text-center">
         <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-3">
-          Results
+          Client workflows
         </div>
         <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0 mb-3.5">
           Already working for these businesses
@@ -63,6 +63,10 @@ export default function CaseStudies() {
           </Reveal>
         ))}
       </div>
+      <p className="text-center text-[12.5px] leading-[1.6] text-ink/40 m-0 mt-7">
+        Workflow descriptions reflect client use cases. Measurable outcomes
+        appear only where a client supplied them.
+      </p>
     </section>
   );
 }

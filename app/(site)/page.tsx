@@ -11,31 +11,31 @@ import Pricing from "@/components/home/Pricing";
 import CaseStudies from "@/components/home/CaseStudies";
 import HomeFaq from "@/components/home/HomeFaq";
 import CtaSection from "@/components/home/CtaSection";
+import {
+  FaqStructuredData,
+  ServiceStructuredData,
+} from "@/components/StructuredData";
 import { homeFaqs } from "@/lib/homeContent";
 
 export const metadata: Metadata = {
+  title: {
+    absolute: "Voice AI Receptionist & Business Automation | Vocemi",
+  },
+  description:
+    "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
   alternates: { canonical: "/" },
 };
 
-// Built from the same array HomeFaq renders, so the markup always matches
-// the questions a visitor can actually see on this page.
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeFaqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: { "@type": "Answer", text: faq.a },
-  })),
-};
-
 export default function Home() {
+  const structuredFaqs = homeFaqs.map((faq) => ({
+    question: faq.q,
+    answer: faq.a,
+  }));
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <ServiceStructuredData />
+      <FaqStructuredData faqs={structuredFaqs} />
       <Hero />
       <LogoStrip />
       <HowItWorks />

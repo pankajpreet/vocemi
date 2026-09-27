@@ -2,12 +2,16 @@ import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
 
 const exploreLinks = [
+  { label: "About", href: "/about" },
   { label: "How it works", href: "/#how-it-works" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "ROI Calculator", href: "/#calculator" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Live demo", href: "/start#talk" },
+  { label: "FAQ", href: "/faq" },
+  {
+    label: siteConfig.voiceDemoAvailable ? "Live demo" : "How AI works",
+    href: siteConfig.voiceDemoAvailable ? "/start#talk" : "/start",
+  },
 ];
 
 export default function Footer() {
@@ -33,15 +37,27 @@ export default function Footer() {
             Explore
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            {exploreLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-ink/70 hover:text-brand transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {exploreLinks.map((link) =>
+              link.href.startsWith("/start") ? (
+                <TrackedLink
+                  key={link.href}
+                  href={link.href}
+                  event="demo_cta_clicked"
+                  properties={{ placement: "footer" }}
+                  className="text-ink/70 hover:text-brand transition-colors"
+                >
+                  {link.label}
+                </TrackedLink>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-ink/70 hover:text-brand transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
         </div>
 
@@ -50,15 +66,24 @@ export default function Footer() {
             Contact
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <a
+            <TrackedLink
               href={`mailto:${siteConfig.contact.email}`}
+              event="email_clicked"
+              properties={{ placement: "footer" }}
               className="text-ink/70 hover:text-brand transition-colors"
             >
               {siteConfig.contact.email}
+            </TrackedLink>
+            <a
+              href="/contact"
+              className="text-ink/70 hover:text-brand transition-colors"
+            >
+              Contact form
             </a>
             <TrackedLink
               href={siteConfig.bookCallUrl}
               event="book_call_clicked"
+              properties={{ placement: "footer" }}
               external
               className="text-ink/70 hover:text-brand transition-colors"
             >
@@ -72,6 +97,9 @@ export default function Footer() {
         <span>&copy; {currentYear} Vocemi. All rights reserved.</span>
         <a href="/privacy" className="hover:text-brand transition-colors">
           Privacy
+        </a>
+        <a href="/security" className="hover:text-brand transition-colors">
+          Security
         </a>
       </div>
     </footer>

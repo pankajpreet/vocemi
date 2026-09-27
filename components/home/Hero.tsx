@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
 
@@ -14,6 +13,8 @@ const heroStats = [
 ];
 
 export default function Hero() {
+  const demoHref = siteConfig.voiceDemoAvailable ? "/start#talk" : "/start";
+
   return (
     <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-16 pb-20 md:pt-[88px] md:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-14 items-center">
       <div className="animate-fadeUp">
@@ -34,15 +35,18 @@ export default function Hero() {
           handles the repeatable ones.
         </p>
         <div className="flex flex-wrap gap-3.5 mb-9">
-          <Link
-            href="/start#talk"
+          <TrackedLink
+            href={demoHref}
+            event="demo_cta_clicked"
+            properties={{ placement: "homepage_hero_primary" }}
             className="bg-brand text-white px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand-dark transition-colors"
           >
-            Try the live demo
-          </Link>
+            {siteConfig.voiceDemoAvailable ? "Try the live demo" : "See how it works"}
+          </TrackedLink>
           <TrackedLink
             href={siteConfig.bookCallUrl}
             event="book_call_clicked"
+            properties={{ placement: "homepage_hero_secondary" }}
             external
             className="border border-ink/15 text-ink px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:border-ink/35 transition-colors"
           >
@@ -69,9 +73,11 @@ export default function Hero() {
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2.5 text-white text-sm font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#37D67A] animate-pulseDot" />
-            Live call &mdash; incoming
+            Example call &mdash; incoming
           </div>
-          <span className="text-white/40 text-[12.5px] font-display">00:14</span>
+          <span className="text-white/40 text-[12.5px] font-display">
+            Illustrative
+          </span>
         </div>
         <div className="flex items-end gap-1 h-14 px-1 mb-[22px]">
           {waveBars.map((bar, i) => (
@@ -106,12 +112,16 @@ export default function Hero() {
         </div>
         {/* The card reads as a live call, so people try to click it. Give
             them somewhere real to go. */}
-        <Link
-          href="/start#talk"
+        <TrackedLink
+          href={demoHref}
+          event="demo_cta_clicked"
+          properties={{ placement: "homepage_example_call" }}
           className="mt-5 inline-flex items-center gap-2 text-brand-light text-[13.5px] font-semibold hover:text-white transition-colors"
         >
-          Talk to it yourself &rarr;
-        </Link>
+          {siteConfig.voiceDemoAvailable
+            ? "Talk to it yourself →"
+            : "See the AI employee workflow →"}
+        </TrackedLink>
       </div>
     </section>
   );

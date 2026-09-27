@@ -1,12 +1,15 @@
 import { Metadata } from "next";
+import { ServiceStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Services",
-  description: "Comprehensive Voice AI solutions including Voice Bot Development and Voice Analytics & Insights",
+  title: "Voice AI Receptionist & Automation Services",
+  description:
+    "Explore Vocemi services for AI call answering, appointment management, lead qualification, follow-up, and voice analytics.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services | Vocemi",
-    description: "Comprehensive Voice AI solutions tailored to your business needs",
+    title: "Voice AI Receptionist & Automation Services | Vocemi",
+    description:
+      "AI call answering, appointment management, lead qualification, follow-up, and voice analytics built around your workflow.",
   },
 };
 
@@ -15,6 +18,11 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ServiceStructuredData />
+      {children}
+    </>
+  );
 }
 

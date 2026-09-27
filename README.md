@@ -4,7 +4,7 @@ A modern, responsive Next.js website for Vocemi, a Voice AI agency. Built with N
 
 ## Features
 
-- **Modern Design**: Inspired by Xtract, Automatix, and Landio with a dark purple/teal color scheme
+- **Modern Design**: Responsive marketing site with focused demo and booking paths
 - **Fully Responsive**: Mobile-first design that works on all devices
 - **Smooth Animations**: Framer Motion animations for scroll reveals and hover effects
 - **SEO Optimized**: Proper meta tags, Open Graph, and Twitter cards
@@ -12,10 +12,12 @@ A modern, responsive Next.js website for Vocemi, a Voice AI agency. Built with N
 
 ## Pages
 
-- **Landing Page**: Hero section, services overview, benefits, testimonials, and CTA
-- **Services Page**: Detailed service descriptions with features and integration options
+- **Landing Page**: Hero, workflow, services, opportunity estimator, client workflows, FAQ, and CTAs
+- **Services Pages**: Service hub plus detailed AI receptionist and lead-reactivation guides
 - **FAQ Page**: Accordion-style FAQ section
-- **Contact Page**: Contact form and booking information
+- **Contact Page**: Server-validated email form and booking information
+- **About Page**: Founder, location, and operating principles
+- **Security Page**: Plain-language website provider and data-flow information
 
 ## Getting Started
 
@@ -31,15 +33,21 @@ A modern, responsive Next.js website for Vocemi, a Voice AI agency. Built with N
 npm install
 ```
 
-2. Create a `.env.local` file in the root directory:
+2. Copy the tracked environment template:
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
-3. Update the `.env.local` file with your calendar booking URL:
+3. Add the services you use. At minimum, configure booking and contact-form
+delivery:
+```bash
+NEXT_PUBLIC_BOOK_CALL_URL=https://cal.com/your-booking-link
+RESEND_API_KEY=re_...
+CONTACT_FROM_EMAIL=Vocemi Website <website@vocemi.com>
+CONTACT_TO_EMAIL=business@vocemi.com
 ```
-NEXT_PUBLIC_BOOK_CALL_URL=https://calendly.com/your-username/meeting
-```
+
+`CONTACT_FROM_EMAIL` must use a sender or domain verified in Resend.
 
 ### Development
 
@@ -66,8 +74,10 @@ npm start
 
 1. Push your code to GitHub
 2. Connect your repository to [Vercel](https://vercel.com)
-3. Add the `NEXT_PUBLIC_BOOK_CALL_URL` environment variable in Vercel dashboard
-4. Deploy!
+3. Add the required values from `.env.example` in the Vercel dashboard
+4. Set the successful-booking redirect in Cal.com to
+   `https://www.vocemi.com/booking-confirmed`
+5. Deploy
 
 Vercel will automatically detect Next.js and configure everything for you.
 
@@ -83,12 +93,12 @@ The site can be deployed to any platform that supports Next.js:
 
 ### Update Content
 
-Edit `lib/config.ts` to update:
+Edit `lib/config.ts`, `lib/homeContent.ts`, and `lib/serviceContent.ts` to update:
 - Site information (name, tagline, description)
 - Services
 - Benefits
 - FAQs
-- Testimonials
+- Service guides
 - Contact information
 
 ### Update Colors

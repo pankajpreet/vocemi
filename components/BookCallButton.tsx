@@ -7,12 +7,14 @@ import { trackEvent } from "@/lib/analytics";
 interface BookCallButtonProps {
   variant?: "primary" | "secondary";
   className?: string;
+  placement?: string;
   children?: React.ReactNode;
 }
 
 export default function BookCallButton({
   variant = "primary",
   className = "",
+  placement = "page_cta",
   children,
 }: BookCallButtonProps) {
   const baseStyles =
@@ -29,7 +31,12 @@ export default function BookCallButton({
       href={siteConfig.bookCallUrl}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent("book_call_clicked")}
+      onClick={() =>
+        trackEvent("book_call_clicked", {
+          page: window.location.pathname,
+          placement,
+        })
+      }
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
       {children || "Book a free call"}

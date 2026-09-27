@@ -56,6 +56,10 @@ export default function Pricing() {
                 <TrackedLink
                   href={siteConfig.bookCallUrl}
                   event="book_call_clicked"
+                  properties={{
+                    placement: "homepage_pricing",
+                    tier: tier.name,
+                  }}
                   external
                   className={`text-center py-[13px] rounded-[9px] font-semibold text-[14.5px] transition-colors ${
                     tier.featured

@@ -1,12 +1,16 @@
 import { Metadata } from "next";
+import { FaqStructuredData } from "@/components/StructuredData";
+import { homeFaqs } from "@/lib/homeContent";
 
 export const metadata: Metadata = {
-  title: "FAQ",
-  description: "Frequently asked questions about Voice AI, implementation, security, and pricing",
+  title: "Voice AI FAQs: Setup, Privacy & Business Use",
+  description:
+    "Answers about how Voice AI works, implementation timelines, technical requirements, privacy, and suitable business use cases.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ | Vocemi",
-    description: "Quick answers to common Voice AI questions",
+    title: "Voice AI FAQs: Setup, Privacy & Business Use | Vocemi",
+    description:
+      "Clear answers about Voice AI implementation, technical requirements, privacy, and business use cases.",
   },
 };
 
@@ -15,6 +19,16 @@ export default function FAQLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  const structuredFaqs = homeFaqs.map((faq) => ({
+    question: faq.q,
+    answer: faq.a,
+  }));
+
+  return (
+    <>
+      <FaqStructuredData faqs={structuredFaqs} />
+      {children}
+    </>
+  );
 }
 

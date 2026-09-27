@@ -74,19 +74,23 @@ export default function StickyCta() {
     >
       <div className="flex gap-2.5">
         {voiceDemo && (
-          <a
+          <TrackedLink
             href="#talk"
+            event="demo_cta_clicked"
+            properties={{ placement: "start_sticky_mobile" }}
             tabIndex={visible ? undefined : -1}
             className="flex-1 inline-flex items-center justify-center gap-2 bg-ink text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
           >
             <Mic size={16} />
             Talk to AI
-          </a>
+          </TrackedLink>
         )}
         <TrackedLink
           href={siteConfig.bookCallUrl}
           event="book_call_clicked"
+          properties={{ placement: "start_sticky_mobile" }}
           external
+          tabIndex={visible ? undefined : -1}
           className="flex-1 inline-flex items-center justify-center bg-brand text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
         >
           Book a free call
