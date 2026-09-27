@@ -1,26 +1,33 @@
 import { track } from "@vercel/analytics";
 
+export type AnalyticsProperties = Record<
+  string,
+  string | number | boolean | null
+>;
+
 /**
- * Events fired from the /start landing page.
+ * A short, stable funnel shared by the marketing site and /start.
  *
- * The list is deliberately short. /start exists to answer one question —
- * are the business cards worth printing more of? — and the headline number
- * is book_call_clicked per 100 pageviews.
- *
- * book_call_clicked matters most: every booking CTA is an outbound link to our
- * scheduling page, so without an explicit click event the conversion is
- * invisible to us. The main site's booking buttons fire it too.
+ * Clicks and starts show intent. Completed bookings and accepted contact
+ * messages are the actual conversions; only emit those after the receiving
+ * system confirms success.
  */
-export type StartEvent =
+export type AnalyticsEvent =
+  | "demo_cta_clicked"
   | "voice_demo_started"
+  | "voice_demo_ready"
   | "book_call_clicked"
+  | "booking_completed"
+  | "contact_form_submitted"
+  | "contact_form_failed"
+  | "email_clicked"
   | "tap_to_call"
   | "tap_to_text"
   | "lead_form_opened";
 
 export function trackEvent(
-  event: StartEvent,
-  properties?: Record<string, string | number | boolean | null>
+  event: AnalyticsEvent,
+  properties?: AnalyticsProperties
 ) {
   track(event, properties);
 }

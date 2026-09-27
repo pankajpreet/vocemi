@@ -44,7 +44,7 @@ export default function OwnerDashboard() {
               <span className="w-[9px] h-[9px] rounded-full bg-white/25" />
             </div>
             <span className="text-white/60 text-[12.5px] ml-2">
-              Daily Owner Report &middot; Today
+              Illustrative Owner Report &middot; Example day
             </span>
           </div>
           <div className="p-[26px]">
@@ -75,6 +75,10 @@ export default function OwnerDashboard() {
                 job. Vocemi is holding the reply until you confirm.
               </div>
             </div>
+          </div>
+          <div className="px-[26px] py-3 border-t border-ink/10 text-[12px] leading-[1.5] text-ink/45">
+            Sample interface and example values &mdash; not client performance
+            data.
           </div>
         </div>
       </Reveal>

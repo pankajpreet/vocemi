@@ -33,16 +33,19 @@ export default function StartHero() {
 
         <div className="flex flex-col sm:flex-row gap-3 mb-9">
           {voiceDemo && (
-            <a
+            <TrackedLink
               href="#talk"
+              event="demo_cta_clicked"
+              properties={{ placement: "start_hero" }}
               className="bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
             >
               Talk to an AI employee
-            </a>
+            </TrackedLink>
           )}
           <TrackedLink
             href={siteConfig.bookCallUrl}
             event="book_call_clicked"
+            properties={{ placement: "start_hero" }}
             external
             className={
               voiceDemo

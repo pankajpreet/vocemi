@@ -28,6 +28,8 @@ export default function HomeFaq() {
         <div className="flex flex-col gap-3">
           {homeFaqs.map((faq, i) => {
             const open = openIdx === i;
+            const buttonId = `home-faq-question-${i}`;
+            const panelId = `home-faq-answer-${i}`;
             return (
               <motion.div
                 key={faq.q}
@@ -38,8 +40,11 @@ export default function HomeFaq() {
                 className="bg-white border border-ink/10 rounded-[14px] overflow-hidden"
               >
                 <button
+                  id={buttonId}
                   type="button"
                   onClick={() => setOpenIdx(open ? -1 : i)}
+                  aria-expanded={open}
+                  aria-controls={panelId}
                   className="w-full flex items-center gap-4 px-6 py-5 cursor-pointer text-left"
                 >
                   <span className="font-display font-extrabold text-ink/25 text-sm">
@@ -59,6 +64,9 @@ export default function HomeFaq() {
                 <AnimatePresence initial={false}>
                   {open && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

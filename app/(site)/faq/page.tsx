@@ -3,9 +3,14 @@
 import { motion } from "framer-motion";
 import FAQAccordion from "@/components/FAQAccordion";
 import BookCallButton from "@/components/BookCallButton";
-import { siteConfig } from "@/lib/config";
+import { homeFaqs } from "@/lib/homeContent";
 
 export default function FAQPage() {
+  const faqs = homeFaqs.map((faq) => ({
+    question: faq.q,
+    answer: faq.a,
+  }));
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -33,7 +38,7 @@ export default function FAQPage() {
       {/* FAQ Section */}
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FAQAccordion faqs={siteConfig.faqs} />
+          <FAQAccordion faqs={faqs} />
         </div>
       </section>
 

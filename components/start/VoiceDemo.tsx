@@ -180,6 +180,7 @@ export default function VoiceDemo() {
       }
       target.appendChild(host);
       hostRef.current = host;
+      trackEvent("voice_demo_ready", { page: "/start" });
       setReady(true);
     }, 200);
     const giveUp = window.setTimeout(() => window.clearInterval(timer), 15000);
@@ -277,7 +278,10 @@ export default function VoiceDemo() {
               <button
                 type="button"
                 onClick={() => {
-                  trackEvent("voice_demo_started");
+                  trackEvent("voice_demo_started", {
+                    page: "/start",
+                    placement: "demo_panel",
+                  });
                   setStarted(true);
                   // Tell StickyCta to get out of the call window's way.
                   window.dispatchEvent(new CustomEvent("vocemi:call-started"));

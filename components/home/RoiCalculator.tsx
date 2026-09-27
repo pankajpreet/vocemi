@@ -67,6 +67,7 @@ function BookButton() {
     <TrackedLink
       href={siteConfig.bookCallUrl}
       event="book_call_clicked"
+      properties={{ placement: "homepage_opportunity_estimator" }}
       external
       className="block bg-ink text-white text-center py-[13px] rounded-[9px] font-semibold text-[14.5px] hover:bg-brand transition-colors"
     >
@@ -78,17 +79,19 @@ function BookButton() {
 export default function RoiCalculator() {
   const [tab, setTab] = useState<TabId>("missed");
 
-  const [missedCalls, setMissedCalls] = useState(20);
-  const [avgValue, setAvgValue] = useState(500);
-  const [closeRate, setCloseRate] = useState(30);
+  const [missedCalls, setMissedCalls] = useState(10);
+  const [avgValue, setAvgValue] = useState(250);
+  const [closeRate, setCloseRate] = useState(20);
 
-  const [dormantLeads, setDormantLeads] = useState(200);
-  const [reactAvgValue, setReactAvgValue] = useState(500);
-  const [reactRate, setReactRate] = useState(12);
+  const [dormantLeads, setDormantLeads] = useState(50);
+  const [reactAvgValue, setReactAvgValue] = useState(250);
+  const [reactRate, setReactRate] = useState(10);
 
-  const dailyLoss = Math.round(missedCalls * (closeRate / 100) * avgValue);
-  const monthlyLoss = dailyLoss * 30;
-  const yearlyLoss = dailyLoss * 365;
+  const weeklyOpportunity = Math.round(
+    missedCalls * (closeRate / 100) * avgValue
+  );
+  const monthlyOpportunity = Math.round((weeklyOpportunity * 52) / 12);
+  const yearlyOpportunity = weeklyOpportunity * 52;
 
   const reactWon = Math.round(dormantLeads * (reactRate / 100));
   const reactRevenue = reactWon * reactAvgValue;
@@ -109,14 +112,14 @@ export default function RoiCalculator() {
           className="max-w-[640px] mx-auto mb-10 md:mb-[50px] text-center"
         >
           <div className="text-[13px] font-bold text-brand-light uppercase tracking-[0.06em] mb-3">
-            ROI Calculator
+            Opportunity estimator
           </div>
           <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-white m-0 mb-3.5">
-            Run the numbers on what you&apos;re losing
+            Estimate your potential opportunity
           </h2>
           <p className="text-[16.5px] text-white/55 leading-[1.6] m-0">
-            Most businesses don&apos;t realize how much revenue slips through
-            missed calls and cold leads.
+            Start with the example scenario, then replace every input with
+            numbers from your own business.
           </p>
         </motion.div>
 
@@ -133,12 +136,12 @@ export default function RoiCalculator() {
           <div className="bg-white rounded-[20px] p-6 md:p-10 grid lg:grid-cols-2 gap-10 lg:gap-12">
             <div>
               <SliderField
-                label="Missed Calls / Day"
+                label="Missed Calls / Week"
                 display={fmt(missedCalls)}
-                min={1}
-                max={100}
+                min={0}
+                max={200}
                 value={missedCalls}
-                helper="Missed calls happen 7 days a week, even when you're closed."
+                helper="Use the number your business actually misses in a normal week."
                 onChange={setMissedCalls}
               />
               <SliderField
@@ -148,7 +151,7 @@ export default function RoiCalculator() {
                 max={5000}
                 step={50}
                 value={avgValue}
-                helper="What a customer is typically worth to your business."
+                helper="Use your own average sale or customer value."
                 onChange={setAvgValue}
               />
               <SliderField
@@ -157,17 +160,22 @@ export default function RoiCalculator() {
                 min={1}
                 max={100}
                 value={closeRate}
-                helper="What % of answered calls typically convert."
+                helper="Use the percentage of answered calls your business normally converts."
                 onChange={setCloseRate}
               />
             </div>
             <div className="bg-sand rounded-2xl p-7 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-4 mb-5">
-                <ResultValue value={`$${fmt(dailyLoss)}`} label="Daily Loss" />
-                <ResultValue value={`$${fmt(monthlyLoss)}`} label="Monthly Loss" />
+                <ResultValue value={`$${fmt(weeklyOpportunity)}`} label="Weekly opportunity" />
+                <ResultValue value={`$${fmt(monthlyOpportunity)}`} label="Monthly opportunity" />
               </div>
               <div className="border-t border-ink/10 pt-5 mb-5">
-                <ResultValue value={`$${fmt(yearlyLoss)}`} label="Total Yearly Loss" size="lg" />
+                <ResultValue value={`$${fmt(yearlyOpportunity)}`} label="Annual opportunity" size="lg" />
+                <p className="text-[12px] leading-[1.5] text-ink/45 m-0 mt-3">
+                  Formula: missed calls per week × close rate × average customer
+                  value. This estimates gross revenue opportunity, not profit
+                  or guaranteed revenue.
+                </p>
               </div>
               <BookButton />
             </div>
@@ -202,7 +210,7 @@ export default function RoiCalculator() {
                 min={1}
                 max={50}
                 value={reactRate}
-                helper="% of dormant leads a re-engagement call typically wins back."
+                helper="Use a rate supported by your own past campaigns, or test a range."
                 onChange={setReactRate}
               />
             </div>
@@ -211,7 +219,11 @@ export default function RoiCalculator() {
                 <ResultValue value={fmt(reactWon)} label="Customers Reactivated / mo" />
               </div>
               <div className="border-t border-ink/10 pt-5 mb-5">
-                <ResultValue value={`$${fmt(reactRevenue)}`} label="Recovered Revenue / Month" size="lg" />
+                <ResultValue value={`$${fmt(reactRevenue)}`} label="Potential revenue / month" size="lg" />
+                <p className="text-[12px] leading-[1.5] text-ink/45 m-0 mt-3">
+                  Formula: dormant leads × reactivation rate × average customer
+                  value. This is a scenario, not a forecast.
+                </p>
               </div>
               <BookButton />
             </div>
@@ -219,7 +231,8 @@ export default function RoiCalculator() {
         )}
 
         <div className="text-center text-[12.5px] text-white/35 mt-[22px]">
-          Estimates only. Actual results depend on your industry, lead quality, and current process.
+          Example values are illustrative. Replace them with your own data;
+          actual results depend on lead quality, operations, and market conditions.
         </div>
       </div>
     </section>

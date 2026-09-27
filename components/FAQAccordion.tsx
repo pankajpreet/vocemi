@@ -12,6 +12,8 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, index }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonId = `faq-question-${index}`;
+  const panelId = `faq-answer-${index}`;
 
   return (
     <motion.div
@@ -22,7 +24,11 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
       className="bg-primary-secondary/50 backdrop-blur-sm rounded-xl shadow-md overflow-hidden border border-primary-accent/20"
     >
       <button
+        id={buttonId}
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-primary-accent/10 transition-colors"
       >
         <span className="font-semibold text-white pr-4">{question}</span>
@@ -36,6 +42,9 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={buttonId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

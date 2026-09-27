@@ -76,6 +76,17 @@ export default function PrivacyPage() {
 
         <div>
           <h2 className="font-display text-[20px] font-bold text-ink m-0 mb-2.5">
+            Contact form
+          </h2>
+          <p className="text-[15.5px] leading-[1.7] text-ink/65 m-0">
+            When you send the contact form, Resend processes the message so it
+            can be delivered to our business inbox. We use the name, email,
+            company, and message you provide only to respond to your enquiry.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="font-display text-[20px] font-bold text-ink m-0 mb-2.5">
             What we do with it
           </h2>
           <p className="text-[15.5px] leading-[1.7] text-ink/65 m-0">

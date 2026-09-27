@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import ServiceCard from "@/components/ServiceCard";
 import BookCallButton from "@/components/BookCallButton";
 import { siteConfig } from "@/lib/config";
-import { CheckCircle } from "lucide-react";
+import { serviceGuides } from "@/lib/serviceContent";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 export default function ServicesPage() {
   const serviceFeatures = [
@@ -107,6 +109,41 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Indexable service guides */}
+      <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-white">
+              Explore common Voice AI workflows
+            </h2>
+            <p className="text-xl text-gray-300">
+              See what each workflow handles, where people stay in control, and
+              how a launch is scoped.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {serviceGuides.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-7 rounded-2xl hover:border-primary-accent/60 transition-colors"
+              >
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  {service.name}
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-5">
+                  {service.description}
+                </p>
+                <span className="inline-flex items-center gap-2 font-semibold text-primary-accent group-hover:text-white transition-colors">
+                  Read the service guide
+                  <ArrowRight size={17} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Service Features */}
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +187,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Integration Options */}
+      {/* Integration scoping */}
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -160,27 +197,46 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4 text-white">Integration Options</h2>
+            <h2 className="text-4xl font-bold mb-4 text-white">
+              Integration scope is confirmed before launch
+            </h2>
             <p className="text-xl text-gray-300">
-              Seamlessly integrate with your existing infrastructure
+              We document what the workflow needs to read, update, and hand to
+              a person before promising a connection.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {["IVR Systems", "CRM Platforms", "Mobile Apps", "Web Applications", "Smart Assistants", "API Integration"].map(
-              (integration, index) => (
+            {[
+              {
+                title: "Information it reads",
+                body: "The approved service details, questions, availability, and rules the agent needs.",
+              },
+              {
+                title: "Information it updates",
+                body: "The caller details and outcomes your chosen workflow requires.",
+              },
+              {
+                title: "Where people take over",
+                body: "The exceptions, urgent requests, and decisions that must reach your team.",
+              },
+            ].map((item, index) => (
                 <motion.div
-                  key={index}
+                  key={item.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-6 rounded-xl text-center text-white hover:bg-primary-accent hover:border-primary-accent transition-all duration-300 cursor-default"
+                  className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-6 rounded-xl"
                 >
-                  <p className="font-semibold">{integration}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed m-0">
+                    {item.body}
+                  </p>
                 </motion.div>
-              )
-            )}
+              ))}
           </div>
         </div>
       </section>

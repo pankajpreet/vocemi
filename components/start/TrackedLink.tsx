@@ -1,13 +1,20 @@
 "use client";
 
-import { trackEvent, type StartEvent } from "@/lib/analytics";
+import {
+  trackEvent,
+  type AnalyticsEvent,
+  type AnalyticsProperties,
+} from "@/lib/analytics";
 
-interface TrackedLinkProps {
+interface TrackedLinkProps
+  extends Omit<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    "href" | "onClick" | "target" | "rel"
+  > {
   href: string;
-  event: StartEvent;
+  event: AnalyticsEvent;
+  properties?: AnalyticsProperties;
   external?: boolean;
-  className?: string;
-  children: React.ReactNode;
 }
 
 /**
@@ -19,18 +26,21 @@ interface TrackedLinkProps {
 export default function TrackedLink({
   href,
   event,
+  properties,
   external = false,
-  className,
-  children,
+  ...anchorProps
 }: TrackedLinkProps) {
   return (
     <a
+      {...anchorProps}
       href={href}
-      onClick={() => trackEvent(event)}
-      className={className}
+      onClick={() =>
+        trackEvent(event, {
+          page: window.location.pathname,
+          ...properties,
+        })
+      }
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
-      {children}
-    </a>
+    />
   );
 }
