@@ -15,7 +15,7 @@ export default function ClientStrip() {
   return (
     <section className="border-t border-ink/10 bg-cream">
       <div className="max-w-[860px] mx-auto px-6 py-8">
-        <div className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink/40 mb-4">
+        <div className="text-[12px] font-semibold uppercase tracking-[0.06em] text-ink/65 mb-4">
           Already answering calls for
         </div>
         <div className="flex flex-wrap gap-2.5">
@@ -46,7 +46,7 @@ export default function ClientStrip() {
                     <span className="block font-display text-[13.5px] font-bold text-ink">
                       {client.name}
                     </span>
-                    <span className="block text-[11.5px] text-ink/45">
+                    <span className="block text-[11.5px] text-ink/65">
                       {client.industry} &middot; {client.sub}
                     </span>
                   </span>

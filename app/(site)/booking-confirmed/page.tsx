@@ -16,7 +16,7 @@ export default function BookingConfirmedPage() {
   }, []);
 
   return (
-    <main className="min-h-[70vh] flex items-center">
+    <div className="min-h-[70vh] flex items-center">
       <section className="max-w-[680px] mx-auto px-6 py-20 text-center">
         <span className="w-16 h-16 rounded-full bg-[#EAF6EE] text-[#1F8F5F] inline-flex items-center justify-center mb-6">
           <CheckCircle2 size={32} />
@@ -36,6 +36,6 @@ export default function BookingConfirmedPage() {
           Return to Vocemi
         </Link>
       </section>
-    </main>
+    </div>
   );
 }

@@ -139,7 +139,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
             <p className="text-[16px] leading-[1.65] text-ink/60 m-0 mb-4">
               {industry.exampleCall.setup}
             </p>
-            <p className="text-[13px] leading-[1.6] text-ink/45 m-0">
+            <p className="text-[13px] leading-[1.6] text-ink/65 m-0">
               Illustrative scenario showing how an approved workflow runs. Not
               a recording of a real call.
             </p>
@@ -231,7 +231,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               href={`/services/${service.slug}`}
               className="group bg-white border border-ink/10 rounded-2xl p-6 hover:border-brand/40 transition-colors"
             >
-              <div className="text-[12.5px] text-ink/45 mb-2">Service</div>
+              <div className="text-[12.5px] text-ink/65 mb-2">Service</div>
               <div className="font-display text-[18px] font-bold text-ink mb-2">
                 {service.name}
               </div>
@@ -246,7 +246,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               href={`/blog/${post.slug}`}
               className="group bg-white border border-ink/10 rounded-2xl p-6 hover:border-brand/40 transition-colors"
             >
-              <div className="text-[12.5px] text-ink/45 mb-2">{post.category}</div>
+              <div className="text-[12.5px] text-ink/65 mb-2">{post.category}</div>
               <div className="font-display text-[18px] leading-[1.35] font-bold text-ink mb-2">
                 {post.title}
               </div>

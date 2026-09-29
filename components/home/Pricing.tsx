@@ -14,7 +14,7 @@ export default function Pricing() {
           <h2 className="font-display text-3xl md:text-[46px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0 mb-3.5">
             Start small, prove it, then expand
           </h2>
-          <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0 mx-auto max-w-[520px]">
+          <p className="text-[16.5px] text-ink/65 leading-[1.6] m-0 mx-auto max-w-[520px]">
             Illustrative pricing &mdash; every engagement is scoped to your
             actual call volume and tools on a free call.
           </p>
@@ -36,13 +36,13 @@ export default function Pricing() {
                 <h3 className="font-display text-[17px] font-bold text-ink m-0 mb-1.5">
                   {tier.name}
                 </h3>
-                <p className="text-[13.5px] text-ink/55 m-0 mb-5 min-h-9">
+                <p className="text-[13.5px] text-ink/65 m-0 mb-5 min-h-9">
                   {tier.tagline}
                 </p>
                 <div className="font-display text-[32px] font-extrabold text-ink mb-0.5">
                   {tier.price}
                 </div>
-                <div className="text-[13px] text-ink/50 mb-6">
+                <div className="text-[13px] text-ink/65 mb-6">
                   {tier.priceSub}
                 </div>
                 <div className="flex flex-col gap-[11px] mb-7 flex-1">

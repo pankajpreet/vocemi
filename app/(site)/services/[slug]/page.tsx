@@ -73,11 +73,11 @@ export default function ServicePage({ params }: ServicePageProps) {
         path={path}
       />
 
-      <main>
+      <div>
         <section className="max-w-[960px] mx-auto px-6 md:px-8 pt-14 pb-16 md:pt-20 md:pb-24">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-[13px] text-ink/45 mb-8"
+            className="flex items-center gap-2 text-[13px] text-ink/65 mb-8"
           >
             <Link href="/" className="hover:text-brand transition-colors">
               Home
@@ -187,12 +187,12 @@ export default function ServicePage({ params }: ServicePageProps) {
               ))}
             </ul>
           </div>
-          <p className="text-center text-[12.5px] text-ink/40 mt-4 mb-0">
+          <p className="text-center text-[12.5px] text-ink/65 mt-4 mb-0">
             Workflow description only; no unverified performance result is
             implied.
           </p>
         </section>
-      </main>
+      </div>
     </>
   );
 }

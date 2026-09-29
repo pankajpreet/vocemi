@@ -21,7 +21,7 @@ export default function StartCta() {
             Ready to stop missing calls?
           </h2>
           <p className="text-[16px] md:text-[16.5px] text-white/60 leading-[1.6] m-0 mb-8 relative max-w-[440px] mx-auto">
-            Book a free 15-minute consultation. We&apos;ll map the first workflow
+            Book a free 30-minute consultation. We&apos;ll map the first workflow
             worth automating in your business &mdash; no charge, no pitch deck.
           </p>
           <TrackedLink

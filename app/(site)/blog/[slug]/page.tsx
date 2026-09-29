@@ -73,7 +73,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           <span className="bg-brand-tint text-brand-dark font-semibold px-2.5 py-1 rounded-full">
             {post.category}
           </span>
-          <span className="text-ink/45">{post.readingMinutes} min read</span>
+          <span className="text-ink/65">{post.readingMinutes} min read</span>
         </div>
 
         <h1 className="font-display text-[34px] md:text-[48px] leading-[1.1] tracking-[-0.025em] font-extrabold text-ink m-0 mb-5">
@@ -95,7 +95,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <Link href="/about" className="font-semibold text-ink hover:text-brand transition-colors">
               {founder.name}
             </Link>
-            <div className="text-ink/50">
+            <div className="text-ink/65">
               {founder.role}, Vocemi &middot;{" "}
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               {post.updated && post.updated !== post.date && (
@@ -133,7 +133,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   href={`/blog/${other.slug}`}
                   className="block bg-white border border-ink/10 rounded-2xl p-6 hover:border-brand/40 transition-colors"
                 >
-                  <div className="text-[12.5px] text-ink/45 mb-2">{other.category}</div>
+                  <div className="text-[12.5px] text-ink/65 mb-2">{other.category}</div>
                   <div className="font-display text-[18px] leading-[1.35] font-bold text-ink">
                     {other.title}
                   </div>

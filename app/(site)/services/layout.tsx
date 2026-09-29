@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { ServiceStructuredData } from "@/components/StructuredData";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -16,11 +15,6 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <ServiceStructuredData />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
 

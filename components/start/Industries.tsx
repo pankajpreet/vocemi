@@ -10,7 +10,7 @@ export default function Industries() {
           <h2 className="font-display text-[28px] md:text-4xl font-extrabold tracking-[-0.025em] text-ink m-0 mb-3">
             Built for businesses where every call is a customer
           </h2>
-          <p className="text-[16px] text-ink/60 leading-[1.6] m-0 mb-7 max-w-[520px]">
+          <p className="text-[16px] text-ink/65 leading-[1.6] m-0 mb-7 max-w-[520px]">
             If a missed call means a lost job, this is for you.
           </p>
           <div className="flex flex-wrap gap-2.5">
