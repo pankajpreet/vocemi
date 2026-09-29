@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/metadata";
@@ -43,6 +44,7 @@ export default function RootLayout({
         <StructuredData />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
