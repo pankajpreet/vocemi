@@ -20,7 +20,7 @@ export default function CtaSection() {
             Ready to stop missing calls?
           </h2>
           <p className="text-[16.5px] text-white/60 m-0 mb-[30px] relative">
-            Book a free 15-minute call. We&apos;ll map your first workflow together.
+            Book a free 30-minute call. We&apos;ll map your first workflow together.
           </p>
           <div className="relative flex flex-col sm:flex-row gap-3 justify-center">
             <TrackedLink
