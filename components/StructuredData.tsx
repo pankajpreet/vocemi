@@ -47,6 +47,12 @@ export default function StructuredData() {
       image: `${siteConfig.url}${siteConfig.founder.image}`,
       sameAs: [siteConfig.founder.linkedin],
     },
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.facebook,
+      siteConfig.social.youtube,
+      siteConfig.social.googleBusiness,
+    ],
   }
 
   const websiteSchema = {

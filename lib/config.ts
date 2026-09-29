@@ -47,11 +47,13 @@ export const siteConfig = {
   retellRecaptchaKey: process.env.NEXT_PUBLIC_RETELL_RECAPTCHA_KEY || "",
   // Google Form for visitors who aren't ready to book. Link hides when empty.
   leadFormUrl: process.env.NEXT_PUBLIC_LEAD_FORM_URL || "",
-  // Social media links (add your actual links)
+  // Confirmed public profiles. sameAs on the Organization schema is this list.
+  // The Google share link does not HTTP-redirect to a maps or g.page URL.
   social: {
-    twitter: "", // e.g., "https://twitter.com/vocemi"
-    linkedin: "", // e.g., "https://linkedin.com/company/vocemi"
-    facebook: "", // e.g., "https://facebook.com/vocemi"
+    linkedin: "https://www.linkedin.com/company/vocemi/",
+    facebook: "https://www.facebook.com/profile.php?id=61587388533987",
+    youtube: "https://www.youtube.com/@pankajpreet_singh",
+    googleBusiness: "https://share.google/HDpQIouh1T81sGXrQ",
   },
   services: [
     {

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ServiceCard from "@/components/ServiceCard";
+import { ServiceStructuredData } from "@/components/StructuredData";
 import BookCallButton from "@/components/BookCallButton";
 import { siteConfig } from "@/lib/config";
 import { serviceGuides } from "@/lib/serviceContent";
@@ -69,6 +70,7 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen">
+      <ServiceStructuredData />
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
