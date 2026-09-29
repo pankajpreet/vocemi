@@ -16,6 +16,16 @@ export interface Capability {
   desc: string;
 }
 
+/**
+ * Distinct from the homepage H1 ("Never miss another call, lead, or booking.").
+ * Both parts are claims already on the site: the page title is "Meet Your AI
+ * Employee", and "Answers every call" is the first capability below.
+ */
+export const heroHeadline = {
+  lead: "Meet your AI employee",
+  emphasis: "that answers every call",
+};
+
 export const heroStats = [
   { value: "24/7", label: "always answering" },
   { value: "2–4 wks", label: "to first launch" },

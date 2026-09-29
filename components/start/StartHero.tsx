@@ -1,5 +1,5 @@
 import { siteConfig } from "@/lib/config";
-import { heroStats } from "@/lib/startContent";
+import { heroHeadline, heroStats } from "@/lib/startContent";
 import TrackedLink from "./TrackedLink";
 
 export default function StartHero() {
@@ -18,9 +18,9 @@ export default function StartHero() {
         </div>
 
         <h1 className="font-display text-[38px] md:text-[54px] leading-[1.06] tracking-[-0.025em] font-extrabold text-ink m-0 mb-5">
-          Never miss another{" "}
+          {heroHeadline.lead}{" "}
           <span className="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
-            call, lead, or booking
+            {heroHeadline.emphasis}
           </span>
           .
         </h1>
