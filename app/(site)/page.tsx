@@ -16,15 +16,15 @@ import {
   ServiceStructuredData,
 } from "@/components/StructuredData";
 import { homeFaqs } from "@/lib/homeContent";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Voice AI Receptionist & Business Automation | Vocemi",
-  },
+export const metadata: Metadata = pageMetadata({
+  title: "Voice AI Receptionist & Business Automation | Vocemi",
+  absoluteTitle: true,
   description:
     "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
-  alternates: { canonical: "/" },
-};
+  path: "/",
+});
 
 export default function Home() {
   const structuredFaqs = homeFaqs.map((faq) => ({

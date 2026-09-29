@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { industries } from "@/lib/startContent";
 
@@ -13,14 +14,24 @@ export default function Industries() {
             If a missed call means a lost job, this is for you.
           </p>
           <div className="flex flex-wrap gap-2.5">
-            {industries.map((industry) => (
-              <span
-                key={industry}
-                className="bg-white border border-ink/10 text-ink/75 text-[14px] font-medium px-4 py-2.5 rounded-full"
-              >
-                {industry}
-              </span>
-            ))}
+            {industries.map((industry) =>
+              industry.slug ? (
+                <Link
+                  key={industry.name}
+                  href={`/industries/${industry.slug}`}
+                  className="bg-white border border-ink/10 text-ink/75 text-[14px] font-medium px-4 py-2.5 rounded-full hover:border-brand/50 hover:text-brand transition-colors"
+                >
+                  {industry.name}
+                </Link>
+              ) : (
+                <span
+                  key={industry.name}
+                  className="bg-white border border-ink/10 text-ink/75 text-[14px] font-medium px-4 py-2.5 rounded-full"
+                >
+                  {industry.name}
+                </span>
+              )
+            )}
           </div>
         </Reveal>
       </div>

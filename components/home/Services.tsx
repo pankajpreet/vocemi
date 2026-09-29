@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { homeServices, type ServiceIcon } from "@/lib/homeContent";
 import Reveal from "./Reveal";
 
@@ -52,7 +54,10 @@ export default function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
           {homeServices.map((service, i) => (
             <Reveal key={service.title} delay={i * 0.1}>
-              <div className="bg-white border border-ink/10 rounded-2xl p-[30px] h-full transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-14px_rgba(22,24,28,0.18)]">
+              <Link
+                href={service.href}
+                className="group flex flex-col bg-white border border-ink/10 rounded-2xl p-[30px] h-full transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-14px_rgba(22,24,28,0.18)]"
+              >
                 <div
                   className="w-11 h-11 rounded-[11px] flex items-center justify-center mb-5"
                   style={{ background: service.tint }}
@@ -62,10 +67,19 @@ export default function Services() {
                 <h3 className="font-display text-[17px] font-bold text-ink m-0 mb-2">
                   {service.title}
                 </h3>
-                <p className="text-[14.5px] leading-[1.6] text-ink/60 m-0">
+                <p className="text-[14.5px] leading-[1.6] text-ink/60 m-0 mb-5">
                   {service.desc}
                 </p>
-              </div>
+                <span className="mt-auto inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand">
+                  {service.href === "/services"
+                    ? "Explore services"
+                    : `Read the ${service.title} guide`}
+                  <ArrowRight
+                    size={15}
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  />
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>

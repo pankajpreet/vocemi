@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Security & Data Handling",
   description:
     "A plain-language overview of how the Vocemi website handles analytics, voice demo, booking, and contact information.",
-  alternates: { canonical: "/security" },
-  openGraph: {
-    title: "Security & Data Handling | Vocemi",
-    description:
-      "See which providers support the Vocemi website and when information is shared with them.",
-  },
-};
+  path: "/security",
+  socialDescription:
+    "See which providers support the Vocemi website and when information is shared with them.",
+});
 
 const websiteSystems = [
   {

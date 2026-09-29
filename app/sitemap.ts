@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/config'
 import { serviceGuides } from '@/lib/serviceContent'
+import { industryGuides } from '@/lib/industryContent'
+import { getAllPosts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url
@@ -20,6 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/services`,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/industries`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/about`,
@@ -54,6 +66,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...corePages, ...servicePages]
+  const industryPages: MetadataRoute.Sitemap = industryGuides.map((industry) => ({
+    url: `${baseUrl}/industries/${industry.slug}`,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
+
+  const blogPages: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.updated ?? post.date,
+    changeFrequency: 'yearly',
+    priority: 0.6,
+  }))
+
+  return [...corePages, ...servicePages, ...industryPages, ...blogPages]
 }
 

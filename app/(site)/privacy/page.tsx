@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How Vocemi handles information collected through vocemi.com, including analytics and the AI voice demo.",
-  alternates: {
-    canonical: `${siteConfig.url}/privacy`,
-  },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

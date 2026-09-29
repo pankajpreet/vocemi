@@ -3,28 +3,24 @@ import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
+import { pageMetadata } from "@/lib/metadata";
 
 const founder = siteConfig.founder;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About Vocemi & Founder Pankajpreet Singh",
   description:
     "Meet Pankajpreet Singh and learn how Calgary-based Vocemi approaches Voice AI workflows, human approval, and measurable implementation.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About Vocemi & Founder Pankajpreet Singh | Vocemi",
-    description:
-      "Meet the founder and learn how Vocemi approaches practical Voice AI workflows with clear human boundaries.",
-    images: [
-      {
-        url: founder.image,
-        width: 800,
-        height: 800,
-        alt: "Pankajpreet Singh, founder of Vocemi",
-      },
-    ],
+  path: "/about",
+  socialDescription:
+    "Meet the founder and learn how Vocemi approaches practical Voice AI workflows with clear human boundaries.",
+  image: {
+    url: founder.image,
+    width: 800,
+    height: 800,
+    alt: "Pankajpreet Singh, founder of Vocemi",
   },
-};
+});
 
 const expertise = [
   "Backend development",
@@ -38,6 +34,20 @@ const expertise = [
   "Cloud deployment",
 ];
 
+// What the founder is known for, for search engines. Leads with the Voice AI
+// work Vocemi does; the individual languages and tools stay in the visible
+// engineering-background chips rather than defining his expertise.
+const knowsAbout = [
+  "Voice AI",
+  "Conversational AI",
+  "AI receptionists",
+  "Call automation",
+  "Lead qualification",
+  "Software architecture",
+  "Backend development",
+  "Cloud deployment",
+];
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -45,7 +55,7 @@ const personSchema = {
   jobTitle: founder.role,
   image: `${siteConfig.url}${founder.image}`,
   sameAs: [founder.linkedin],
-  knowsAbout: expertise,
+  knowsAbout,
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Punjab Technical University",

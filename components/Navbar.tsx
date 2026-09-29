@@ -12,12 +12,14 @@ import { trackEvent } from "@/lib/analytics";
 const navLinks = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
   { label: "ROI Calculator", href: "/#calculator" },
   { label: "Pricing", href: "/#pricing" },
   {
     label: siteConfig.voiceDemoAvailable ? "Live demo" : "How AI works",
     href: siteConfig.voiceDemoAvailable ? "/start#talk" : "/start",
   },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
 ];
 

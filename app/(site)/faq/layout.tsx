@@ -1,16 +1,14 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Voice AI FAQs: Setup, Privacy & Business Use",
   description:
     "Answers about how Voice AI works, implementation timelines, technical requirements, privacy, and suitable business use cases.",
-  alternates: { canonical: "/faq" },
-  openGraph: {
-    title: "Voice AI FAQs: Setup, Privacy & Business Use | Vocemi",
-    description:
-      "Clear answers about Voice AI implementation, technical requirements, privacy, and business use cases.",
-  },
-};
+  path: "/faq",
+  socialDescription:
+    "Clear answers about Voice AI implementation, technical requirements, privacy, and business use cases.",
+});
 
 export default function FAQLayout({
   children,

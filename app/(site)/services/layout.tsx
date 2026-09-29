@@ -1,17 +1,15 @@
 import { Metadata } from "next";
 import { ServiceStructuredData } from "@/components/StructuredData";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Voice AI Receptionist & Automation Services",
   description:
     "Explore Vocemi services for AI call answering, appointment management, lead qualification, follow-up, and voice analytics.",
-  alternates: { canonical: "/services" },
-  openGraph: {
-    title: "Voice AI Receptionist & Automation Services | Vocemi",
-    description:
-      "AI call answering, appointment management, lead qualification, follow-up, and voice analytics built around your workflow.",
-  },
-};
+  path: "/services",
+  socialDescription:
+    "AI call answering, appointment management, lead qualification, follow-up, and voice analytics built around your workflow.",
+});
 
 export default function ServicesLayout({
   children,
