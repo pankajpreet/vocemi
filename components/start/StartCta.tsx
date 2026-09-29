@@ -1,5 +1,6 @@
 import { Mail, MessageSquare, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/config";
+import { auditCreditNote } from "@/lib/homeContent";
 import Reveal from "@/components/home/Reveal";
 import TrackedLink from "./TrackedLink";
 
@@ -33,6 +34,9 @@ export default function StartCta() {
           >
             Book a free call
           </TrackedLink>
+          <p className="relative text-[13px] leading-snug text-white/80 m-0 mt-3">
+            {auditCreditNote}
+          </p>
 
           {siteConfig.leadFormUrl && (
             <div className="relative mt-5">

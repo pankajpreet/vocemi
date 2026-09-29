@@ -258,6 +258,12 @@ export const pricingTiers: PricingTier[] = [
   },
 ];
 
+/**
+ * The AI Employee Audit price line, already shown on the pricing cards.
+ * Joined here so booking CTAs can surface it without a new claim.
+ */
+export const auditCreditNote = `${pricingTiers[0].name}: ${pricingTiers[0].price} ${pricingTiers[0].priceSub}`;
+
 export const homeFaqs = [
   {
     q: "What is Voice AI and how can it help my business?",

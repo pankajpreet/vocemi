@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/config";
+import { auditCreditNote } from "@/lib/homeContent";
 import TrackedLink from "@/components/start/TrackedLink";
 import Reveal from "./Reveal";
 
@@ -22,26 +23,31 @@ export default function CtaSection() {
           <p className="text-[16.5px] text-white/60 m-0 mb-[30px] relative">
             Book a free 30-minute call. We&apos;ll map your first workflow together.
           </p>
-          <div className="relative flex flex-col sm:flex-row gap-3 justify-center">
-            <TrackedLink
-              href={siteConfig.bookCallUrl}
-              event="book_call_clicked"
-              properties={{ placement: "homepage_final_cta" }}
-              external
-              className="inline-block bg-brand text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
-            >
-              Book a free call
-            </TrackedLink>
-            <TrackedLink
-              href={demoHref}
-              event="demo_cta_clicked"
-              properties={{ placement: "homepage_final_cta" }}
-              className="inline-block border border-white/25 text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:border-white/50 transition-colors"
-            >
-              {siteConfig.voiceDemoAvailable
-                ? "Try the live demo"
-                : "See how it works"}
-            </TrackedLink>
+          <div className="relative flex flex-col items-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <TrackedLink
+                href={siteConfig.bookCallUrl}
+                event="book_call_clicked"
+                properties={{ placement: "homepage_final_cta" }}
+                external
+                className="inline-block bg-brand text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
+              >
+                Book a free call
+              </TrackedLink>
+              <TrackedLink
+                href={demoHref}
+                event="demo_cta_clicked"
+                properties={{ placement: "homepage_final_cta" }}
+                className="inline-block border border-white/25 text-white px-[30px] py-[15px] rounded-[9px] font-semibold text-[15.5px] hover:border-white/50 transition-colors"
+              >
+                {siteConfig.voiceDemoAvailable
+                  ? "Try the live demo"
+                  : "See how it works"}
+              </TrackedLink>
+            </div>
+            <p className="text-[13px] leading-snug text-white/80 m-0 mt-3">
+              {auditCreditNote}
+            </p>
           </div>
         </div>
       </Reveal>
