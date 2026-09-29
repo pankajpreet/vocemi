@@ -49,17 +49,20 @@ export const capabilities: Capability[] = [
   },
 ];
 
-/** Ordered by where Vocemi sells best — the first two carry the most weight. */
-export const industries = [
-  "Med Spas",
-  "Dental",
-  "HVAC & Plumbing",
-  "Accounting",
-  "Insurance",
-  "Home Services",
-  "Roofing",
-  "Automotive",
-  "Professional Services",
+/**
+ * Ordered by where Vocemi sells best — the first two carry the most weight.
+ * `slug` links the chip to its /industries page where one exists.
+ */
+export const industries: { name: string; slug?: string }[] = [
+  { name: "Med Spas", slug: "med-spas" },
+  { name: "Dental", slug: "dental" },
+  { name: "HVAC & Plumbing", slug: "hvac-plumbing" },
+  { name: "Accounting" },
+  { name: "Insurance", slug: "insurance" },
+  { name: "Home Services" },
+  { name: "Roofing" },
+  { name: "Automotive" },
+  { name: "Professional Services" },
 ];
 
 /** Shown inside the live-demo card so the visitor knows what to try. */

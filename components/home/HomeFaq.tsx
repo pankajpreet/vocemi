@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { homeFaqs } from "@/lib/homeContent";
 
 export default function HomeFaq() {
@@ -61,24 +61,23 @@ export default function HomeFaq() {
                     +
                   </span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {open && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-[22px] pl-[60px] text-[14.5px] leading-[1.65] text-ink/60">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Always rendered and collapsed with CSS, so the answer is in
+                    the server HTML that crawlers read and matches the FAQPage
+                    markup, instead of existing only after a click. */}
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  className={`grid transition-[grid-template-rows,opacity] duration-[250ms] ${
+                    open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-[22px] pl-[60px] text-[14.5px] leading-[1.65] text-ink/60">
+                      {faq.a}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             );
           })}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface FAQItemProps {
@@ -39,24 +39,22 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
           <ChevronDown className="text-primary-accent flex-shrink-0" />
         </motion.div>
       </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role="region"
-            aria-labelledby={buttonId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 pb-5 text-gray-300 leading-relaxed">
-              {answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Always rendered and collapsed with CSS, so the answer is in the
+          server HTML that crawlers read instead of existing only after a click. */}
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="px-6 pb-5 text-gray-300 leading-relaxed">
+            {answer}
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }

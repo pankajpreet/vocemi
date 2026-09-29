@@ -78,42 +78,56 @@ export type ServiceIcon =
   | "bars"
   | "refresh";
 
-export const homeServices: { title: string; desc: string; tint: string; icon: ServiceIcon }[] = [
+// `href` points at a service's own guide page where one exists, and at the
+// overview otherwise, so every card is a crawlable link.
+export const homeServices: {
+  title: string;
+  desc: string;
+  tint: string;
+  icon: ServiceIcon;
+  href: string;
+}[] = [
   {
     title: "Voice Bot Development",
     desc: "Custom conversational voice bots for support, lead qualification, and automated assistance.",
     tint: "#EEF0FE",
     icon: "circle",
+    href: "/services",
   },
   {
     title: "AI Receptionist",
     desc: "24/7 virtual receptionist that answers, schedules, routes callers, and handles inquiries.",
     tint: "#EAF6EE",
     icon: "square",
+    href: "/services/ai-receptionist",
   },
   {
     title: "Appointment Management",
     desc: "Automated scheduling, confirmations, and reminders that reduce no-shows.",
     tint: "#FDF6E8",
     icon: "diamond",
+    href: "/services",
   },
   {
     title: "Qualification & Lead Gen",
     desc: "Voice systems that qualify leads, capture details, and route hot prospects to sales.",
     tint: "#F3ECFB",
     icon: "target",
+    href: "/services",
   },
   {
     title: "Lead Reactivation",
     desc: "AI calls dormant leads and past customers to re-engage them and book them back in.",
     tint: "#FBEAF0",
     icon: "refresh",
+    href: "/services/lead-reactivation",
   },
   {
     title: "Voice Analytics & Insights",
     desc: "Turn calls into data with sentiment analysis, transcription, and performance metrics.",
     tint: "#EAF3FB",
     icon: "bars",
+    href: "/services",
   },
 ];
 

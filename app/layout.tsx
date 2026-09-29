@@ -4,9 +4,17 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/lib/config";
+import { pageMetadata } from "@/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+
+const fallbackPreview = pageMetadata({
+  title: `${siteConfig.name} - ${siteConfig.tagline}`,
+  description: siteConfig.description,
+  path: "/",
+  absoluteTitle: true,
+});
 
 export const metadata: Metadata = {
   // Resolves each page's relative canonical against the www host. Canonicals
@@ -18,27 +26,10 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  openGraph: {
-    title: `${siteConfig.name} - ${siteConfig.tagline}`,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    type: "website",
-    images: [
-      {
-        url: `${siteConfig.url}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} - ${siteConfig.tagline}`,
-      },
-    ],
-    locale: "en_CA",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} - ${siteConfig.tagline}`,
-    description: siteConfig.description,
-  },
+  // Fallback preview for pages without their own metadata (e.g. 404s).
+  // Indexable pages build theirs with pageMetadata() so nothing is inherited.
+  openGraph: fallbackPreview.openGraph,
+  twitter: fallbackPreview.twitter,
 };
 
 export default function RootLayout({

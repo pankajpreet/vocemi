@@ -4,13 +4,20 @@ const retellVoiceAgentId =
 
 export const siteConfig = {
   name: "Vocemi",
-  tagline: "Empowering Businesses through Voice AI",
+  tagline: "Voice AI Receptionist & Business Automation",
   description:
-    "Transform your customer interactions with intelligent voice-powered solutions that understand, respond, and elevate your business.",
+    "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
   // The live site redirects the bare domain to www, so canonicals, the
   // sitemap, and OG URLs must use www or they all point at a redirect.
   url: "https://www.vocemi.com",
   location: "Calgary, Alberta",
+  // Structured-data location. City only: there is no storefront address to
+  // publish. Where Vocemi works is `areaServed` in StructuredData.
+  address: {
+    locality: "Calgary",
+    region: "AB",
+    country: "CA",
+  },
   founder: {
     name: "Pankajpreet Singh",
     role: "Founder",

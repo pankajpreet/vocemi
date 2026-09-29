@@ -5,6 +5,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { ServiceDetailStructuredData } from "@/components/StructuredData";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
+import { pageMetadata } from "@/lib/metadata";
 import {
   getServiceGuide,
   serviceGuides,
@@ -23,19 +24,12 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   const service = getServiceGuide(params.slug);
   if (!service) return {};
 
-  const path = `/services/${service.slug}`;
-  return {
-    title: {
-      absolute: service.metaTitle,
-    },
+  return pageMetadata({
+    title: service.metaTitle,
+    absoluteTitle: true,
     description: service.description,
-    alternates: { canonical: path },
-    openGraph: {
-      title: service.metaTitle,
-      description: service.description,
-      url: path,
-    },
-  };
+    path: `/services/${service.slug}`,
+  });
 }
 
 function DetailList({
