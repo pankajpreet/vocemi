@@ -36,16 +36,16 @@ export default function Comparison() {
           <h3 className="font-display text-lg font-bold text-ink m-0 mb-1.5">
             Human hire
           </h3>
-          <div className="text-[26px] font-extrabold font-display text-ink/35 line-through mb-1">
+          <div className="text-[26px] font-extrabold font-display text-ink/50 line-through mb-1">
             ~$4,500&ndash;$6,000/mo
           </div>
-          <div className="text-[12.5px] text-ink/45 mb-5">
+          <div className="text-[12.5px] text-ink/65 mb-5">
             Illustrative employer-cost comparison, not a guaranteed figure.
           </div>
           <div className="flex flex-col gap-3">
             {humanCons.map((con) => (
               <div key={con} className="flex gap-2.5 text-[14.5px] text-ink/65">
-                <span className="text-ink/30">&mdash;</span>
+                <span className="text-ink/65">&mdash;</span>
                 {con}
               </div>
             ))}
@@ -65,7 +65,7 @@ export default function Comparison() {
           <div className="text-[26px] font-extrabold font-display text-brand mb-1">
             From $300/mo
           </div>
-          <div className="text-[12.5px] text-ink/50 mb-5">
+          <div className="text-[12.5px] text-ink/65 mb-5">
             Plus a one-time setup fee, scoped to your workflow.
           </div>
           <div className="flex flex-col gap-3">

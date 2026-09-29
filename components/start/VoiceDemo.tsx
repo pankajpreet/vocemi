@@ -249,13 +249,13 @@ export default function VoiceDemo() {
                 className="rounded-2xl bg-sand overflow-hidden p-4"
               >
                 {!ready && (
-                  <div className="h-[72px] flex items-center justify-center text-ink/40 text-[13.5px]">
+                  <div className="h-[72px] flex items-center justify-center text-ink/65 text-[13.5px]">
                     Connecting&hellip;
                   </div>
                 )}
               </div>
 
-              <p className="text-white/35 text-[13px] leading-[1.6] mt-5 m-0">
+              <p className="text-white/50 text-[13px] leading-[1.6] mt-5 m-0">
                 Nothing happening? Your browser needs microphone permission for
                 this page &mdash; check the address bar.
               </p>
@@ -296,7 +296,7 @@ export default function VoiceDemo() {
                 {demoPrompts.map((prompt) => (
                   <li
                     key={prompt}
-                    className="text-white/45 text-[13.5px] flex items-center gap-2.5"
+                    className="text-white/50 text-[13.5px] flex items-center gap-2.5"
                   >
                     <span className="w-1 h-1 rounded-full bg-white/30 flex-shrink-0" />
                     {prompt}

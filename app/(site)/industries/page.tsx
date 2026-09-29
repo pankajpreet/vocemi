@@ -56,7 +56,7 @@ export default function IndustriesPage() {
         ))}
       </div>
 
-      <p className="text-[15px] leading-[1.65] text-ink/55 mt-12 max-w-[640px]">
+      <p className="text-[15px] leading-[1.65] text-ink/65 mt-12 max-w-[640px]">
         Don&apos;t see your industry? The same approach works for most
         businesses that live on the phone, including accounting firms, roofing
         companies and auto shops.{" "}

@@ -43,7 +43,7 @@ export default function BlogIndexPage() {
               <span className="bg-brand-tint text-brand-dark font-semibold px-2.5 py-1 rounded-full">
                 {post.category}
               </span>
-              <span className="text-ink/45">
+              <span className="text-ink/65">
                 {formatPostDate(post.date)} &middot; {post.readingMinutes} min read
               </span>
             </div>

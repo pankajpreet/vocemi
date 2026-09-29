@@ -33,7 +33,7 @@ export const clientLogos: ClientLogo[] = [
     sub: "Calgary NE",
     initials: "3D",
     tint: "#FBEAF0",
-    ink: "#D14F87",
+    ink: "#C0326F",
     industry: "Med spa",
     outcomes: [
       "Answers every call, so a client is never missed because the front desk was busy with someone in the room.",
@@ -59,7 +59,7 @@ export const clientLogos: ClientLogo[] = [
     sub: "Real Estate Expert",
     initials: "JD",
     tint: "#EAF6EE",
-    ink: "#1F8F5F",
+    ink: "#1B7C52",
     // Not "Real estate" — that stutters against the "Real Estate Expert"
     // sub-label, and property management is what the AI actually handles.
     industry: "Property management",

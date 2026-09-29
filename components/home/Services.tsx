@@ -46,7 +46,7 @@ export default function Services() {
           <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-ink m-0 mb-3.5">
             Voice AI, built around your workflow
           </h2>
-          <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0">
+          <p className="text-[16.5px] text-ink/65 leading-[1.6] m-0">
             Comprehensive solutions, deployed one workflow at a time.
           </p>
         </Reveal>

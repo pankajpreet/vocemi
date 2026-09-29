@@ -53,7 +53,7 @@ export default function Hero() {
             Book a free call
           </TrackedLink>
         </div>
-        <div className="flex gap-8 text-[13.5px] text-ink/50">
+        <div className="flex gap-8 text-[13.5px] text-ink/65">
           {heroStats.map((stat) => (
             <div key={stat.value}>
               <span className="font-display font-extrabold text-xl text-ink">
@@ -75,7 +75,7 @@ export default function Hero() {
             <span className="w-2 h-2 rounded-full bg-[#37D67A] animate-pulseDot" />
             Example call &mdash; incoming
           </div>
-          <span className="text-white/40 text-[12.5px] font-display">
+          <span className="text-white/50 text-[12.5px] font-display">
             Illustrative
           </span>
         </div>
@@ -92,7 +92,7 @@ export default function Hero() {
           ))}
         </div>
         <div className="bg-white/[0.06] rounded-xl px-[18px] py-4 mb-3.5">
-          <div className="text-white/40 text-[11.5px] font-semibold uppercase tracking-[0.04em] mb-1.5">
+          <div className="text-white/50 text-[11.5px] font-semibold uppercase tracking-[0.04em] mb-1.5">
             Caller
           </div>
           <div className="text-white text-[14.5px] leading-[1.5]">

@@ -57,7 +57,7 @@ export default function StartHero() {
           </TrackedLink>
         </div>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-4 text-[13.5px] text-ink/50">
+        <div className="flex flex-wrap gap-x-8 gap-y-4 text-[13.5px] text-ink/65">
           {heroStats.map((stat) => (
             <div key={stat.value}>
               <span className="font-display font-extrabold text-xl text-ink">

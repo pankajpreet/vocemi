@@ -15,7 +15,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
       <BreadcrumbStructuredData items={trail} />
       <nav
         aria-label="Breadcrumb"
-        className="flex flex-wrap items-center gap-2 text-[13px] text-ink/45 mb-8"
+        className="flex flex-wrap items-center gap-2 text-[13px] text-ink/65 mb-8"
       >
         {trail.map((crumb, index) => {
           const isLast = index === trail.length - 1;

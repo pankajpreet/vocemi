@@ -15,11 +15,11 @@ export default function StartFooter() {
           </span>
           Vocemi
         </Link>
-        <p className="text-[13.5px] text-ink/50 m-0 mb-4">
+        <p className="text-[13.5px] text-ink/65 m-0 mb-4">
           AI voice agents &amp; business automation &middot;{" "}
           {siteConfig.location}
         </p>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/45">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/65">
           <Link href="/privacy" className="hover:text-brand transition-colors">
             Privacy
           </Link>

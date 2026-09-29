@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <h1 className="font-display text-[34px] md:text-[46px] font-extrabold tracking-[-0.025em] text-ink m-0 mb-4">
         Privacy Policy
       </h1>
-      <p className="text-[15px] text-ink/45 m-0 mb-10">
+      <p className="text-[15px] text-ink/65 m-0 mb-10">
         Last updated {new Date().getFullYear()}
       </p>
 

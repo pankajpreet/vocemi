@@ -26,7 +26,7 @@ export default function OwnerDashboard() {
                 <div className="font-semibold text-[15px] text-ink mb-0.5">
                   {point.title}
                 </div>
-                <div className="text-sm text-ink/55 leading-[1.5]">
+                <div className="text-sm text-ink/65 leading-[1.5]">
                   {point.desc}
                 </div>
               </div>
@@ -57,7 +57,7 @@ export default function OwnerDashboard() {
                   >
                     {stat.value}
                   </div>
-                  <div className="text-[12.5px] text-ink/55 mt-1">
+                  <div className="text-[12.5px] text-ink/65 mt-1">
                     {stat.label}
                   </div>
                 </div>
@@ -76,7 +76,7 @@ export default function OwnerDashboard() {
               </div>
             </div>
           </div>
-          <div className="px-[26px] py-3 border-t border-ink/10 text-[12px] leading-[1.5] text-ink/45">
+          <div className="px-[26px] py-3 border-t border-ink/10 text-[12px] leading-[1.5] text-ink/65">
             Sample interface and example values &mdash; not client performance
             data.
           </div>

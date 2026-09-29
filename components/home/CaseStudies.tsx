@@ -40,7 +40,7 @@ export default function CaseStudies() {
                   <div className="font-display text-[16.5px] font-bold text-ink leading-tight">
                     {client.name}
                   </div>
-                  <div className="text-[13px] text-ink/45 mt-0.5">
+                  <div className="text-[13px] text-ink/65 mt-0.5">
                     {client.industry} &middot; {client.sub}
                   </div>
                 </div>
@@ -63,7 +63,7 @@ export default function CaseStudies() {
           </Reveal>
         ))}
       </div>
-      <p className="text-center text-[12.5px] leading-[1.6] text-ink/40 m-0 mt-7">
+      <p className="text-center text-[12.5px] leading-[1.6] text-ink/65 m-0 mt-7">
         Workflow descriptions reflect client use cases. Measurable outcomes
         appear only where a client supplied them.
       </p>

@@ -47,14 +47,14 @@ export default function HomeFaq() {
                   aria-controls={panelId}
                   className="w-full flex items-center gap-4 px-6 py-5 cursor-pointer text-left"
                 >
-                  <span className="font-display font-extrabold text-ink/25 text-sm">
+                  <span className="font-display font-extrabold text-ink/65 text-sm">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="flex-1 font-semibold text-[15.5px] text-ink">
                     {faq.q}
                   </span>
                   <span
-                    className={`text-xl text-ink/40 transition-transform duration-200 ${
+                    className={`text-xl text-ink/65 transition-transform duration-200 ${
                       open ? "rotate-45" : "rotate-0"
                     }`}
                   >

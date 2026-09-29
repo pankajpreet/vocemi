@@ -45,7 +45,7 @@ const websiteSystems = [
 
 export default function SecurityPage() {
   return (
-    <main>
+    <div>
       <section className="max-w-[900px] mx-auto px-6 md:px-8 pt-14 pb-12 md:pt-20 md:pb-16">
         <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-4">
           Security &amp; data handling
@@ -132,6 +132,6 @@ export default function SecurityPage() {
           </TrackedLink>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -95,7 +95,7 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
-      <main>
+      <div>
         <section className="max-w-[1080px] mx-auto px-6 md:px-8 py-14 md:py-20 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
           <div className="max-w-[520px]">
             <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-4">
@@ -132,7 +132,7 @@ export default function AboutPage() {
                 <h2 className="font-display text-2xl font-extrabold text-ink m-0 mb-1">
                   {founder.name}
                 </h2>
-                <p className="text-sm text-ink/50 m-0">
+                <p className="text-sm text-ink/65 m-0">
                   {founder.role}, Vocemi &middot; {siteConfig.location}
                 </p>
               </div>
@@ -249,7 +249,7 @@ export default function AboutPage() {
             </TrackedLink>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

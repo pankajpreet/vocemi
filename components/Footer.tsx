@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/40 mb-3.5">
+          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/65 mb-3.5">
             Services
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/40 mb-3.5">
+          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/65 mb-3.5">
             Industries
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/40 mb-3.5">
+          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/65 mb-3.5">
             Explore
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
@@ -111,7 +111,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/40 mb-3.5">
+          <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/65 mb-3.5">
             Contact
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
@@ -142,7 +142,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/40">
+      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/65">
         <span>&copy; {currentYear} Vocemi. All rights reserved.</span>
         <a href="/privacy" className="hover:text-brand transition-colors">
           Privacy

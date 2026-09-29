@@ -13,7 +13,7 @@ export default function LogoStrip() {
   return (
     <section className="border-y border-ink/10 bg-sand py-9">
       <div className="max-w-[1180px] mx-auto px-6 md:px-8">
-        <div className="text-center text-[12.5px] font-semibold uppercase tracking-[0.06em] text-ink/40 mb-7">
+        <div className="text-center text-[12.5px] font-semibold uppercase tracking-[0.06em] text-ink/65 mb-7">
           Trusted by teams who answer the phone for a living
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -44,7 +44,7 @@ export default function LogoStrip() {
                     <span className="block font-display text-[15px] font-bold text-ink">
                       {client.name}
                     </span>
-                    <span className="block text-[12px] text-ink/45">
+                    <span className="block text-[12px] text-ink/65">
                       {client.industry} &middot; {client.sub}
                     </span>
                   </span>

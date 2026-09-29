@@ -38,7 +38,7 @@ function SliderField({ label, display, min, max, step = 1, value, helper, onChan
         aria-label={label}
       />
       {helper && (
-        <div className="text-[12.5px] text-ink/50 mt-1.5">{helper}</div>
+        <div className="text-[12.5px] text-ink/65 mt-1.5">{helper}</div>
       )}
     </div>
   );
@@ -55,7 +55,7 @@ function ResultValue({ value, label, size = "sm" }: { value: string; label: stri
       >
         {value}
       </div>
-      <div className={`text-ink/55 ${size === "lg" ? "text-[13px]" : "text-[12.5px]"}`}>
+      <div className={`text-ink/65 ${size === "lg" ? "text-[13px]" : "text-[12.5px]"}`}>
         {label}
       </div>
     </div>
@@ -171,7 +171,7 @@ export default function RoiCalculator() {
               </div>
               <div className="border-t border-ink/10 pt-5 mb-5">
                 <ResultValue value={`$${fmt(yearlyOpportunity)}`} label="Annual opportunity" size="lg" />
-                <p className="text-[12px] leading-[1.5] text-ink/45 m-0 mt-3">
+                <p className="text-[12px] leading-[1.5] text-ink/65 m-0 mt-3">
                   Formula: missed calls per week × close rate × average customer
                   value. This estimates gross revenue opportunity, not profit
                   or guaranteed revenue.
@@ -220,7 +220,7 @@ export default function RoiCalculator() {
               </div>
               <div className="border-t border-ink/10 pt-5 mb-5">
                 <ResultValue value={`$${fmt(reactRevenue)}`} label="Potential revenue / month" size="lg" />
-                <p className="text-[12px] leading-[1.5] text-ink/45 m-0 mt-3">
+                <p className="text-[12px] leading-[1.5] text-ink/65 m-0 mt-3">
                   Formula: dormant leads × reactivation rate × average customer
                   value. This is a scenario, not a forecast.
                 </p>
@@ -230,7 +230,7 @@ export default function RoiCalculator() {
           </div>
         )}
 
-        <div className="text-center text-[12.5px] text-white/35 mt-[22px]">
+        <div className="text-center text-[12.5px] text-white/50 mt-[22px]">
           Example values are illustrative. Replace them with your own data;
           actual results depend on lead quality, operations, and market conditions.
         </div>
