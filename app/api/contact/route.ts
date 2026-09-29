@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/config";
+import { validateContactForm } from "@/lib/contactForm";
 
 interface ContactRequest {
   name?: unknown;
@@ -8,8 +9,6 @@ interface ContactRequest {
   message?: unknown;
   website?: unknown;
 }
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function text(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
@@ -38,17 +37,13 @@ export async function POST(request: Request) {
   const company = text(body.company);
   const message = text(body.message);
 
-  if (
-    name.length < 2 ||
-    name.length > 100 ||
-    !emailPattern.test(email) ||
-    email.length > 200 ||
-    company.length > 120 ||
-    message.length < 10 ||
-    message.length > 5000
-  ) {
+  const fieldErrors = validateContactForm({ name, email, company, message });
+  if (Object.keys(fieldErrors).length > 0) {
     return NextResponse.json(
-      { error: "Please complete every required field with valid information." },
+      {
+        error: "Please fix the highlighted fields and try again.",
+        fieldErrors,
+      },
       { status: 400 }
     );
   }

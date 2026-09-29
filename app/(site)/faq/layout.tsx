@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import { FaqStructuredData } from "@/components/StructuredData";
-import { homeFaqs } from "@/lib/homeContent";
 
 export const metadata: Metadata = {
   title: "Voice AI FAQs: Setup, Privacy & Business Use",
@@ -19,16 +17,8 @@ export default function FAQLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const structuredFaqs = homeFaqs.map((faq) => ({
-    question: faq.q,
-    answer: faq.a,
-  }));
-
-  return (
-    <>
-      <FaqStructuredData faqs={structuredFaqs} />
-      {children}
-    </>
-  );
+  // FAQPage markup lives on the homepage, which renders the same questions;
+  // repeating it here would only duplicate it.
+  return <>{children}</>;
 }
 

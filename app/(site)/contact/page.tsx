@@ -6,22 +6,44 @@ import BookCallButton from "@/components/BookCallButton";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
+import {
+  contactLimits,
+  validateContactForm,
+  type ContactField,
+  type ContactFieldErrors,
+  type ContactFormData,
+} from "@/lib/contactForm";
 import { Mail, Calendar } from "lucide-react";
+
+const unavailableMessage = `We could not send your message. Please email ${siteConfig.contact.email}.`;
+
+const emptyForm: ContactFormData = {
+  name: "",
+  email: "",
+  company: "",
+  message: "",
+};
 
 export default function ContactPage() {
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [statusMessage, setStatusMessage] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<ContactFormData>(emptyForm);
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const validationErrors = validateContactForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      setStatus("error");
+      setStatusMessage("Please fix the highlighted fields and try again.");
+      return;
+    }
+
+    setFieldErrors({});
     setStatus("submitting");
     setStatusMessage("");
 
@@ -34,12 +56,19 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, website }),
       });
-      const result = (await response.json()) as { error?: string };
+      // A platform error page (e.g. a 502 from the host) is not JSON, so
+      // fall back to an empty result instead of surfacing a parse error.
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        fieldErrors?: ContactFieldErrors;
+      };
 
       if (!response.ok) {
-        throw new Error(
-          result.error || "We could not send your message. Please try again."
-        );
+        trackEvent("contact_form_failed", { page: "/contact" });
+        setFieldErrors(result.fieldErrors || {});
+        setStatus("error");
+        setStatusMessage(result.error || unavailableMessage);
+        return;
       }
 
       trackEvent("contact_form_submitted", { page: "/contact" });
@@ -47,31 +76,40 @@ export default function ContactPage() {
       setStatusMessage(
         "Your message was delivered. We’ll reply as soon as we can."
       );
-      setFormData({ name: "", email: "", company: "", message: "" });
+      setFieldErrors({});
+      setFormData(emptyForm);
       form.reset();
-    } catch (error) {
+    } catch {
+      // Network failure: the browser's own error text isn't useful to visitors.
       trackEvent("contact_form_failed", { page: "/contact" });
       setStatus("error");
-      setStatusMessage(
-        error instanceof Error
-          ? error.message
-          : `The form is temporarily unavailable. Please email ${siteConfig.contact.email}.`
-      );
+      setStatusMessage(unavailableMessage);
     }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const field = e.target.name as ContactField;
+
     if (status !== "idle") {
       setStatus("idle");
       setStatusMessage("");
     }
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+
+    setFieldErrors((current) => ({ ...current, [field]: undefined }));
+    setFormData((current) => ({
+      ...current,
+      [field]: e.target.value,
+    }));
   };
+
+  const inputClass = (field: ContactField) =>
+    `w-full px-4 py-3 bg-primary-dark/50 border text-white placeholder-gray-400 rounded-lg focus:ring-2 transition-all ${
+      fieldErrors[field]
+        ? "border-red-400 focus:ring-red-400 focus:border-red-400"
+        : "border-primary-accent/30 focus:ring-primary-accent focus:border-primary-accent"
+    }`;
 
   return (
     <div className="min-h-screen">
@@ -110,9 +148,15 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-8 rounded-2xl shadow-lg"
             >
-              <h2 className="text-3xl font-bold mb-6 text-white">Send us a message</h2>
+              <h2 className="text-3xl font-bold mb-2 text-white">
+                Send us a message
+              </h2>
+              <p className="text-sm text-gray-400 mb-6">
+                Fields marked with * are required.
+              </p>
               <form
                 onSubmit={handleSubmit}
+                noValidate
                 className="space-y-6"
                 aria-describedby="contact-form-status"
               >
@@ -135,7 +179,7 @@ export default function ContactPage() {
                     htmlFor="name"
                     className="block text-sm font-semibold text-gray-300 mb-2"
                   >
-                    Name
+                    Name <span aria-hidden="true">*</span>
                   </label>
                   <input
                     type="text"
@@ -144,16 +188,28 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-primary-dark/50 border border-primary-accent/30 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-primary-accent transition-all"
+                    minLength={contactLimits.name.min}
+                    maxLength={contactLimits.name.max}
+                    aria-invalid={Boolean(fieldErrors.name)}
+                    aria-describedby="name-help"
+                    className={inputClass("name")}
                     placeholder="Your name"
                   />
+                  <p
+                    id="name-help"
+                    className={`text-xs mt-2 ${
+                      fieldErrors.name ? "text-red-300" : "text-gray-400"
+                    }`}
+                  >
+                    {fieldErrors.name || "Enter at least 2 characters."}
+                  </p>
                 </div>
                 <div>
                   <label
                     htmlFor="email"
                     className="block text-sm font-semibold text-gray-300 mb-2"
                   >
-                    Email
+                    Email <span aria-hidden="true">*</span>
                   </label>
                   <input
                     type="email"
@@ -162,16 +218,28 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-primary-dark/50 border border-primary-accent/30 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-primary-accent transition-all"
+                    maxLength={contactLimits.email.max}
+                    aria-invalid={Boolean(fieldErrors.email)}
+                    aria-describedby="email-help"
+                    className={inputClass("email")}
                     placeholder="your@email.com"
                   />
+                  <p
+                    id="email-help"
+                    className={`text-xs mt-2 ${
+                      fieldErrors.email ? "text-red-300" : "text-gray-400"
+                    }`}
+                  >
+                    {fieldErrors.email ||
+                      "We’ll use this address only to reply to your enquiry."}
+                  </p>
                 </div>
                 <div>
                   <label
                     htmlFor="company"
                     className="block text-sm font-semibold text-gray-300 mb-2"
                   >
-                    Company
+                    Company <span className="font-normal">(optional)</span>
                   </label>
                   <input
                     type="text"
@@ -179,16 +247,26 @@ export default function ContactPage() {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-primary-dark/50 border border-primary-accent/30 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-primary-accent transition-all"
+                    maxLength={contactLimits.company.max}
+                    aria-invalid={Boolean(fieldErrors.company)}
+                    aria-describedby={
+                      fieldErrors.company ? "company-help" : undefined
+                    }
+                    className={inputClass("company")}
                     placeholder="Your company"
                   />
+                  {fieldErrors.company && (
+                    <p id="company-help" className="text-xs text-red-300 mt-2">
+                      {fieldErrors.company}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
                     htmlFor="message"
                     className="block text-sm font-semibold text-gray-300 mb-2"
                   >
-                    Message
+                    Message <span aria-hidden="true">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -196,10 +274,29 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    minLength={contactLimits.message.min}
+                    maxLength={contactLimits.message.max}
+                    aria-invalid={Boolean(fieldErrors.message)}
+                    aria-describedby="message-help"
                     rows={6}
-                    className="w-full px-4 py-3 bg-primary-dark/50 border border-primary-accent/30 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-primary-accent focus:border-primary-accent transition-all resize-none"
-                    placeholder="Tell us about your project..."
+                    className={`${inputClass("message")} resize-none`}
+                    placeholder="Tell us what you would like help with..."
                   />
+                  <div className="flex items-start justify-between gap-4 mt-2">
+                    <p
+                      id="message-help"
+                      className={`text-xs m-0 ${
+                        fieldErrors.message ? "text-red-300" : "text-gray-400"
+                      }`}
+                    >
+                      {fieldErrors.message ||
+                        "Please enter at least 10 characters."}
+                    </p>
+                    <span className="text-xs text-gray-400 whitespace-nowrap">
+                      {formData.message.length.toLocaleString()}/
+                      {contactLimits.message.max.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
                 <button
                   type="submit"

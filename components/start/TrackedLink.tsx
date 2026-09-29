@@ -30,6 +30,10 @@ export default function TrackedLink({
   external = false,
   ...anchorProps
 }: TrackedLinkProps) {
+  // Booking links fall back to /contact when no scheduler URL is configured;
+  // only open a new tab when the destination really is another site.
+  const opensNewTab = external && /^https?:\/\//.test(href);
+
   return (
     <a
       {...anchorProps}
@@ -40,7 +44,7 @@ export default function TrackedLink({
           ...properties,
         })
       }
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(opensNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     />
   );
 }

@@ -26,11 +26,14 @@ export default function BookCallButton({
       "bg-transparent border-2 border-primary-accent text-white hover:bg-primary-accent hover:text-white",
   };
 
+  // bookCallUrl falls back to /contact when no scheduler is configured, and
+  // that should stay in the current tab.
+  const isExternal = /^https?:\/\//.test(siteConfig.bookCallUrl);
+
   return (
     <Link
       href={siteConfig.bookCallUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onClick={() =>
         trackEvent("book_call_clicked", {
           page: window.location.pathname,
