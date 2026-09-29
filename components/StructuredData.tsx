@@ -16,8 +16,13 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
 
 const areaServed = [
   { '@type': 'City', name: 'Calgary' },
-  { '@type': 'AdministrativeArea', name: 'Alberta' },
+  { '@type': 'City', name: 'Edmonton' },
+  { '@type': 'State', name: 'Alberta' },
+  { '@type': 'State', name: 'Ontario' },
+  { '@type': 'City', name: 'Toronto' },
   { '@type': 'Country', name: 'Canada' },
+  { '@type': 'Country', name: 'United States' },
+  { '@type': 'Country', name: 'United Kingdom' },
 ]
 
 export default function StructuredData() {
