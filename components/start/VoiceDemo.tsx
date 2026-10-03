@@ -108,7 +108,7 @@ const findHost = (): HTMLElement | null =>
     el.shadowRoot?.querySelector('[class*="_container_"]')
   ) ?? null;
 
-export default function VoiceDemo() {
+export default function VoiceDemo({ page = "/start" }: { page?: string }) {
   const [started, setStarted] = useState(false);
   const [ready, setReady] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
@@ -180,7 +180,7 @@ export default function VoiceDemo() {
       }
       target.appendChild(host);
       hostRef.current = host;
-      trackEvent("voice_demo_ready", { page: "/start" });
+      trackEvent("voice_demo_ready", { page });
       setReady(true);
     }, 200);
     const giveUp = window.setTimeout(() => window.clearInterval(timer), 15000);
@@ -191,7 +191,7 @@ export default function VoiceDemo() {
       window.clearInterval(timer);
       window.clearTimeout(giveUp);
     };
-  }, [started, retellPublicKey, retellVoiceAgentId, retellRecaptchaKey]);
+  }, [started, retellPublicKey, retellVoiceAgentId, retellRecaptchaKey, page]);
 
   // Next.js navigates client-side, so nothing unmounts on its own -- without
   // this the call window follows the visitor to the homepage.
@@ -279,7 +279,7 @@ export default function VoiceDemo() {
                 type="button"
                 onClick={() => {
                   trackEvent("voice_demo_started", {
-                    page: "/start",
+                    page,
                     placement: "demo_panel",
                   });
                   setStarted(true);

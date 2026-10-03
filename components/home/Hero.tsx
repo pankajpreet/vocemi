@@ -1,5 +1,7 @@
 import { siteConfig } from "@/lib/config";
+import { auditCreditNote } from "@/lib/homeContent";
 import TrackedLink from "@/components/start/TrackedLink";
+import LogoStrip from "./LogoStrip";
 
 const waveBars = Array.from({ length: 24 }, (_, i) => ({
   dur: 0.7 + (i % 5) * 0.15,
@@ -16,60 +18,71 @@ export default function Hero() {
   const demoHref = siteConfig.voiceDemoAvailable ? "/start#talk" : "/start";
 
   return (
-    <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-16 pb-20 md:pt-[88px] md:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-14 items-center">
-      <div className="animate-fadeUp">
-        <div className="inline-flex items-center gap-2 bg-brand-tint text-brand px-3.5 py-[7px] rounded-full text-[13px] font-semibold mb-[22px]">
-          <span className="w-[7px] h-[7px] rounded-full bg-brand animate-pulseDot" />
-          Voice AI for growing businesses
-        </div>
-        <h1 className="font-display text-[42px] md:text-[60px] leading-[1.03] tracking-[-0.025em] font-extrabold text-ink m-0 mb-[22px]">
-          Never miss another{" "}
-          <span className="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
-            call, lead, or booking
-          </span>
-          .
-        </h1>
-        <p className="text-lg leading-[1.6] text-ink/65 max-w-[520px] m-0 mb-8">
-          Vocemi builds voice AI employees that answer, qualify, and book &mdash;
-          then hand you a clear daily report. You keep the judgment calls; the AI
-          handles the repeatable ones.
-        </p>
-        <div className="flex flex-wrap gap-3.5 mb-9">
-          <TrackedLink
-            href={demoHref}
-            event="demo_cta_clicked"
-            properties={{ placement: "homepage_hero_primary" }}
-            className="bg-brand text-white px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand-dark transition-colors"
-          >
-            {siteConfig.voiceDemoAvailable ? "Try the live demo" : "See how it works"}
-          </TrackedLink>
-          <TrackedLink
-            href={siteConfig.bookCallUrl}
-            event="book_call_clicked"
-            properties={{ placement: "homepage_hero_secondary" }}
-            external
-            className="border border-ink/15 text-ink px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:border-ink/35 transition-colors"
-          >
-            Book a free call
-          </TrackedLink>
-        </div>
-        <div className="flex gap-8 text-[13.5px] text-ink/65">
-          {heroStats.map((stat) => (
-            <div key={stat.value}>
-              <span className="font-display font-extrabold text-xl text-ink">
-                {stat.value}
-              </span>
-              <br />
-              {stat.label}
-            </div>
-          ))}
+    <section>
+      <div className="max-w-[1180px] mx-auto px-6 md:px-8 pt-6 pb-2 md:pt-14 md:pb-6">
+        <div className="animate-fadeUp max-w-[680px]">
+          <div className="inline-flex items-center gap-2 bg-brand-tint text-brand px-3.5 py-[7px] rounded-full text-[13px] font-semibold mb-3 md:mb-[22px]">
+            <span className="w-[7px] h-[7px] rounded-full bg-brand animate-pulseDot" />
+            Voice AI for growing businesses
+          </div>
+          <h1 className="font-display text-[42px] md:text-[60px] leading-[1.03] tracking-[-0.025em] font-extrabold text-ink m-0 mb-4 md:mb-5">
+            Never miss another{" "}
+            <span className="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
+              call, lead, or booking
+            </span>
+            .
+          </h1>
+          <p className="text-lg leading-[1.6] text-ink/65 max-w-[520px] m-0 mb-4 md:mb-6">
+            Vocemi builds voice AI employees that answer, qualify, and book &mdash;
+            then hand you a clear daily report. You keep the judgment calls; the AI
+            handles the repeatable ones.
+          </p>
+          <div className="flex flex-wrap gap-3.5 mb-2.5">
+            <TrackedLink
+              href={demoHref}
+              event="demo_cta_clicked"
+              properties={{ placement: "homepage_hero_primary" }}
+              className="bg-brand text-white px-5 sm:px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:bg-brand-dark transition-colors"
+            >
+              {siteConfig.voiceDemoAvailable ? "Try the live demo" : "See how it works"}
+            </TrackedLink>
+            <TrackedLink
+              href={siteConfig.bookCallUrl}
+              event="book_call_clicked"
+              properties={{ placement: "homepage_hero_secondary" }}
+              external
+              className="border border-ink/15 text-ink px-5 sm:px-[26px] py-3.5 rounded-[9px] text-[15.5px] font-semibold hover:border-ink/35 transition-colors"
+            >
+              Book a free call
+            </TrackedLink>
+          </div>
+          <p className="text-[13px] leading-snug text-ink/70 m-0 mb-3 md:mb-5">
+            {auditCreditNote}
+          </p>
+          <div className="grid grid-cols-3 gap-x-3 sm:flex sm:gap-8 text-[13.5px] text-ink/65">
+            {heroStats.map((stat) => (
+              <div key={stat.value}>
+                <span className="font-display font-extrabold text-xl text-ink">
+                  {stat.value}
+                </span>
+                <br />
+                {stat.label}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      <LogoStrip />
+    </section>
+  );
+}
 
-      <div
-        className="bg-coal rounded-[20px] p-6 md:p-7 relative animate-fadeUp shadow-[0_40px_80px_-24px_rgba(20,22,27,0.55)]"
-        style={{ animationDelay: "0.15s" }}
-      >
+export function HeroCallDemo() {
+  const demoHref = siteConfig.voiceDemoAvailable ? "/start#talk" : "/start";
+
+  return (
+    <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-8 pb-4 md:pt-10 md:pb-6">
+      <div className="bg-coal rounded-[20px] p-6 md:p-7 relative max-w-[560px] shadow-[0_40px_80px_-24px_rgba(20,22,27,0.55)]">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2.5 text-white text-sm font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#37D67A] animate-pulseDot" />

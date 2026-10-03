@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import LogoStrip from "@/components/home/LogoStrip";
+import Hero, { HeroCallDemo } from "@/components/home/Hero";
 import HowItWorks from "@/components/home/HowItWorks";
 import Services from "@/components/home/Services";
 import OwnerDashboard from "@/components/home/OwnerDashboard";
@@ -17,6 +16,8 @@ import {
 } from "@/components/StructuredData";
 import { homeFaqs } from "@/lib/homeContent";
 import { pageMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/config";
+import VoiceDemo from "@/components/start/VoiceDemo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Voice AI Receptionist & Business Automation | Vocemi",
@@ -37,7 +38,11 @@ export default function Home() {
       <ServiceStructuredData />
       <FaqStructuredData faqs={structuredFaqs} />
       <Hero />
-      <LogoStrip />
+      {siteConfig.voiceDemoAvailable ? (
+        <VoiceDemo page="/" />
+      ) : (
+        <HeroCallDemo />
+      )}
       <HowItWorks />
       <Services />
       <OwnerDashboard />
