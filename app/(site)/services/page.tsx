@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import ServiceCard from "@/components/ServiceCard";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import BookCallButton from "@/components/BookCallButton";
+import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
 import { serviceGuides } from "@/lib/serviceContent";
 import { ArrowRight, CheckCircle } from "lucide-react";
@@ -91,12 +92,24 @@ export default function ServicesPage() {
             Comprehensive Voice AI solutions designed to transform your business
             operations and customer interactions
           </motion.p>
+          <TrackedLink
+            href={siteConfig.bookCallUrl}
+            event="book_call_clicked"
+            properties={{ placement: "services_hero" }}
+            external
+            className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+          >
+            Book a free call
+          </TrackedLink>
         </div>
       </section>
 
       {/* Services Overview */}
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white">What we offer</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {siteConfig.services.map((service, index) => (
               <ServiceCard

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import FAQAccordion from "@/components/FAQAccordion";
 import BookCallButton from "@/components/BookCallButton";
+import TrackedLink from "@/components/start/TrackedLink";
+import { siteConfig } from "@/lib/config";
 import { homeFaqs } from "@/lib/homeContent";
 
 export default function FAQPage() {
@@ -32,6 +34,15 @@ export default function FAQPage() {
           >
             Quick answers to common Voice AI questions
           </motion.p>
+          <TrackedLink
+            href={siteConfig.bookCallUrl}
+            event="book_call_clicked"
+            properties={{ placement: "faq_hero" }}
+            external
+            className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+          >
+            Book a free call
+          </TrackedLink>
         </div>
       </section>
 

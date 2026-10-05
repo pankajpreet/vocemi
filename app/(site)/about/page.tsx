@@ -114,6 +114,15 @@ export default function AboutPage() {
               before launch, automate only the approved path, and send
               exceptions back to a person.
             </p>
+            <TrackedLink
+              href={siteConfig.bookCallUrl}
+              event="book_call_clicked"
+              properties={{ placement: "about_hero" }}
+              external
+              className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+            >
+              Book a free call
+            </TrackedLink>
           </div>
 
           <div className="bg-sand rounded-3xl p-5 md:p-7">
