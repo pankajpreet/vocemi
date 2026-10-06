@@ -58,6 +58,15 @@ export default function SecurityPage() {
           project can involve different tools and data, so its exact recording,
           access, retention, and deletion rules are documented before launch.
         </p>
+        <TrackedLink
+          href={siteConfig.bookCallUrl}
+          event="book_call_clicked"
+          properties={{ placement: "security_hero" }}
+          external
+          className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+        >
+          Book a free call
+        </TrackedLink>
       </section>
 
       <section className="bg-sand py-14 md:py-20">

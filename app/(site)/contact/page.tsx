@@ -133,6 +133,15 @@ export default function ContactPage() {
             Have questions? We&apos;d love to hear from you. Send us a message and
             we&apos;ll respond as soon as possible.
           </motion.p>
+          <TrackedLink
+            href={siteConfig.bookCallUrl}
+            event="book_call_clicked"
+            properties={{ placement: "contact_hero" }}
+            external
+            className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+          >
+            Book a free call
+          </TrackedLink>
         </div>
       </section>
 
@@ -142,8 +151,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-8 rounded-2xl shadow-lg"
@@ -324,8 +333,8 @@ export default function ContactPage() {
 
             {/* Contact Info & Booking */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="space-y-8"
