@@ -79,7 +79,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
+            className="text-[2rem] leading-[1.15] md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             AI receptionist, voice AI and lead reactivation services
           </motion.h1>
