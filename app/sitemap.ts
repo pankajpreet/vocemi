@@ -28,6 +28,37 @@ function lastCommitDate(files: string[]): Date | undefined {
   }
 }
 
+// Rendered with every marketing page: a change here changes that page's HTML.
+const siteShell = [
+  'app/layout.tsx',
+  'app/(site)/layout.tsx',
+  'components/Footer.tsx',
+  'components/Navbar.tsx',
+  'components/StructuredData.tsx',
+  'components/NapLine.tsx',
+  'lib/config.ts',
+]
+
+const startSources = [
+  'app/layout.tsx',
+  'app/start/layout.tsx',
+  'app/start/page.tsx',
+  'lib/startContent.ts',
+  'lib/config.ts',
+  'components/StructuredData.tsx',
+  'components/NapLine.tsx',
+  'components/start/StartHeader.tsx',
+  'components/start/StartHero.tsx',
+  'components/start/ClientStrip.tsx',
+  'components/start/Capabilities.tsx',
+  'components/start/VoiceDemo.tsx',
+  'components/start/HowItWorksCompact.tsx',
+  'components/start/Industries.tsx',
+  'components/start/StartCta.tsx',
+  'components/start/StartFooter.tsx',
+  'components/start/StickyCta.tsx',
+]
+
 function pageEntry(
   url: string,
   files: string[],
@@ -47,47 +78,76 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url
 
   const corePages: MetadataRoute.Sitemap = [
-    pageEntry(baseUrl, ['app/(site)/page.tsx', 'lib/homeContent.ts'], 'monthly', 1),
     pageEntry(
-      `${baseUrl}/start`,
-      ['app/start/page.tsx', 'lib/startContent.ts'],
+      baseUrl,
+      [...siteShell, 'app/(site)/page.tsx', 'lib/homeContent.ts'],
       'monthly',
-      0.9
+      1
     ),
+    pageEntry(`${baseUrl}/start`, startSources, 'monthly', 0.9),
     pageEntry(
       `${baseUrl}/services`,
-      ['app/(site)/services/page.tsx', 'app/(site)/services/layout.tsx'],
+      [...siteShell, 'app/(site)/services/page.tsx', 'app/(site)/services/layout.tsx'],
       'monthly',
       0.8
     ),
     pageEntry(
       `${baseUrl}/industries`,
-      ['app/(site)/industries/page.tsx', 'lib/industryContent.ts'],
+      [...siteShell, 'app/(site)/industries/page.tsx', 'lib/industryContent.ts'],
       'monthly',
       0.8
     ),
-    pageEntry(`${baseUrl}/blog`, ['app/(site)/blog/page.tsx'], 'weekly', 0.7),
-    pageEntry(`${baseUrl}/about`, ['app/(site)/about/page.tsx'], 'yearly', 0.7),
+    pageEntry(
+      `${baseUrl}/blog`,
+      [...siteShell, 'app/(site)/blog/page.tsx'],
+      'weekly',
+      0.7
+    ),
+    pageEntry(
+      `${baseUrl}/about`,
+      [...siteShell, 'app/(site)/about/page.tsx'],
+      'yearly',
+      0.7
+    ),
     pageEntry(
       `${baseUrl}/faq`,
-      ['app/(site)/faq/page.tsx', 'app/(site)/faq/layout.tsx', 'lib/faqContent.ts'],
+      [
+        ...siteShell,
+        'app/(site)/faq/page.tsx',
+        'app/(site)/faq/layout.tsx',
+        'lib/faqContent.ts',
+      ],
       'monthly',
       0.7
     ),
     pageEntry(
       `${baseUrl}/contact`,
-      ['app/(site)/contact/page.tsx', 'app/(site)/contact/layout.tsx'],
+      [
+        ...siteShell,
+        'app/(site)/contact/page.tsx',
+        'app/(site)/contact/layout.tsx',
+      ],
       'monthly',
       0.8
     ),
-    pageEntry(`${baseUrl}/privacy`, ['app/(site)/privacy/page.tsx'], 'yearly', 0.3),
-    pageEntry(`${baseUrl}/security`, ['app/(site)/security/page.tsx'], 'yearly', 0.6),
+    pageEntry(
+      `${baseUrl}/privacy`,
+      [...siteShell, 'app/(site)/privacy/page.tsx'],
+      'yearly',
+      0.3
+    ),
+    pageEntry(
+      `${baseUrl}/security`,
+      [...siteShell, 'app/(site)/security/page.tsx'],
+      'yearly',
+      0.6
+    ),
   ]
 
   const servicePages: MetadataRoute.Sitemap = serviceGuides.map((service) =>
     pageEntry(
       `${baseUrl}/services/${service.slug}`,
-      ['app/(site)/services/[slug]/page.tsx', 'lib/serviceContent.ts'],
+      [...siteShell, 'app/(site)/services/[slug]/page.tsx', 'lib/serviceContent.ts'],
       'monthly',
       0.8
     )
@@ -96,7 +156,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const industryPages: MetadataRoute.Sitemap = industryGuides.map((industry) =>
     pageEntry(
       `${baseUrl}/industries/${industry.slug}`,
-      ['app/(site)/industries/[slug]/page.tsx', 'lib/industryContent.ts'],
+      [
+        ...siteShell,
+        'app/(site)/industries/[slug]/page.tsx',
+        'lib/industryContent.ts',
+      ],
       'monthly',
       0.8
     )
