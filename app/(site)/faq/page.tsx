@@ -5,13 +5,10 @@ import FAQAccordion from "@/components/FAQAccordion";
 import BookCallButton from "@/components/BookCallButton";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
-import { homeFaqs } from "@/lib/homeContent";
+import { pageFaqs } from "@/lib/faqContent";
 
 export default function FAQPage() {
-  const faqs = homeFaqs.map((faq) => ({
-    question: faq.q,
-    answer: faq.a,
-  }));
+  const faqs = pageFaqs;
 
   return (
     <div className="min-h-screen">
@@ -35,7 +32,7 @@ export default function FAQPage() {
             Quick answers to common Voice AI questions
           </motion.p>
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("faq_hero")}
             event="book_call_clicked"
             properties={{ placement: "faq_hero" }}
             external

@@ -2,6 +2,34 @@ const retellPublicKey = process.env.NEXT_PUBLIC_RETELL_PUBLIC_KEY || "";
 const retellVoiceAgentId =
   process.env.NEXT_PUBLIC_RETELL_VOICE_AGENT_ID || "";
 
+const bookCallBaseUrl = process.env.NEXT_PUBLIC_BOOK_CALL_URL || "/contact";
+
+/**
+ * Booking URL for one button. Cal.com links get UTMs so a completed booking
+ * can be tied to the control that opened it. `placement` is the same string
+ * already sent with `book_call_clicked`. Other hosts, and the /contact
+ * fallback, are returned unchanged.
+ */
+export function bookCallHref(placement: string): string {
+  if (!/^https?:\/\//.test(bookCallBaseUrl)) return bookCallBaseUrl;
+
+  let url: URL;
+  try {
+    url = new URL(bookCallBaseUrl);
+  } catch {
+    return bookCallBaseUrl;
+  }
+
+  const host = url.hostname.toLowerCase();
+  if (host !== "cal.com" && !host.endsWith(".cal.com")) return bookCallBaseUrl;
+
+  url.searchParams.set("utm_source", "vocemi.com");
+  url.searchParams.set("utm_medium", "website");
+  url.searchParams.set("utm_campaign", "book_call");
+  url.searchParams.set("utm_content", placement);
+  return url.toString();
+}
+
 export const siteConfig = {
   name: "Vocemi",
   tagline: "Voice AI Receptionist & Business Automation",
@@ -26,13 +54,21 @@ export const siteConfig = {
   },
   contact: {
     email: "business@vocemi.com",
-    // Leave unset until there is a number we're happy to publish. The
-    // tap-to-call / tap-to-text block on /start hides itself when empty.
+    // Google Business Profile number. Display, tel, and schema forms differ
+    // on purpose: visible NAP, a dialable href, and the schema telephone.
+    phoneDisplay: "(437) 332-5220",
+    phoneTel: "+14373325220",
+    phoneSchema: "+1-437-332-5220",
+    // TODO(owner): confirm whether (437) 332-5220 should also turn on the
+    // tap-to-call and tap-to-text buttons on /start. SMS was not confirmed,
+    // so this stays empty unless NEXT_PUBLIC_PHONE is set.
     phone: process.env.NEXT_PUBLIC_PHONE || "",
   },
+  // Service-area line for visible NAP. No street address is published.
+  serviceArea: "Calgary, Alberta, Canada",
   // Keep booking CTAs useful in preview deployments that do not have the
-  // scheduler URL configured yet.
-  bookCallUrl: process.env.NEXT_PUBLIC_BOOK_CALL_URL || "/contact",
+  // scheduler URL configured yet. Pass the button placement.
+  bookCallUrl: bookCallHref,
 
   // --- /start landing page ---------------------------------------------
   // Retell AI powers the live voice demo. Both values are required before
@@ -48,12 +84,12 @@ export const siteConfig = {
   // Google Form for visitors who aren't ready to book. Link hides when empty.
   leadFormUrl: process.env.NEXT_PUBLIC_LEAD_FORM_URL || "",
   // Confirmed public profiles. sameAs on the Organization schema is this list.
-  // The Google share link does not HTTP-redirect to a maps or g.page URL.
+  // googleBusiness is the Maps URL from the Google Business Profile.
   social: {
     linkedin: "https://www.linkedin.com/company/vocemi/",
     facebook: "https://www.facebook.com/profile.php?id=61587388533987",
     youtube: "https://www.youtube.com/@pankajpreet_singh",
-    googleBusiness: "https://share.google/HDpQIouh1T81sGXrQ",
+    googleBusiness: "https://maps.app.goo.gl/1hpHh5E6bX7EFHHEA",
   },
   services: [
     {

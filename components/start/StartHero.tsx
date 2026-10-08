@@ -43,7 +43,7 @@ export default function StartHero() {
             </TrackedLink>
           )}
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("start_hero")}
             event="book_call_clicked"
             properties={{ placement: "start_hero" }}
             external

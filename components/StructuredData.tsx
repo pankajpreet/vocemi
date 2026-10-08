@@ -25,55 +25,129 @@ const areaServed = [
   { '@type': 'Country', name: 'United Kingdom' },
 ]
 
+export const organizationId = `${siteConfig.url}/#organization`
+
 export default function StructuredData() {
-  const organizationSchema = {
+  // TODO(owner): confirm whether the $250 audit is CAD or USD. The site shows
+  // "$250" with no currency, so priceCurrency is omitted.
+  // TODO(owner): add openingHoursSpecification only after the Google Business
+  // Profile hours are confirmed. No hours are published here.
+  const organizationGraph = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.svg`,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: siteConfig.address.locality,
-      addressRegion: siteConfig.address.region,
-      addressCountry: siteConfig.address.country,
-    },
-    areaServed,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: siteConfig.contact.email,
-      contactType: 'Customer Service',
-    },
-    founder: {
-      '@type': 'Person',
-      name: siteConfig.founder.name,
-      jobTitle: siteConfig.founder.role,
-      image: `${siteConfig.url}${siteConfig.founder.image}`,
-      sameAs: [siteConfig.founder.linkedin],
-    },
-    sameAs: [
-      siteConfig.social.linkedin,
-      siteConfig.social.facebook,
-      siteConfig.social.youtube,
-      siteConfig.social.googleBusiness,
+    '@graph': [
+      {
+        '@type': ['Organization', 'ProfessionalService'],
+        '@id': organizationId,
+        name: siteConfig.name,
+        url: siteConfig.url,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteConfig.url}/logo.png`,
+          width: 512,
+          height: 512,
+        },
+        image: `${siteConfig.url}/og-image.png`,
+        description: siteConfig.description,
+        email: siteConfig.contact.email,
+        telephone: siteConfig.contact.phoneSchema,
+        priceRange: 'From $300/mo + setup',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: siteConfig.address.locality,
+          addressRegion: siteConfig.address.region,
+          addressCountry: siteConfig.address.country,
+        },
+        hasMap: siteConfig.social.googleBusiness,
+        areaServed,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          email: siteConfig.contact.email,
+          telephone: siteConfig.contact.phoneSchema,
+          areaServed: ['CA', 'US', 'GB'],
+          availableLanguage: ['English'],
+        },
+        founder: {
+          '@type': 'Person',
+          '@id': `${siteConfig.url}/about#founder`,
+          name: siteConfig.founder.name,
+          jobTitle: siteConfig.founder.role,
+          image: `${siteConfig.url}${siteConfig.founder.image}`,
+          sameAs: [siteConfig.founder.linkedin],
+        },
+        sameAs: [
+          siteConfig.social.linkedin,
+          siteConfig.social.facebook,
+          siteConfig.social.youtube,
+          siteConfig.social.googleBusiness,
+        ],
+        knowsAbout: [
+          'Voice AI',
+          'AI receptionist',
+          'Lead reactivation',
+          'Appointment booking automation',
+          'Call analytics',
+        ],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Voice AI Services',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'AI Receptionist',
+                url: `${siteConfig.url}/services/ai-receptionist`,
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Lead Reactivation',
+                url: `${siteConfig.url}/services/lead-reactivation`,
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: { '@type': 'Service', name: 'Voice Bot Development' },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Appointment Management & Reminders',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Qualification and Lead Generation',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Voice Analytics & Insights',
+              },
+            },
+            { '@type': 'Offer', name: 'AI Employee Audit', price: '250' },
+          ],
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${siteConfig.url}/#website`,
+        url: siteConfig.url,
+        name: siteConfig.name,
+        publisher: { '@id': organizationId },
+      },
     ],
   }
 
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-  }
-
-  return (
-    <>
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
-    </>
-  )
+  return <JsonLd data={organizationGraph} />
 }
 
 export function ServiceStructuredData() {
@@ -82,11 +156,7 @@ export function ServiceStructuredData() {
     '@type': 'Service',
     serviceType: 'Voice AI Solutions',
     url: `${siteConfig.url}/services`,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { '@id': organizationId },
     areaServed,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -122,11 +192,7 @@ export function ServiceDetailStructuredData({
     name,
     description,
     url,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { '@id': organizationId },
     areaServed,
   }
   const breadcrumbSchema = {
@@ -229,15 +295,7 @@ export function ArticleStructuredData({
       url: `${siteConfig.url}/about`,
       sameAs: [siteConfig.founder.linkedin],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${siteConfig.url}/logo.svg`,
-      },
-    },
+    publisher: { '@id': organizationId },
   }
 
   return <JsonLd data={articleSchema} />
@@ -259,11 +317,7 @@ export function IndustryStructuredData({
     name: `AI receptionist for ${name}`,
     description,
     url: `${siteConfig.url}${path}`,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { '@id': organizationId },
     audience: {
       '@type': 'BusinessAudience',
       audienceType: name,

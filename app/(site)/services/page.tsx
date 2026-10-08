@@ -81,7 +81,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="text-5xl md:text-6xl font-bold text-white mb-6"
           >
-            Our Services
+            AI receptionist, voice AI and lead reactivation services
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +93,7 @@ export default function ServicesPage() {
             operations and customer interactions
           </motion.p>
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("services_hero")}
             event="book_call_clicked"
             properties={{ placement: "services_hero" }}
             external

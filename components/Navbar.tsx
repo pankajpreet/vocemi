@@ -90,7 +90,7 @@ export default function Navbar() {
 
           <div className="hidden lg:block flex-shrink-0">
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("navbar_desktop")}
               event="book_call_clicked"
               properties={{ placement: "navbar_desktop" }}
               external
@@ -129,7 +129,7 @@ export default function Navbar() {
             ))}
             <div className="pt-2">
               <TrackedLink
-                href={siteConfig.bookCallUrl}
+                href={siteConfig.bookCallUrl("navbar_mobile")}
                 event="book_call_clicked"
                 properties={{ placement: "navbar_mobile" }}
                 external

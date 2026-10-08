@@ -95,7 +95,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               <ArrowRight size={17} />
             </TrackedLink>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("industry_hero")}
               event="book_call_clicked"
               properties={{ placement: "industry_hero", industry: industry.slug }}
               external

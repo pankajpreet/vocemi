@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Voice AI Receptionist & Business Automation | Vocemi",
   absoluteTitle: true,
   description:
-    "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
+    "Calgary-based Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
   path: "/",
 });
 

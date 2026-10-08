@@ -25,13 +25,16 @@ export default function Hero() {
             <span className="w-[7px] h-[7px] rounded-full bg-brand animate-pulseDot" />
             Voice AI for growing businesses
           </div>
-          <h1 className="font-display text-[42px] md:text-[60px] leading-[1.03] tracking-[-0.025em] font-extrabold text-ink m-0 mb-4 md:mb-5">
+          <h1 className="font-display text-[42px] md:text-[60px] leading-[1.03] tracking-[-0.025em] font-extrabold text-ink m-0 mb-3 md:mb-4">
             Never miss another{" "}
             <span className="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
               call, lead, or booking
             </span>
             .
           </h1>
+          <h2 className="font-display text-[22px] md:text-[28px] leading-[1.25] font-bold text-ink m-0 mb-4 md:mb-5 max-w-[640px]">
+            AI receptionist and voice AI employees for service businesses
+          </h2>
           <p className="text-lg leading-[1.6] text-ink/65 max-w-[520px] m-0 mb-4 md:mb-6">
             Vocemi builds voice AI employees that answer, qualify, and book &mdash;
             then hand you a clear daily report. You keep the judgment calls; the AI
@@ -47,7 +50,7 @@ export default function Hero() {
               {siteConfig.voiceDemoAvailable ? "Try the live demo" : "See how it works"}
             </TrackedLink>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("homepage_hero_secondary")}
               event="book_call_clicked"
               properties={{ placement: "homepage_hero_secondary" }}
               external

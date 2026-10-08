@@ -34,7 +34,7 @@ export default function ContentCta({
           <ArrowRight size={17} />
         </TrackedLink>
         <TrackedLink
-          href={siteConfig.bookCallUrl}
+          href={siteConfig.bookCallUrl(placement)}
           event="book_call_clicked"
           properties={{ placement }}
           external

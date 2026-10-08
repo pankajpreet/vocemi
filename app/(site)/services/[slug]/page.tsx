@@ -116,7 +116,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                 <ArrowRight size={17} />
               </TrackedLink>
               <TrackedLink
-                href={siteConfig.bookCallUrl}
+                href={siteConfig.bookCallUrl("service_detail_hero")}
                 event="book_call_clicked"
                 properties={{
                   placement: "service_detail_hero",
