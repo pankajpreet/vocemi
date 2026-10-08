@@ -24,6 +24,8 @@ export interface IndustryGuide {
   faqs: { question: string; answer: string }[];
   relatedServices: string[];
   relatedPosts: string[];
+  /** One in-body sentence. Each phrase is linked once. */
+  inBody?: { sentence: string; marks: { phrase: string; href: string }[] };
 }
 
 export const industryGuides: IndustryGuide[] = [
@@ -115,6 +117,14 @@ export const industryGuides: IndustryGuide[] = [
     ],
     relatedServices: ["ai-receptionist", "lead-reactivation"],
     relatedPosts: ["full-duplex-voice-ai-business-calls", "ai-receptionist-vs-answering-service"],
+    inBody: {
+      sentence:
+        "See how the AI receptionist books consultations while the front desk is with a client, and how lead reactivation works through past clients at 3D Lifestyle.",
+      marks: [
+        { phrase: "AI receptionist", href: "/services/ai-receptionist" },
+        { phrase: "lead reactivation", href: "/services/lead-reactivation" },
+      ],
+    },
   },
   {
     slug: "dental",
@@ -206,6 +216,11 @@ export const industryGuides: IndustryGuide[] = [
     ],
     relatedServices: ["ai-receptionist"],
     relatedPosts: ["missed-call-statistics", "ai-voice-calls-canada-crtc-rules"],
+    inBody: {
+      sentence:
+        "See how the AI receptionist books new patients when the desk is already with someone in the chair.",
+      marks: [{ phrase: "AI receptionist", href: "/services/ai-receptionist" }],
+    },
   },
   {
     slug: "hvac-plumbing",
@@ -297,6 +312,10 @@ export const industryGuides: IndustryGuide[] = [
     ],
     relatedServices: ["ai-receptionist", "lead-reactivation"],
     relatedPosts: ["full-duplex-voice-ai-business-calls", "missed-call-statistics"],
+    inBody: {
+      sentence: "See how the AI receptionist answers while techs are on jobs.",
+      marks: [{ phrase: "AI receptionist", href: "/services/ai-receptionist" }],
+    },
   },
   {
     slug: "insurance",
@@ -388,6 +407,14 @@ export const industryGuides: IndustryGuide[] = [
     ],
     relatedServices: ["ai-receptionist", "lead-reactivation"],
     relatedPosts: ["ai-voice-calls-canada-crtc-rules", "multilingual-voice-ai-calgary"],
+    inBody: {
+      sentence:
+        "See how the AI receptionist handles intake, and how lead reactivation can work through cold quotes.",
+      marks: [
+        { phrase: "AI receptionist", href: "/services/ai-receptionist" },
+        { phrase: "lead reactivation", href: "/services/lead-reactivation" },
+      ],
+    },
   },
 ];
 

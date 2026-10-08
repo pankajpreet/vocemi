@@ -47,6 +47,39 @@ export default function FAQPage() {
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FAQAccordion faqs={faqs} />
+          <div className="mt-8 flex flex-col gap-3 text-[15px] leading-relaxed">
+            <p className="text-gray-300 m-0">
+              <a className="text-primary-accent underline" href="/services/ai-receptionist">
+                AI receptionist
+              </a>
+              {" · "}
+              <a className="text-primary-accent underline" href="/services/lead-reactivation">
+                Lead reactivation and calling rules
+              </a>
+            </p>
+            <p className="m-0 border border-dashed border-white/40 rounded-md px-4 py-3 text-white">
+              <span className="font-semibold">TODO (Pankajpreet):</span> confirm
+              which calendars, CRMs, or practice systems connect. Pages say that
+              is confirmed during scoping and name no products.
+            </p>
+            <p className="m-0 border border-dashed border-white/40 rounded-md px-4 py-3 text-white">
+              <span className="font-semibold">TODO (Pankajpreet):</span> confirm
+              whether the $250 audit and the other published prices are CAD or
+              USD.
+            </p>
+            <p className="m-0 border border-dashed border-white/40 rounded-md px-4 py-3 text-white">
+              <span className="font-semibold">TODO (Pankajpreet):</span> confirm
+              the call-recording notice callers should hear. The insurance guide
+              says to tell callers if calls are recorded, and no script is
+              published.
+            </p>
+            <p className="m-0 border border-dashed border-white/40 rounded-md px-4 py-3 text-white">
+              <span className="font-semibold">TODO (Pankajpreet):</span> confirm
+              which languages are supported in production. Do not name Punjabi,
+              Tagalog, Mandarin, or any other language as a Vocemi offering until
+              then.
+            </p>
+          </div>
         </div>
       </section>
 

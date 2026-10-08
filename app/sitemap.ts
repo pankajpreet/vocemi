@@ -3,7 +3,6 @@ import { existsSync } from 'fs'
 import path from 'path'
 import { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/config'
-import { serviceGuides } from '@/lib/serviceContent'
 import { industryGuides } from '@/lib/industryContent'
 import { getAllPosts } from '@/lib/blog'
 
@@ -144,14 +143,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
   ]
 
-  const servicePages: MetadataRoute.Sitemap = serviceGuides.map((service) =>
+  const servicePages: MetadataRoute.Sitemap = [
     pageEntry(
-      `${baseUrl}/services/${service.slug}`,
-      [...siteShell, 'app/(site)/services/[slug]/page.tsx', 'lib/serviceContent.ts'],
+      `${baseUrl}/services/ai-receptionist`,
+      [...siteShell, 'app/(site)/services/ai-receptionist/page.tsx'],
       'monthly',
       0.8
-    )
-  )
+    ),
+    pageEntry(
+      `${baseUrl}/services/lead-reactivation`,
+      [...siteShell, 'app/(site)/services/lead-reactivation/page.tsx'],
+      'monthly',
+      0.8
+    ),
+  ]
 
   const industryPages: MetadataRoute.Sitemap = industryGuides.map((industry) =>
     pageEntry(

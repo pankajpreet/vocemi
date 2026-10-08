@@ -4,13 +4,21 @@ const retellVoiceAgentId =
 
 const bookCallBaseUrl = process.env.NEXT_PUBLIC_BOOK_CALL_URL || "/contact";
 
+export type BookCallUtm = {
+  source?: string;
+  medium?: string;
+  campaign?: string;
+};
+
 /**
  * Booking URL for one button. Cal.com links get UTMs so a completed booking
  * can be tied to the control that opened it. `placement` is the same string
- * already sent with `book_call_clicked`. Other hosts, and the /contact
- * fallback, are returned unchanged.
+ * already sent with `book_call_clicked` and is always `utm_content`.
+ * Defaults are vocemi.com / website / book_call. A page may override
+ * source, medium, and campaign. Other hosts, and the /contact fallback,
+ * are returned unchanged.
  */
-export function bookCallHref(placement: string): string {
+export function bookCallHref(placement: string, utm?: BookCallUtm): string {
   if (!/^https?:\/\//.test(bookCallBaseUrl)) return bookCallBaseUrl;
 
   let url: URL;
@@ -23,9 +31,9 @@ export function bookCallHref(placement: string): string {
   const host = url.hostname.toLowerCase();
   if (host !== "cal.com" && !host.endsWith(".cal.com")) return bookCallBaseUrl;
 
-  url.searchParams.set("utm_source", "vocemi.com");
-  url.searchParams.set("utm_medium", "website");
-  url.searchParams.set("utm_campaign", "book_call");
+  url.searchParams.set("utm_source", utm?.source ?? "vocemi.com");
+  url.searchParams.set("utm_medium", utm?.medium ?? "website");
+  url.searchParams.set("utm_campaign", utm?.campaign ?? "book_call");
   url.searchParams.set("utm_content", placement);
   return url.toString();
 }

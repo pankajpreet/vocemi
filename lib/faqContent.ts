@@ -1,12 +1,7 @@
 /**
  * /faq questions. None of these strings are the homepage FAQ.
- *
- * Left off the page because the site does not state an answer:
- * TODO(owner): Do you serve clients in the United States and the United Kingdom? areaServed lists both in schema only; no visible page says this.
- * TODO(owner): Which calendars, CRMs, or practice systems connect? Pages say that is confirmed during scoping and name no products.
- * TODO(owner): Is the $250 audit CAD or USD? The site shows "$250" with no currency.
- * TODO(owner): What call-recording notice should callers hear? The insurance guide says to tell callers if calls are recorded, and no script is published.
- * TODO(owner): Which languages should be named as supported? Do not list Punjabi, Tagalog, Mandarin, or any other language as a Vocemi offering until you confirm it. The multilingual article uses them as caller examples and model capabilities, not as languages Vocemi provides.
+ * Owner questions without an answer are rendered as visible TODO boxes on
+ * the page and are not included here, so they stay out of FAQPage JSON-LD.
  */
 
 export const pageFaqs: { question: string; answer: string }[] = [
@@ -35,17 +30,17 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "What can the AI receptionist workflow handle?",
     answer:
-      "The AI receptionist guide says it can answer common questions using information you approve, collect the caller details your team needs, offer appointment times within your booking rules, and route urgent, unusual, or sensitive calls to a person.",
+      "The AI receptionist page says it answers from information you approve, collects the caller details your team needs, offers appointment times within your booking rules, and routes urgent, unusual, or sensitive calls to a person. The guide is at /services/ai-receptionist.",
   },
   {
     question: "What do you approve before an AI receptionist goes live?",
     answer:
-      "You approve the call flow and the information the agent can use. The guide's launch steps are to choose the first call type worth automating, define the questions, booking rules, and escalation boundaries, test expected calls and edge cases, then launch, review, and improve the approved workflow.",
+      "You approve the call flow, the answers it may give, and the booking rules before launch. The page's steps are to pick the call type, write those rules, test expected calls and edge cases, then go live and review real calls.",
   },
   {
     question: "How is a lead reactivation campaign limited?",
     answer:
-      "You choose the contacts, the message, the offer, the booking rules, and the situations that require a person. The agent stays inside the approved message and offer. Unusual questions wait for your team, and outcomes can be reviewed before the next run. The guide on Canada's calling rules says these workflows start with the contact list, the consent basis, and the script before anyone is called.",
+      "You choose the contacts, the message, the offer, the booking rules, and the situations that require a person. The agent stays inside the approved message and offer. Unusual questions wait for your team, and outcomes can be reviewed before the next run. The guide on Canada's calling rules says these workflows start with the contact list, the consent basis, and the script before anyone is called. The lead reactivation page, including whether those calls are legal, is at /services/lead-reactivation.",
   },
   {
     question: "What does the site say about outbound AI calls in Canada?",
@@ -92,6 +87,11 @@ export const pageFaqs: { question: string; answer: string }[] = [
       "How does the site compare an AI employee with hiring a person for the phones?",
     answer:
       "The homepage comparison says a person can take months to hire and train, works scheduled hours, handles one queue, can be out sick, and updates tools by hand. It says an AI employee can be live in 2–4 weeks, answers 24/7, answers several calls at once, does not call in sick, and updates your tools automatically.",
+  },
+  {
+    question: "Does Vocemi work with businesses outside Calgary?",
+    answer:
+      "The AI receptionist and lead reactivation pages describe Vocemi as Calgary-based and serving Canada, the United States, and the United Kingdom. No street address is published.",
   },
   {
     question: "Does Vocemi publish a list of languages the voice agent speaks?",

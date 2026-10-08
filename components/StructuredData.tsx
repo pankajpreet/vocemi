@@ -28,8 +28,8 @@ const areaServed = [
 export const organizationId = `${siteConfig.url}/#organization`
 
 export default function StructuredData() {
-  // TODO(owner): confirm whether the $250 audit is CAD or USD. The site shows
-  // "$250" with no currency, so priceCurrency is omitted.
+  // TODO(owner): confirm whether published prices are CAD or USD. Until then
+  // this graph has no priceRange, price, or priced Offer.
   // TODO(owner): add openingHoursSpecification only after the Google Business
   // Profile hours are confirmed. No hours are published here.
   const organizationGraph = {
@@ -50,7 +50,6 @@ export default function StructuredData() {
         description: siteConfig.description,
         email: siteConfig.contact.email,
         telephone: siteConfig.contact.phoneSchema,
-        priceRange: 'From $300/mo + setup',
         address: {
           '@type': 'PostalAddress',
           addressLocality: siteConfig.address.locality,
@@ -88,54 +87,6 @@ export default function StructuredData() {
           'Appointment booking automation',
           'Call analytics',
         ],
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Voice AI Services',
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'AI Receptionist',
-                url: `${siteConfig.url}/services/ai-receptionist`,
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Lead Reactivation',
-                url: `${siteConfig.url}/services/lead-reactivation`,
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: { '@type': 'Service', name: 'Voice Bot Development' },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Appointment Management & Reminders',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Qualification and Lead Generation',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Voice Analytics & Insights',
-              },
-            },
-            { '@type': 'Offer', name: 'AI Employee Audit', price: '250' },
-          ],
-        },
       },
       {
         '@type': 'WebSite',
@@ -158,74 +109,9 @@ export function ServiceStructuredData() {
     url: `${siteConfig.url}/services`,
     provider: { '@id': organizationId },
     areaServed,
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Voice AI Services',
-      itemListElement: siteConfig.services.map((service, index) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service.title,
-          description: service.description,
-        },
-        position: index + 1,
-      })),
-    },
   }
 
   return <JsonLd data={serviceSchema} />
-}
-
-export function ServiceDetailStructuredData({
-  name,
-  description,
-  path,
-}: {
-  name: string
-  description: string
-  path: string
-}) {
-  const url = `${siteConfig.url}${path}`
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name,
-    description,
-    url,
-    provider: { '@id': organizationId },
-    areaServed,
-  }
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Services',
-        item: `${siteConfig.url}/services`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name,
-        item: url,
-      },
-    ],
-  }
-
-  return (
-    <>
-      <JsonLd data={serviceSchema} />
-      <JsonLd data={breadcrumbSchema} />
-    </>
-  )
 }
 
 export function FaqStructuredData({ faqs }: { faqs: Faq[] }) {

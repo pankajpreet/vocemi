@@ -3,7 +3,10 @@ import Reveal from "./Reveal";
 
 export default function OwnerDashboard() {
   return (
-    <section className="max-w-[1180px] mx-auto px-6 md:px-8 py-20 md:py-[110px] grid lg:grid-cols-2 gap-12 lg:gap-[60px] items-center">
+    <section
+      id="owner-visibility"
+      className="max-w-[1180px] mx-auto px-6 md:px-8 py-20 md:py-[110px] grid lg:grid-cols-2 gap-12 lg:gap-[60px] items-center scroll-mt-24"
+    >
       <Reveal>
         <div className="text-[13px] font-bold text-brand uppercase tracking-[0.06em] mb-3">
           Owner visibility
