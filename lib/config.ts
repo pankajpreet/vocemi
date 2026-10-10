@@ -67,10 +67,8 @@ export const siteConfig = {
     phoneDisplay: "(437) 332-5220",
     phoneTel: "+14373325220",
     phoneSchema: "+1-437-332-5220",
-    // TODO(owner): confirm whether (437) 332-5220 should also turn on the
-    // tap-to-call and tap-to-text buttons on /start. SMS was not confirmed,
-    // so this stays empty unless NEXT_PUBLIC_PHONE is set.
-    phone: process.env.NEXT_PUBLIC_PHONE || "",
+    // Owner decision: do not add tel: or sms: links for (437) 332-5220 on /start.
+    phone: "",
   },
   // Service-area line for visible NAP. No street address is published.
   serviceArea: "Calgary, Alberta, Canada",

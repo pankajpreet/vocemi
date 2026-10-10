@@ -1,26 +1,25 @@
 /**
  * /faq questions. None of these strings are the homepage FAQ.
- * Owner questions without an answer are rendered as visible TODO boxes on
- * the page and are not included here, so they stay out of FAQPage JSON-LD.
+ * Every question here is a real answer and is included in FAQPage JSON-LD.
  */
 
 export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "What does the AI Employee Audit include, and what does it cost?",
     answer:
-      "The AI Employee Audit is $250, one-time, and credited toward setup. It maps the workflow and channels, defines the approval rules, sets a clear finish line, and ends with a build recommendation. Pricing on the site is labelled illustrative, and every engagement is scoped to your actual call volume and tools on a free call.",
+      "The AI Employee Audit is $250 USD, one-time, and credited toward setup. It maps the workflow and channels, defines the approval rules, sets a clear finish line, and ends with a build recommendation. Prices are USD only. Every engagement is scoped to your actual call volume and tools on a free call.",
   },
   {
     question:
       "What does the One-Workflow AI Employee include, and what does it cost?",
     answer:
-      "The One-Workflow AI Employee is $1,500 one-time setup, plus from $300/mo. It covers one AI employee role on phone, inbox, or forms, with approval gates and a daily owner report. The pricing section marks this tier as the most common start.",
+      "The One-Workflow AI Employee is $1,500 USD one-time setup, plus from $300 USD/mo. It covers one AI employee role on phone, inbox, or forms, with approval gates and a daily owner report. The pricing section marks this tier as the most common start.",
   },
   {
     question:
       "What does the Managed AI Employee include, and what does it cost?",
     answer:
-      "The Managed AI Employee is $3,000 setup plus $1,500/mo. It covers phone, inbox, calendar, and CRM, plus booking and follow-up, escalation rules, and a monthly improvement review.",
+      "The Managed AI Employee is $3,000 USD setup plus $1,500 USD/mo. It covers phone, inbox, calendar, and CRM, plus booking and follow-up, escalation rules, and a monthly improvement review.",
   },
   {
     question: "What does Vocemi leave to a person?",
@@ -55,7 +54,7 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "Can an AI receptionist book into a calendar?",
     answer:
-      "The /start page says the agent checks your calendar, offers real times, and puts the job on the books during the call. Industry guides say booking works through your calendar, practice software, or field-service scheduling tool where an integration is available, and that which tools can connect is confirmed during scoping, before anything is built.",
+      "Yes. Vocemi connects Google Calendar, Outlook, and Cal.com. The agent offers real times inside your booking rules. A booking confirmation goes out by SMS and by email.",
   },
   {
     question: "What does the owner receive after calls?",
@@ -96,7 +95,12 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "Does Vocemi publish a list of languages the voice agent speaks?",
     answer:
-      "No fixed list is published. Voice Bot Development includes multi-language support. The guide on multilingual voice AI says to start from the languages your callers actually use, test names, addresses, and numbers with native speakers, and review approved answers in each language before relying on it.",
+      "The receptionist is built for English. It can support more than one language, and no language other than English is named as production-ready. The multilingual guide is about how to test a language with real callers, not a list of extra languages Vocemi offers.",
+  },
+  {
+    question: "What call-recording notice do callers hear?",
+    answer:
+      "The greeting, including any recording notice, is written for that client. Vocemi is not a self-serve platform.",
   },
   {
     question: "What kinds of calls are handed to a licensed or on-call person?",

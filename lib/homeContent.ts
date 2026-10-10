@@ -218,7 +218,7 @@ export const pricingTiers: PricingTier[] = [
     name: "AI Employee Audit",
     tagline: "Map the first workflow worth automating.",
     price: "$250",
-    priceSub: "one-time, credited toward setup",
+    priceSub: "USD, one-time, credited toward setup",
     featured: false,
     ctaLabel: "Book the audit",
     features: [
@@ -232,7 +232,7 @@ export const pricingTiers: PricingTier[] = [
     name: "One-Workflow AI Employee",
     tagline: "One defined workflow, fully handled.",
     price: "$1,500",
-    priceSub: "one-time setup + from $300/mo",
+    priceSub: "USD, one-time setup + from $300 USD/mo",
     featured: true,
     ctaLabel: "Book a free call",
     features: [
@@ -246,7 +246,7 @@ export const pricingTiers: PricingTier[] = [
     name: "Managed AI Employee",
     tagline: "A managed employee across your tools.",
     price: "$3,000",
-    priceSub: "setup + $1,500/mo",
+    priceSub: "USD, setup + $1,500 USD/mo",
     featured: false,
     ctaLabel: "Book a free call",
     features: [

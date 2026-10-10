@@ -409,7 +409,7 @@ export const industryGuides: IndustryGuide[] = [
     relatedPosts: ["ai-voice-calls-canada-crtc-rules", "multilingual-voice-ai-calgary"],
     inBody: {
       sentence:
-        "See how the AI receptionist handles intake, and how lead reactivation can work through cold quotes.",
+        "See how the AI receptionist handles intake, and how lead reactivation can work through quotes that were not booked.",
       marks: [
         { phrase: "AI receptionist", href: "/services/ai-receptionist" },
         { phrase: "lead reactivation", href: "/services/lead-reactivation" },

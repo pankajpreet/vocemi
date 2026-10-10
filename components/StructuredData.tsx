@@ -28,10 +28,9 @@ const areaServed = [
 export const organizationId = `${siteConfig.url}/#organization`
 
 export default function StructuredData() {
-  // TODO(owner): confirm whether published prices are CAD or USD. Until then
-  // this graph has no priceRange, price, or priced Offer.
-  // TODO(owner): add openingHoursSpecification only after the Google Business
-  // Profile hours are confirmed. No hours are published here.
+  // Published prices are USD. This graph has no price, priceRange, or Offer.
+  // Google Business Profile hours are by appointment only. Do not add
+  // openingHoursSpecification.
   const organizationGraph = {
     '@context': 'https://schema.org',
     '@graph': [

@@ -26,17 +26,15 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How much does an AI receptionist cost?",
     pieces: [
       {
-        text: "One-Workflow is $1,500 setup plus from $300/mo. Managed is $3,000 setup plus $1,500/mo. The $250 audit is credited toward setup. Pricing is illustrative and scoped on a free call. See ",
+        text: "Prices are USD only. One-Workflow is $1,500 USD setup plus from $300 USD/mo. Managed is $3,000 USD setup plus $1,500 USD/mo. The $250 USD audit is credited toward setup.",
       },
-      { text: "pricing", href: "/#pricing" },
-      { text: " on the homepage." },
     ],
   },
   {
     question: "Will callers know they're talking to an AI?",
     pieces: [
       {
-        text: "Yes. We recommend the greeting says it is an automated assistant, as the industry-page samples do, and a caller can ask for a person. If the call is recorded, the greeting also carries the notice your location requires, confirmed before launch. See the Office of the Privacy Commissioner of Canada's ",
+        text: "The greeting is written for that client. It is not a fixed default, and Vocemi is not a self-serve platform. If the call is recorded, that notice is part of the greeting. See the Office of the Privacy Commissioner of Canada's ",
       },
       {
         text: "guidance on recording customer calls",
@@ -50,7 +48,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "What happens when the AI receptionist can't answer a question?",
     pieces: [
       {
-        text: "It does not guess. It flags the call for a person and leaves a written summary. Pricing exceptions and unusual requests wait for approval. The daily owner report lists what is waiting.",
+        text: "It does not guess. It can transfer the call live to a staff phone and leave a written summary.",
       },
     ],
   },
@@ -58,7 +56,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "Can it book appointments straight into my calendar?",
     pieces: [
       {
-        text: "Yes, where an integration is available. Which tools connect is confirmed during scoping, before anything is built. It only offers times inside your booking rules.",
+        text: "Yes. It books into Google Calendar, Outlook, or Cal.com, inside your rules, and sends an SMS confirmation and an email confirmation.",
       },
     ],
   },
@@ -74,7 +72,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How long does it take to set up?",
     pieces: [
       {
-        text: "Simple workflows usually launch in 2–4 weeks. Comprehensive custom builds take 6–12 weeks. The timeline is confirmed in the audit. No technical expertise is required: Vocemi handles development and integration, and training and documentation are included.",
+        text: "Simple workflows usually launch in 2–4 weeks. Comprehensive custom builds take 6–12 weeks. The timeline is confirmed in the audit.",
       },
     ],
   },
@@ -82,10 +80,18 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "Who can see call recordings and caller data?",
     pieces: [
       {
-        text: "Before launch we document what is recorded, where it is stored, which providers process it, who can access it, retention, and deletion. You keep ownership of your data. See the ",
+        text: "Before launch we document what is recorded, where it is stored, who can access it, retention, and deletion. You keep ownership of your data. See the ",
       },
       { text: "security page", href: "/security" },
       { text: "." },
+    ],
+  },
+  {
+    question: "Can I keep my current business phone number?",
+    pieces: [
+      {
+        text: "Vocemi provides a new local number. You can forward calls from your own number to it, or publish the new number and use it directly.",
+      },
     ],
   },
 ];
@@ -123,14 +129,6 @@ function Prose({ pieces }: { pieces: Piece[] }) {
         )
       )}
     </>
-  );
-}
-
-function OwnerNote({ children }: { children: string }) {
-  return (
-    <p className="m-0 mt-4 border border-dashed border-ink/35 rounded-md px-4 py-3 text-[15px] leading-snug text-ink bg-white">
-      <span className="font-semibold">TODO (Pankajpreet):</span> {children}
-    </p>
   );
 }
 
@@ -235,12 +233,11 @@ export default function AiReceptionistPage() {
           </h1>
           <p className="text-[17px] leading-[1.65] text-ink/80 m-0 mb-6">
             A Vocemi AI receptionist answers your business calls 24/7, including
-            after hours and when several people call at once. It answers
-            questions from information you approve, collects the caller&apos;s
-            details, and books appointments inside your rules. Anything urgent,
-            unusual or outside those rules goes to your team. Vocemi is a
-            Calgary-based team that builds, launches and tunes it for you,
-            usually within 2–4 weeks, and you get a daily report of every call.
+            after hours and when several people call at once. It answers from
+            information you approve, collects caller details, and books inside
+            your rules. Urgent or unusual calls go to your team. Vocemi builds
+            and tunes it, usually within 2–4 weeks, and sends a daily report of
+            every call.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <TrackedLink
@@ -275,14 +272,14 @@ export default function AiReceptionistPage() {
               What happens when a customer calls
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mb-4">
-              Vocemi follows the questions, booking rules and escalation paths
-              you approve before launch. One inbound call runs in five steps.
+              One inbound call runs in five steps, from the rules you approve
+              before launch.
             </p>
             <ol className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
               <li>It answers on the first ring, in your greeting and brand voice, and says it is an automated assistant.</li>
               <li>It works out why the person is calling.</li>
               <li>It answers from approved information: hours, services, prices or ranges you approved, and policies.</li>
-              <li>It collects the details your team needs, such as name, number, reason, urgency, and anything specific to the business.</li>
+              <li>It collects name, number, reason, and urgency.</li>
               <li>It books or routes: real times inside your booking rules, or a handoff to a person.</li>
             </ol>
             <figure className="mt-5 border-l-4 border-brand bg-white px-4 py-3">
@@ -291,12 +288,10 @@ export default function AiReceptionistPage() {
                 a recording of a real call.
               </figcaption>
               <ol className="m-0 pl-5 text-[15px] leading-[1.6] text-ink/80 flex flex-col gap-1">
-                <li>Caller: I would like to book a first visit this week.</li>
-                <li>Assistant: Thanks for calling. I am the clinic&apos;s automated assistant. Are you a new patient?</li>
-                <li>Caller: Yes. Do you have anything Thursday afternoon?</li>
-                <li>Assistant: Thursday at 2:30 or 4:15 is open for a new-patient visit. Which should I hold?</li>
-                <li>Caller: 2:30. Also, can you waive the booking fee?</li>
-                <li>Assistant: I can book 2:30. A fee exception waits for the team, so I will flag that with your name and number.</li>
+                <li>Caller: I would like a first visit Thursday afternoon.</li>
+                <li>Assistant: I am the clinic&apos;s automated assistant. Thursday at 2:30 or 4:15 is open. Which should I hold?</li>
+                <li>Caller: 2:30. Can you waive the booking fee?</li>
+                <li>Assistant: I can book 2:30. A fee exception waits for the team, so I will flag it with your name and number.</li>
               </ol>
             </figure>
           </section>
@@ -311,8 +306,7 @@ export default function AiReceptionistPage() {
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mb-4">
               Common questions, new enquiries, booking, rescheduling and
               cancellation inside your rules, quote or intake details,
-              message-taking, voicemail transcription, and routing to the right
-              department. Greeting and brand voice are yours.
+              message-taking, and routing to the right person.
             </p>
             <h3 className="font-display text-lg font-bold m-0 mb-2">
               Always passed to a person
@@ -320,12 +314,9 @@ export default function AiReceptionistPage() {
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               Emergencies, clinical or legal or insurance or financial advice,
               pricing exceptions, discounts, refunds, complaints, and anything
-              unsure. Those are flagged for callback with a written summary.
+              unsure. Those calls can be transferred live to a staff phone, with
+              a written summary.
             </p>
-            <OwnerNote>
-              confirm whether a live transfer to a staff phone is supported, or
-              whether handoff is callback-with-summary only.
-            </OwnerNote>
           </section>
 
           <section>
@@ -333,10 +324,8 @@ export default function AiReceptionistPage() {
               After-hours, weekend and busy-hour coverage
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              It answers 24/7, every day, and it answers several calls at once,
-              so a second caller is not pushed to voicemail while the first is
-              still on the line. That covers lunch, time when staff are with a
-              client in person, evenings and weekends. In a 2016 study of 85 US
+              It answers 24/7, every day, including lunch, evenings, and
+              weekends, and it answers several calls at once. In a 2016 study of 85 US
               businesses by 411 Locals, 62% of calls were not answered by a
               person (voicemail or no response).{" "}
               <Link href="/blog/missed-call-statistics" className={linkClass}>
@@ -354,37 +343,24 @@ export default function AiReceptionistPage() {
               Books into your calendar
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              It offers real open times inside your rules: service types,
-              durations, buffers, and who can be booked.
+              It offers real open times inside your rules. The caller receives
+              an SMS confirmation and an email confirmation.
             </p>
-            <OwnerNote>
-              confirm whether SMS or email booking confirmations are part of the
-              standard receptionist build.
-            </OwnerNote>
             <h3 className="font-display text-lg font-bold mt-5 mb-2">
               Updates the tools you already use
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              The Managed plan covers phone, inbox, calendar and CRM. Details
-              and outcomes are written where your team already works.
+              Connected tools are Google Calendar, Outlook, and Cal.com. The
+              Managed plan also covers phone, inbox, and CRM.
             </p>
             <h3 className="font-display text-lg font-bold mt-5 mb-2">
               Integration scope is confirmed before launch
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Scoping writes down what the workflow must read or update, and
-              where a person takes over, before a connection is promised. If no
-              integration exists, staff confirm a booking request instead.
+              Vocemi provides a new local number. You can forward your own
+              number to it, or use the new number directly. If a calendar
+              connection is not ready, staff confirm the booking request.
             </p>
-            <OwnerNote>
-              confirm which calendars, CRMs and practice tools have actually been
-              connected in production before any product name is published.
-            </OwnerNote>
-            <OwnerNote>
-              confirm whether clients keep their existing number (all calls,
-              overflow, or after hours only) and whether a new local number can
-              be provided.
-            </OwnerNote>
           </section>
 
           <section>
@@ -393,15 +369,13 @@ export default function AiReceptionistPage() {
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               You approve the call flow, the answers, and the booking rules
-              before launch. Pricing exceptions wait for you. Every call is
-              transcribed, logged and searchable. 100% of calls are logged and
-              reported, and a daily summary lands in
-              your inbox. The{" "}
+              before launch. Every call is transcribed, logged, and searchable.
+              100% of calls are logged and reported, and a daily summary lands
+              in your inbox. The{" "}
               <Link href="/#owner-visibility" className={linkClass}>
                 owner visibility
               </Link>{" "}
-              sample is labelled sample data. The Managed plan includes a
-              monthly improvement review.
+              sample is labelled sample data.
             </p>
           </section>
 
@@ -410,15 +384,11 @@ export default function AiReceptionistPage() {
               From first call to live in 2–4 weeks
             </h2>
             <ol className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>Pick the call type that is costing you the most, such as after-hours new enquiries. The $250 AI Employee Audit can do this mapping, and it is credited toward setup.</li>
+              <li>Pick the call type that is costing you the most, such as after-hours new enquiries. The $250 USD AI Employee Audit can do this mapping, and it is credited toward setup.</li>
               <li>Write the rules: questions, approved answers, booking rules and escalation paths.</li>
               <li>Test expected calls and edge cases, including a question it should not know.</li>
               <li>Go live, review real calls, and improve.</li>
             </ol>
-            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mt-3">
-              Simple builds usually take 2–4 weeks. Comprehensive custom builds
-              take 6–12 weeks. The timeline is confirmed in the audit.
-            </p>
           </section>
 
           <section>
@@ -426,13 +396,12 @@ export default function AiReceptionistPage() {
               Client example: 3D Lifestyle, a Calgary med spa
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              3D Lifestyle is a med spa in Calgary NE. The receptionist workflow
-              answers calls while the front desk is helping clients in person, so
-              a client is never missed because the desk was busy, and routine
-              enquiries continue without a staff member leaving the client in
-              front of them. iSmart Insurance is a separate published example:
-              intake collects quote details without a broker on the call, saving
-              roughly 10 minutes per quote, a client-supplied figure.{" "}
+              3D Lifestyle is a med spa in Calgary NE. The receptionist answers
+              while the front desk is with a client, so a routine enquiry does
+              not pull staff away. iSmart Insurance is a separate published
+              example: intake collects quote details without a broker on the
+              call, saving roughly 10 minutes per quote, a client-supplied
+              figure. No client quote or logo is shown.{" "}
               <Link href="/industries/med-spas" className={linkClass}>
                 See how it works for med spas
               </Link>
@@ -442,38 +411,24 @@ export default function AiReceptionistPage() {
               Workflow description only; no unverified performance result is
               implied.
             </p>
-            <OwnerNote>
-              confirm written permission before a client quote or logo from 3D
-              Lifestyle, iSmart Insurance or Jag Duggal is added.
-            </OwnerNote>
           </section>
 
           <section>
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
               What an AI receptionist costs with Vocemi
             </h2>
-            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mb-3">
-              The setup fee is for a workflow built for your calls. Amounts
-              match the homepage and are illustrative.
-            </p>
             <ul className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>AI Employee Audit: $250 one-time, credited toward setup.</li>
-              <li>One-Workflow AI Employee: $1,500 one-time setup + from $300/mo. One role on phone, inbox or forms, approval gates, and a daily owner report.</li>
-              <li>Managed AI Employee: $3,000 setup + $1,500/mo. Phone, inbox, calendar and CRM, booking and follow-up, escalation rules, and a monthly improvement review.</li>
+              <li>AI Employee Audit: $250 USD, one-time, credited toward setup.</li>
+              <li>One-Workflow AI Employee: $1,500 USD one-time setup + from $300 USD/mo.</li>
+              <li>Managed AI Employee: $3,000 USD setup + $1,500 USD/mo.</li>
             </ul>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mt-3">
-              Illustrative pricing. Every engagement is scoped to your call
-              volume and tools on a free call.{" "}
+              Prices are USD only. Scope is confirmed on a free call.{" "}
               <Link href="/#pricing" className={linkClass}>
                 Pricing
               </Link>
               .
             </p>
-            <OwnerNote>
-              confirm the currency of these prices, and whether visitors in the
-              US and the UK should see a converted amount or a note that the
-              figures are billed in one currency.
-            </OwnerNote>
           </section>
 
           <section>
@@ -482,8 +437,8 @@ export default function AiReceptionistPage() {
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               An AI receptionist suits repeatable calls and after-hours volume.
-              A live answering service suits calls that need a person&apos;s
-              judgment every time. Many businesses mix them. Read{" "}
+              A live answering service suits calls that need a person every
+              time. Read{" "}
               <Link
                 href="/blog/ai-receptionist-vs-answering-service"
                 className={linkClass}
@@ -523,20 +478,17 @@ export default function AiReceptionistPage() {
                 insurance brokerages
               </Link>
               . Jag Duggal&apos;s published property-management workflow handles
-              tenant enquiries day or night. Callers who prefer another language
-              can read{" "}
+              tenant enquiries day or night. For other languages, read{" "}
               <Link
                 href="/blog/multilingual-voice-ai-calgary"
                 className={linkClass}
               >
                 the multilingual voice AI guide
               </Link>
-              .
+              . The receptionist is built for English. It can support more than
+              one language, and no language other than English is offered as
+              production-ready.
             </p>
-            <OwnerNote>
-              confirm which languages are supported in production before any
-              language is named as offered.
-            </OwnerNote>
           </section>
 
           <section>
@@ -568,21 +520,7 @@ export default function AiReceptionistPage() {
                   </p>
                 </div>
               ))}
-              <div className="border-t border-ink/15 pt-4">
-                <h3 className="font-display text-[1.05rem] font-bold m-0 mb-2">
-                  Can I keep my current business phone number?
-                </h3>
-                <OwnerNote>
-                  confirm whether clients keep their existing number, and whether
-                  a new local number can be provided, before this question has a
-                  published answer.
-                </OwnerNote>
-              </div>
             </div>
-            <OwnerNote>
-              confirm that the automated-assistant line in the greeting is on by
-              default for every client.
-            </OwnerNote>
           </section>
         </div>
 

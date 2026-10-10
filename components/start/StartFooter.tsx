@@ -22,6 +22,7 @@ export default function StartFooter() {
         </p>
         <NapLine
           emailPlacement="start_footer"
+          linkPhone={false}
           className="text-[14.5px] leading-relaxed text-ink/75 m-0 mb-3"
           linkClassName="text-ink/75 hover:text-brand transition-colors"
         />
