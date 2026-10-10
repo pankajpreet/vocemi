@@ -52,4 +52,4 @@ Recording notices, AI disclosure and consent apply the same way in every languag
 
 If a noticeable share of your callers would prefer another language, multilingual answering can make your business easier to reach for those customers. It's also cheaper than staffing every language. Start with one or two languages, test them with real speakers, and expand from there.
 
-Want to see whether it fits your business? [Get in touch](/contact) and tell us which languages your callers use. We'll tell you honestly what we'd test first.
+Want to see whether it fits your business? [Get in touch](/contact) and tell us which languages your callers use. We'll tell you honestly what we'd test first. Those callers still reach an [AI receptionist](/services/ai-receptionist) that answers from information you approve.

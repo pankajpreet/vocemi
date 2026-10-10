@@ -65,7 +65,7 @@ function ResultValue({ value, label, size = "sm" }: { value: string; label: stri
 function BookButton() {
   return (
     <TrackedLink
-      href={siteConfig.bookCallUrl}
+      href={siteConfig.bookCallUrl("homepage_opportunity_estimator")}
       event="book_call_clicked"
       properties={{ placement: "homepage_opportunity_estimator" }}
       external

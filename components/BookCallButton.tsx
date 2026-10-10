@@ -27,12 +27,13 @@ export default function BookCallButton({
   };
 
   // bookCallUrl falls back to /contact when no scheduler is configured, and
-  // that should stay in the current tab.
-  const isExternal = /^https?:\/\//.test(siteConfig.bookCallUrl);
+  // that should stay in the current tab. Cal.com links include UTMs.
+  const href = siteConfig.bookCallUrl(placement);
+  const isExternal = /^https?:\/\//.test(href);
 
   return (
     <Link
-      href={siteConfig.bookCallUrl}
+      href={href}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onClick={() =>
         trackEvent("book_call_clicked", {

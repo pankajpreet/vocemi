@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -84,6 +85,35 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               {paragraph}
             </p>
           ))}
+          {industry.inBody ? (
+            <p className="text-lg leading-[1.65] text-ink/60 m-0 mb-8">
+              {industry.inBody.marks.reduce<ReactNode[]>(
+                (nodes, mark, markIndex) => {
+                  const next: React.ReactNode[] = [];
+                  nodes.forEach((node, nodeIndex) => {
+                    if (typeof node !== "string" || !node.includes(mark.phrase)) {
+                      next.push(node);
+                      return;
+                    }
+                    const [before, after] = node.split(mark.phrase);
+                    next.push(before);
+                    next.push(
+                      <Link
+                        key={`${mark.href}-${markIndex}-${nodeIndex}`}
+                        href={mark.href}
+                        className="text-brand underline decoration-brand/30 underline-offset-2"
+                      >
+                        {mark.phrase}
+                      </Link>
+                    );
+                    next.push(after);
+                  });
+                  return next;
+                },
+                [industry.inBody.sentence]
+              )}
+            </p>
+          ) : null}
           <div className="flex flex-col sm:flex-row gap-3">
             <TrackedLink
               href={demoHref}
@@ -95,7 +125,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               <ArrowRight size={17} />
             </TrackedLink>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("industry_hero")}
               event="book_call_clicked"
               properties={{ placement: "industry_hero", industry: industry.slug }}
               external

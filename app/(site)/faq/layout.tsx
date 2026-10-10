@@ -1,13 +1,15 @@
 import { Metadata } from "next";
+import { FaqStructuredData } from "@/components/StructuredData";
+import { pageFaqs } from "@/lib/faqContent";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Voice AI FAQs: Setup, Privacy & Business Use",
   description:
-    "Answers about how Voice AI works, implementation timelines, technical requirements, privacy, and suitable business use cases.",
+    "Answers on Vocemi pricing, AI receptionist and lead reactivation workflows, Canadian calling rules, and how to get in touch.",
   path: "/faq",
   socialDescription:
-    "Clear answers about Voice AI implementation, technical requirements, privacy, and business use cases.",
+    "Pricing, receptionist and lead reactivation workflows, Canadian calling rules, and how to reach Vocemi.",
 });
 
 export default function FAQLayout({
@@ -15,8 +17,11 @@ export default function FAQLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // FAQPage markup lives on the homepage, which renders the same questions;
-  // repeating it here would only duplicate it.
-  return <>{children}</>;
+  return (
+    <>
+      <FaqStructuredData faqs={pageFaqs} />
+      {children}
+    </>
+  );
 }
 

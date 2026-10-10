@@ -26,7 +26,7 @@ export default function CtaSection() {
           <div className="relative flex flex-col items-center">
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <TrackedLink
-                href={siteConfig.bookCallUrl}
+                href={siteConfig.bookCallUrl("homepage_final_cta")}
                 event="book_call_clicked"
                 properties={{ placement: "homepage_final_cta" }}
                 external

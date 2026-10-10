@@ -25,55 +25,79 @@ const areaServed = [
   { '@type': 'Country', name: 'United Kingdom' },
 ]
 
+export const organizationId = `${siteConfig.url}/#organization`
+
 export default function StructuredData() {
-  const organizationSchema = {
+  // Published prices are USD. This graph has no price, priceRange, or Offer.
+  // Google Business Profile hours are by appointment only. Do not add
+  // openingHoursSpecification.
+  const organizationGraph = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.svg`,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: siteConfig.address.locality,
-      addressRegion: siteConfig.address.region,
-      addressCountry: siteConfig.address.country,
-    },
-    areaServed,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: siteConfig.contact.email,
-      contactType: 'Customer Service',
-    },
-    founder: {
-      '@type': 'Person',
-      name: siteConfig.founder.name,
-      jobTitle: siteConfig.founder.role,
-      image: `${siteConfig.url}${siteConfig.founder.image}`,
-      sameAs: [siteConfig.founder.linkedin],
-    },
-    sameAs: [
-      siteConfig.social.linkedin,
-      siteConfig.social.facebook,
-      siteConfig.social.youtube,
-      siteConfig.social.googleBusiness,
+    '@graph': [
+      {
+        '@type': ['Organization', 'ProfessionalService'],
+        '@id': organizationId,
+        name: siteConfig.name,
+        url: siteConfig.url,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteConfig.url}/logo.png`,
+          width: 512,
+          height: 512,
+        },
+        image: `${siteConfig.url}/og-image.png`,
+        description: siteConfig.description,
+        email: siteConfig.contact.email,
+        telephone: siteConfig.contact.phoneSchema,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: siteConfig.address.locality,
+          addressRegion: siteConfig.address.region,
+          addressCountry: siteConfig.address.country,
+        },
+        hasMap: siteConfig.social.googleBusiness,
+        areaServed,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          email: siteConfig.contact.email,
+          telephone: siteConfig.contact.phoneSchema,
+          areaServed: ['CA', 'US', 'GB'],
+          availableLanguage: ['English'],
+        },
+        founder: {
+          '@type': 'Person',
+          '@id': `${siteConfig.url}/about#founder`,
+          name: siteConfig.founder.name,
+          jobTitle: siteConfig.founder.role,
+          image: `${siteConfig.url}${siteConfig.founder.image}`,
+          sameAs: [siteConfig.founder.linkedin],
+        },
+        sameAs: [
+          siteConfig.social.linkedin,
+          siteConfig.social.facebook,
+          siteConfig.social.youtube,
+          siteConfig.social.googleBusiness,
+        ],
+        knowsAbout: [
+          'Voice AI',
+          'AI receptionist',
+          'Lead reactivation',
+          'Appointment booking automation',
+          'Call analytics',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${siteConfig.url}/#website`,
+        url: siteConfig.url,
+        name: siteConfig.name,
+        publisher: { '@id': organizationId },
+      },
     ],
   }
 
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-  }
-
-  return (
-    <>
-      <JsonLd data={organizationSchema} />
-      <JsonLd data={websiteSchema} />
-    </>
-  )
+  return <JsonLd data={organizationGraph} />
 }
 
 export function ServiceStructuredData() {
@@ -82,84 +106,11 @@ export function ServiceStructuredData() {
     '@type': 'Service',
     serviceType: 'Voice AI Solutions',
     url: `${siteConfig.url}/services`,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { '@id': organizationId },
     areaServed,
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Voice AI Services',
-      itemListElement: siteConfig.services.map((service, index) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service.title,
-          description: service.description,
-        },
-        position: index + 1,
-      })),
-    },
   }
 
   return <JsonLd data={serviceSchema} />
-}
-
-export function ServiceDetailStructuredData({
-  name,
-  description,
-  path,
-}: {
-  name: string
-  description: string
-  path: string
-}) {
-  const url = `${siteConfig.url}${path}`
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name,
-    description,
-    url,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    areaServed,
-  }
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Services',
-        item: `${siteConfig.url}/services`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name,
-        item: url,
-      },
-    ],
-  }
-
-  return (
-    <>
-      <JsonLd data={serviceSchema} />
-      <JsonLd data={breadcrumbSchema} />
-    </>
-  )
 }
 
 export function FaqStructuredData({ faqs }: { faqs: Faq[] }) {
@@ -229,15 +180,7 @@ export function ArticleStructuredData({
       url: `${siteConfig.url}/about`,
       sameAs: [siteConfig.founder.linkedin],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${siteConfig.url}/logo.svg`,
-      },
-    },
+    publisher: { '@id': organizationId },
   }
 
   return <JsonLd data={articleSchema} />
@@ -259,11 +202,7 @@ export function IndustryStructuredData({
     name: `AI receptionist for ${name}`,
     description,
     url: `${siteConfig.url}${path}`,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: { '@id': organizationId },
     audience: {
       '@type': 'BusinessAudience',
       audienceType: name,
