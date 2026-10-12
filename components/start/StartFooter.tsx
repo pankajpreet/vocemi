@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NapLine, { ProfileLinks } from "@/components/NapLine";
 import { siteConfig } from "@/lib/config";
 
 export default function StartFooter() {
@@ -15,10 +16,20 @@ export default function StartFooter() {
           </span>
           Vocemi
         </Link>
-        <p className="text-[13.5px] text-ink/65 m-0 mb-4">
+        <p className="text-[13.5px] text-ink/65 m-0 mb-3">
           AI voice agents &amp; business automation &middot;{" "}
           {siteConfig.location}
         </p>
+        <NapLine
+          emailPlacement="start_footer"
+          linkPhone={false}
+          className="text-[14.5px] leading-relaxed text-ink/75 m-0 mb-3"
+          linkClassName="text-ink/75 hover:text-brand transition-colors"
+        />
+        <ProfileLinks
+          className="flex flex-wrap gap-x-5 gap-y-2 text-[14.5px] mb-4"
+          linkClassName="text-ink/75 hover:text-brand transition-colors"
+        />
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/65">
           <Link href="/privacy" className="hover:text-brand transition-colors">
             Privacy

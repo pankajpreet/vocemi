@@ -26,7 +26,7 @@ export default function StartCta() {
             worth automating in your business &mdash; no charge, no pitch deck.
           </p>
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("start_final_cta")}
             event="book_call_clicked"
             properties={{ placement: "start_final_cta" }}
             external

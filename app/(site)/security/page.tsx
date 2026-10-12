@@ -59,7 +59,7 @@ export default function SecurityPage() {
           access, retention, and deletion rules are documented before launch.
         </p>
         <TrackedLink
-          href={siteConfig.bookCallUrl}
+          href={siteConfig.bookCallUrl("security_hero")}
           event="book_call_clicked"
           properties={{ placement: "security_hero" }}
           external

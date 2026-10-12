@@ -51,6 +51,7 @@ const knowsAbout = [
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteConfig.url}/about#founder`,
   name: founder.name,
   jobTitle: founder.role,
   image: `${siteConfig.url}${founder.image}`,
@@ -60,11 +61,7 @@ const personSchema = {
     "@type": "CollegeOrUniversity",
     name: "Punjab Technical University",
   },
-  worksFor: {
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-  },
+  worksFor: { "@id": `${siteConfig.url}/#organization` },
 };
 
 const principles = [
@@ -115,7 +112,7 @@ export default function AboutPage() {
               exceptions back to a person.
             </p>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("about_hero")}
               event="book_call_clicked"
               properties={{ placement: "about_hero" }}
               external
@@ -248,7 +245,7 @@ export default function AboutPage() {
               <ArrowRight size={17} />
             </TrackedLink>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("about_final_cta")}
               event="book_call_clicked"
               properties={{ placement: "about_final_cta" }}
               external

@@ -61,4 +61,4 @@ This is how we build every workflow at Vocemi. We agree the approved path and it
 
 ## Should you switch or wait?
 
-If you tried a voice bot a year or two ago and found it stiff, it's worth another look. The conversation quality has moved a lot. If you haven't tried one, the best test is still a real conversation: interrupt it, change your mind halfway through a sentence, and judge for yourself. [Our demo page](/start) is a good place to start.
+If you tried a voice bot a year or two ago and found it stiff, it's worth another look. The conversation quality has moved a lot. If you haven't tried one, the best test is still a real conversation: interrupt it, change your mind halfway through a sentence, and judge for yourself. [Our demo page](/start) is a good place to start. For the inbound workflow on your own line, see how an [AI receptionist](/services/ai-receptionist) is scoped.

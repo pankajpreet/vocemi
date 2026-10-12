@@ -6,6 +6,7 @@ import BookCallButton from "@/components/BookCallButton";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
+import NapLine from "@/components/NapLine";
 import {
   contactLimits,
   validateContactForm,
@@ -134,7 +135,7 @@ export default function ContactPage() {
             we&apos;ll respond as soon as possible.
           </motion.p>
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("contact_hero")}
             event="book_call_clicked"
             properties={{ placement: "contact_hero" }}
             external
@@ -342,6 +343,19 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="bg-primary-secondary/50 backdrop-blur-sm border border-primary-accent/20 p-8 rounded-2xl shadow-lg">
                 <h2 className="text-3xl font-bold mb-6 text-white">Contact Information</h2>
+                <NapLine
+                  emailPlacement="contact_page"
+                  className="text-[15.5px] leading-relaxed text-gray-300 m-0 mb-4"
+                  linkClassName="text-primary-accent hover:text-primary-accent-cyan transition-colors"
+                />
+                <a
+                  href={siteConfig.social.googleBusiness}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-primary-accent hover:text-primary-accent-cyan transition-colors mb-6"
+                >
+                  Read our Google reviews
+                </a>
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <Mail className="text-primary-accent mr-4 mt-1 flex-shrink-0" />

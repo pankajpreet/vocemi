@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
+import { industryGuides } from "@/lib/industryContent";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -29,6 +30,44 @@ export default function BlogIndexPage() {
         <p className="text-lg leading-[1.65] text-ink/60 m-0">
           Practical guides on answering, booking and follow-up, plus what new
           voice AI releases actually mean for a small business phone line.
+        </p>
+        <p className="text-lg leading-[1.65] text-ink/60 m-0 mt-4">
+          Written for owners and operators of service businesses who are
+          evaluating AI receptionists and voice AI.
+        </p>
+        <p className="text-[15.5px] leading-[1.7] text-ink/70 m-0 mt-4">
+          <Link href="/services" className="text-brand hover:text-brand-dark">
+            Services
+          </Link>
+          {" · "}
+          <Link
+            href="/services/ai-receptionist"
+            className="text-brand hover:text-brand-dark"
+          >
+            AI receptionist
+          </Link>
+          {" · "}
+          <Link
+            href="/services/lead-reactivation"
+            className="text-brand hover:text-brand-dark"
+          >
+            Lead reactivation
+          </Link>
+          {" · "}
+          <Link href="/industries" className="text-brand hover:text-brand-dark">
+            Industries
+          </Link>
+          {industryGuides.map((industry) => (
+            <span key={industry.slug}>
+              {" · "}
+              <Link
+                href={`/industries/${industry.slug}`}
+                className="text-brand hover:text-brand-dark"
+              >
+                {industry.name}
+              </Link>
+            </span>
+          ))}
         </p>
       </div>
 

@@ -86,7 +86,7 @@ export default function StickyCta() {
           </TrackedLink>
         )}
         <TrackedLink
-          href={siteConfig.bookCallUrl}
+          href={siteConfig.bookCallUrl("start_sticky_mobile")}
           event="book_call_clicked"
           properties={{ placement: "start_sticky_mobile" }}
           external

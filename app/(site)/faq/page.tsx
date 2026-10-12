@@ -5,13 +5,10 @@ import FAQAccordion from "@/components/FAQAccordion";
 import BookCallButton from "@/components/BookCallButton";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
-import { homeFaqs } from "@/lib/homeContent";
+import { pageFaqs } from "@/lib/faqContent";
 
 export default function FAQPage() {
-  const faqs = homeFaqs.map((faq) => ({
-    question: faq.q,
-    answer: faq.a,
-  }));
+  const faqs = pageFaqs;
 
   return (
     <div className="min-h-screen">
@@ -35,7 +32,7 @@ export default function FAQPage() {
             Quick answers to common Voice AI questions
           </motion.p>
           <TrackedLink
-            href={siteConfig.bookCallUrl}
+            href={siteConfig.bookCallUrl("faq_hero")}
             event="book_call_clicked"
             properties={{ placement: "faq_hero" }}
             external
@@ -50,6 +47,15 @@ export default function FAQPage() {
       <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FAQAccordion faqs={faqs} />
+          <p className="mt-8 text-[15px] leading-relaxed text-gray-300 m-0">
+            <a className="text-primary-accent underline" href="/services/ai-receptionist">
+              AI receptionist
+            </a>
+            {" · "}
+            <a className="text-primary-accent underline" href="/services/lead-reactivation">
+              Lead reactivation and calling rules
+            </a>
+          </p>
         </div>
       </section>
 

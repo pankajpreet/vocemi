@@ -54,7 +54,7 @@ export default function Pricing() {
                   ))}
                 </div>
                 <TrackedLink
-                  href={siteConfig.bookCallUrl}
+                  href={siteConfig.bookCallUrl("homepage_pricing")}
                   event="book_call_clicked"
                   properties={{
                     placement: "homepage_pricing",

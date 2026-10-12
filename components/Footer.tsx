@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
+import NapLine, { ProfileLinks } from "@/components/NapLine";
 import { serviceGuides } from "@/lib/serviceContent";
 import { industryGuides } from "@/lib/industryContent";
 
@@ -130,7 +131,7 @@ export default function Footer() {
               Contact form
             </a>
             <TrackedLink
-              href={siteConfig.bookCallUrl}
+              href={siteConfig.bookCallUrl("footer")}
               event="book_call_clicked"
               properties={{ placement: "footer" }}
               external
@@ -142,14 +143,25 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/65">
-        <span>&copy; {currentYear} Vocemi. All rights reserved.</span>
-        <a href="/privacy" className="hover:text-brand transition-colors">
-          Privacy
-        </a>
-        <a href="/security" className="hover:text-brand transition-colors">
-          Security
-        </a>
+      <div className="max-w-[1180px] mx-auto mt-9 px-6 md:px-8 pt-6 border-t border-ink/10">
+        <NapLine
+          emailPlacement="footer"
+          className="text-[14.5px] leading-relaxed text-ink/75 m-0 mb-3"
+          linkClassName="text-ink/75 hover:text-brand transition-colors"
+        />
+        <ProfileLinks
+          className="flex flex-wrap gap-x-5 gap-y-2 text-[14.5px] mb-6"
+          linkClassName="text-ink/75 hover:text-brand transition-colors"
+        />
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-ink/65">
+          <span>&copy; {currentYear} Vocemi. All rights reserved.</span>
+          <a href="/privacy" className="hover:text-brand transition-colors">
+            Privacy
+          </a>
+          <a href="/security" className="hover:text-brand transition-colors">
+            Security
+          </a>
+        </div>
       </div>
     </footer>
   );
