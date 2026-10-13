@@ -274,7 +274,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BookCallButton
                 variant="secondary"
-                className="bg-white text-primary-accent hover:bg-gray-100 border-0"
+                className="bg-white text-primary-accent border-0 hover:bg-gray-100 hover:text-primary-accent focus:bg-white focus:text-primary-accent focus-visible:bg-white focus-visible:text-primary-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark focus-visible:ring-offset-2"
               >
                 Book a free call
               </BookCallButton>

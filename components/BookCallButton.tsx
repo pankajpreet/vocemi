@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 import { siteConfig } from "@/lib/config";
 import { trackEvent } from "@/lib/analytics";
 
@@ -22,8 +23,10 @@ export default function BookCallButton({
   const variants = {
     primary:
       "bg-gradient-to-r from-primary-accent to-primary-accent-alt text-white hover:shadow-lg hover:shadow-primary-accent/40 hover:-translate-y-0.5",
+    // No hover:text-white here. text-white already covers the hover fill, and a
+    // hover-only text color survives when a caller overrides the resting color.
     secondary:
-      "bg-transparent border-2 border-primary-accent text-white hover:bg-primary-accent hover:text-white",
+      "bg-transparent border-2 border-primary-accent text-white hover:bg-primary-accent",
   };
 
   // bookCallUrl falls back to /contact when no scheduler is configured, and
@@ -41,7 +44,10 @@ export default function BookCallButton({
           placement,
         })
       }
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      // Stylesheet order, not class-string order, decides Tailwind conflicts.
+      // twMerge drops the variant utility when className sets the same property
+      // (bg-white vs bg-transparent, text-primary-accent vs text-white).
+      className={twMerge(baseStyles, variants[variant], className)}
     >
       {children || "Book a free call"}
     </Link>
