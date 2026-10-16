@@ -294,13 +294,11 @@ export default function LeadReactivationPage() {
             <h2 className="font-display text-2xl font-extrabold m-0 mb-3">
               Step 2: Consent and calling rules in Canada, the US and the UK
             </h2>
-            <p className="m-0 mb-3 border border-white px-3 py-2 text-[15px] font-semibold">
-              Pending legal review
-            </p>
-            <p className="text-[16px] leading-[1.7] text-white/85 m-0 mb-4">
-              This is a plain-language summary as of October 2026, not legal
-              advice. Rules change. Check a specific campaign with a lawyer
-              before the first sales call.
+            <p className="text-[16px] leading-[1.7] text-white/60 m-0 mb-4">
+              Calling, texting and do-not-call rules vary by country and
+              province. Each client confirms the rules that apply to their
+              business before a campaign goes live. This page is general
+              information, not legal advice.
             </p>
 
             <h3 className="font-display text-lg font-bold m-0 mb-2">Canada</h3>
