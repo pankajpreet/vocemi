@@ -28,6 +28,10 @@ const config: Config = {
           accent: "#7D3CFE",
           "accent-alt": "#6B1DAF",
           "accent-cyan": "#4DECE1",
+          // Tints of accent for link text on the dark gradient (#11121A–#222244).
+          // Resting and hover/focus each clear WCAG AA 4.5:1 on both stops.
+          "accent-on-dark": "#B18AFE",
+          "accent-on-dark-hover": "#C5A7FF",
         },
         text: {
           primary: "#FFFFFF",

@@ -149,7 +149,7 @@ export default function ServicesPage() {
                 <p className="text-gray-300 leading-relaxed mb-5">
                   {service.description}
                 </p>
-                <span className="inline-flex items-center gap-2 font-semibold text-primary-accent group-hover:text-white transition-colors">
+                <span className="inline-flex items-center gap-2 font-semibold text-primary-accent-on-dark group-hover:text-white group-focus:text-primary-accent-on-dark-hover group-focus-visible:text-primary-accent-on-dark-hover transition-colors">
                   Read the service guide
                   <ArrowRight size={17} />
                 </span>
