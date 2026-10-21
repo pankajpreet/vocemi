@@ -48,11 +48,17 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FAQAccordion faqs={faqs} />
           <p className="mt-8 text-[15px] leading-relaxed text-gray-300 m-0">
-            <a className="text-primary-accent underline" href="/services/ai-receptionist">
+            <a
+              className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
+              href="/services/ai-receptionist"
+            >
               AI receptionist
             </a>
             {" · "}
-            <a className="text-primary-accent underline" href="/services/lead-reactivation">
+            <a
+              className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
+              href="/services/lead-reactivation"
+            >
               Lead reactivation and calling rules
             </a>
           </p>
@@ -79,7 +85,7 @@ export default function FAQPage() {
               </BookCallButton>
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base bg-transparent border-2 border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-white transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base bg-transparent border-2 border-primary-accent-on-dark text-primary-accent-on-dark hover:border-primary-accent hover:bg-primary-accent hover:text-white transition-all duration-300"
               >
                 Contact Us
               </a>

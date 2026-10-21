@@ -346,13 +346,13 @@ export default function ContactPage() {
                 <NapLine
                   emailPlacement="contact_page"
                   className="text-[15.5px] leading-relaxed text-gray-300 m-0 mb-4"
-                  linkClassName="text-primary-accent hover:text-primary-accent-cyan transition-colors"
+                  linkClassName="text-primary-accent-on-dark hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
                 />
                 <a
                   href={siteConfig.social.googleBusiness}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-primary-accent hover:text-primary-accent-cyan transition-colors mb-6"
+                  className="inline-block text-primary-accent-on-dark hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors mb-6"
                 >
                   Read our Google reviews
                 </a>
@@ -365,7 +365,7 @@ export default function ContactPage() {
                         href={`mailto:${siteConfig.contact.email}`}
                         event="email_clicked"
                         properties={{ placement: "contact_page" }}
-                        className="text-primary-accent hover:text-primary-accent-cyan transition-colors"
+                        className="text-primary-accent-on-dark hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
                       >
                         {siteConfig.contact.email}
                       </TrackedLink>
