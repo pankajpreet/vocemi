@@ -85,6 +85,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
     pageEntry(`${baseUrl}/start`, startSources, 'monthly', 0.9),
     pageEntry(
+      `${baseUrl}/pricing`,
+      [...siteShell, 'app/(site)/pricing/page.tsx', 'lib/plans.ts', 'lib/pricingFaq.ts'],
+      'monthly',
+      0.9
+    ),
+    pageEntry(
+      `${baseUrl}/free-trial`,
+      [...siteShell, 'app/(site)/free-trial/page.tsx', 'components/site/TrialForm.tsx'],
+      'monthly',
+      0.9
+    ),
+    pageEntry(
+      `${baseUrl}/results`,
+      [...siteShell, 'app/(site)/results/page.tsx'],
+      'monthly',
+      0.8
+    ),
+    pageEntry(
+      `${baseUrl}/how-it-works`,
+      [...siteShell, 'app/(site)/how-it-works/page.tsx', 'lib/pricingFaq.ts'],
+      'monthly',
+      0.7
+    ),
+    pageEntry(
       `${baseUrl}/services`,
       [...siteShell, 'app/(site)/services/page.tsx', 'app/(site)/services/layout.tsx'],
       'monthly',

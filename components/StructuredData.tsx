@@ -1,4 +1,6 @@
 import { siteConfig } from '@/lib/config'
+import { isStandardPlan, plans } from '@/lib/plans'
+import { pricingIntro } from '@/lib/pricingFaq'
 
 type Faq = {
   question: string
@@ -15,14 +17,8 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
 }
 
 const areaServed = [
-  { '@type': 'City', name: 'Calgary' },
-  { '@type': 'City', name: 'Edmonton' },
-  { '@type': 'State', name: 'Alberta' },
-  { '@type': 'State', name: 'Ontario' },
-  { '@type': 'City', name: 'Toronto' },
   { '@type': 'Country', name: 'Canada' },
   { '@type': 'Country', name: 'United States' },
-  { '@type': 'Country', name: 'United Kingdom' },
 ]
 
 export const organizationId = `${siteConfig.url}/#organization`
@@ -62,7 +58,7 @@ export default function StructuredData() {
           contactType: 'customer service',
           email: siteConfig.contact.email,
           telephone: siteConfig.contact.phoneSchema,
-          areaServed: ['CA', 'US', 'GB'],
+          areaServed: ['CA', 'US'],
           availableLanguage: ['English'],
         },
         founder: {
@@ -98,6 +94,45 @@ export default function StructuredData() {
   }
 
   return <JsonLd data={organizationGraph} />
+}
+
+export function PricingStructuredData() {
+  const offers = plans.map((plan) => {
+    if (isStandardPlan(plan)) {
+      return {
+        '@type': 'Offer',
+        name: plan.name,
+        price: plan.usd,
+        priceCurrency: 'USD',
+        url: `${siteConfig.url}/pricing`,
+        description: `${plan.minutes} minutes a month (about ${plan.approxCalls} calls). ${plan.terms}`,
+      }
+    }
+    return {
+      '@type': 'Offer',
+      name: plan.name,
+      price: plan.fromUsd,
+      priceCurrency: 'USD',
+      url: `${siteConfig.url}/pricing`,
+      description: plan.tagline,
+    }
+  })
+
+  return (
+    <JsonLd
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'AI receptionist',
+        serviceType: 'AI receptionist',
+        description: pricingIntro,
+        url: `${siteConfig.url}/pricing`,
+        provider: { '@id': organizationId },
+        areaServed,
+        offers,
+      }}
+    />
+  )
 }
 
 export function ServiceStructuredData() {

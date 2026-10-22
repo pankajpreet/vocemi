@@ -50,11 +50,11 @@ export default function PrivacyPage() {
             The AI voice demo
           </h2>
           <p className="text-[15.5px] leading-[1.7] text-ink/65 m-0">
-            The live demo is powered by Retell AI. When you start it, your
+            The live demo is powered by a voice provider. When you start it, your
             browser asks your permission to use the microphone, and your speech
-            is processed by Retell so the agent can reply. The demo is a
+            is processed so the agent can reply. The demo is a
             demonstration, not a real appointment line &mdash; please don&apos;t
-            share anything sensitive with it. Retell handles that audio under
+            share anything sensitive with it. That provider handles the audio under
             their own privacy policy. Starting the demo also loads Google
             reCAPTCHA, which checks the request isn&apos;t automated and is
             covered by Google&apos;s privacy policy and terms. Nothing from

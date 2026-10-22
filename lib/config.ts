@@ -11,25 +11,27 @@ export type BookCallUtm = {
 };
 
 /**
- * Booking URL for one button. Cal.com links get UTMs so a completed booking
- * can be tied to the control that opened it. `placement` is the same string
- * already sent with `book_call_clicked` and is always `utm_content`.
- * Defaults are vocemi.com / website / book_call. A page may override
- * source, medium, and campaign. Other hosts, and the /contact fallback,
+ * Cal.com links get UTMs so a completed booking can be tied to the control
+ * that opened it. `placement` is always `utm_content`. Defaults are
+ * vocemi.com / website / book_call. Other hosts, and the /contact fallback,
  * are returned unchanged.
  */
-export function bookCallHref(placement: string, utm?: BookCallUtm): string {
-  if (!/^https?:\/\//.test(bookCallBaseUrl)) return bookCallBaseUrl;
+export function withBookingUtms(
+  baseUrl: string,
+  placement: string,
+  utm?: BookCallUtm
+): string {
+  if (!/^https?:\/\//.test(baseUrl)) return baseUrl;
 
   let url: URL;
   try {
-    url = new URL(bookCallBaseUrl);
+    url = new URL(baseUrl);
   } catch {
-    return bookCallBaseUrl;
+    return baseUrl;
   }
 
   const host = url.hostname.toLowerCase();
-  if (host !== "cal.com" && !host.endsWith(".cal.com")) return bookCallBaseUrl;
+  if (host !== "cal.com" && !host.endsWith(".cal.com")) return baseUrl;
 
   url.searchParams.set("utm_source", utm?.source ?? "vocemi.com");
   url.searchParams.set("utm_medium", utm?.medium ?? "website");
@@ -38,11 +40,48 @@ export function bookCallHref(placement: string, utm?: BookCallUtm): string {
   return url.toString();
 }
 
+/**
+ * Booking URL for one button. Cal.com links get UTMs so a completed booking
+ * can be tied to the control that opened it. `placement` is the same string
+ * already sent with `book_call_clicked` and is always `utm_content`.
+ * Defaults are vocemi.com / website / book_call. A page may override
+ * source, medium, and campaign. Other hosts, and the /contact fallback,
+ * are returned unchanged.
+ */
+export function bookCallHref(placement: string, utm?: BookCallUtm): string {
+  return withBookingUtms(bookCallBaseUrl, placement, utm);
+}
+
+/**
+ * Demo line for "Call our AI" buttons. Stays the placeholder until the owner
+ * replaces it, and those buttons stay hidden while it is still the placeholder.
+ */
+export const DEMO_NUMBER = "[DEMO NUMBER]";
+
+export function isDemoNumberLive(number: string = DEMO_NUMBER) {
+  const trimmed = number.trim();
+  return Boolean(trimmed) && trimmed !== "[DEMO NUMBER]";
+}
+
+export function demoTelHref(number: string = DEMO_NUMBER) {
+  const compact = number.replace(/[^\d+]/g, "");
+  return `tel:${compact || trimmedTel(number)}`;
+}
+
+function trimmedTel(number: string) {
+  return number.trim();
+}
+
 export const siteConfig = {
   name: "Vocemi",
-  tagline: "Voice AI Receptionist & Business Automation",
+  tagline: "Stop sending your callers to voicemail",
   description:
-    "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
+    "Vocemi sets up and runs an AI receptionist built for your industry. It answers the calls you miss, books appointments into your calendar, and tells callers it's an AI. Live in 7 days. Free for the first 14.",
+  demoNumber: DEMO_NUMBER,
+  /** Named broker line on Results and Insurance. Off until the owner confirms it. */
+  showJagdeepReference: false,
+  /** Live dashboard line on the Scale plan. */
+  showScaleDashboard: true,
   // The live site redirects the bare domain to www, so canonicals, the
   // sitemap, and OG URLs must use www or they all point at a redirect.
   url: "https://www.vocemi.com",

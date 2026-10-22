@@ -22,7 +22,7 @@ const websiteSystems = [
   },
   {
     name: "Live voice demo",
-    provider: "Retell AI and Google reCAPTCHA",
+    provider: "Voice demo provider and Google reCAPTCHA",
     trigger: "Only after you choose to start the demo",
     purpose:
       "Processes microphone audio so the demonstration agent can reply and checks that the request is not automated.",

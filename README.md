@@ -49,6 +49,24 @@ CONTACT_TO_EMAIL=business@vocemi.com
 
 `CONTACT_FROM_EMAIL` must use a sender or domain verified in Resend.
 
+The free-trial form and the new booking buttons read three more variables.
+Leave them empty until the real URLs exist:
+
+```bash
+N8N_TRIAL_WEBHOOK_URL=https://your-n8n-host/webhook/trial
+KICKOFF_BOOKING_URL=https://cal.com/your-kickoff-link
+AUDIT_BOOKING_URL=https://cal.com/your-audit-link
+```
+
+`N8N_TRIAL_WEBHOOK_URL` is server-only. If it is unset, `/api/trial` returns an
+error and the form shows that message. `KICKOFF_BOOKING_URL` and
+`AUDIT_BOOKING_URL` fall back to `NEXT_PUBLIC_BOOK_CALL_URL` (or `/contact`)
+when unset. Cal.com links still get the existing UTM parameters.
+
+The demo line is not an environment variable. It is `DEMO_NUMBER` in
+`lib/config.ts` and stays `[DEMO NUMBER]` until you replace it. While it is
+that placeholder, every "Call our AI" button is hidden.
+
 ### Development
 
 Run the development server:

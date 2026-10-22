@@ -1,45 +1,29 @@
 /**
- * /faq questions. None of these strings are the homepage FAQ.
- * Every question here is a real answer and is included in FAQPage JSON-LD.
+ * /faq questions. Pricing answers are the same list shown on /pricing.
+ * Every question here is visible on the page and is included in FAQPage JSON-LD.
  */
 
-export const pageFaqs: { question: string; answer: string }[] = [
-  {
-    question: "What does the AI Employee Audit include, and what does it cost?",
-    answer:
-      "The AI Employee Audit is $250 USD, one-time, and credited toward setup. It maps the workflow and channels, defines the approval rules, sets a clear finish line, and ends with a build recommendation. Prices are USD only. Every engagement is scoped to your actual call volume and tools on a free call.",
-  },
-  {
-    question:
-      "What does the One-Workflow AI Employee include, and what does it cost?",
-    answer:
-      "The One-Workflow AI Employee is $1,500 USD one-time setup, plus from $300 USD/mo. It covers one AI employee role on phone, inbox, or forms, with approval gates and a daily owner report. The pricing section marks this tier as the most common start.",
-  },
-  {
-    question:
-      "What does the Managed AI Employee include, and what does it cost?",
-    answer:
-      "The Managed AI Employee is $3,000 USD setup plus $1,500 USD/mo. It covers phone, inbox, calendar, and CRM, plus booking and follow-up, escalation rules, and a monthly improvement review.",
-  },
+import { comebackConsent, pricingFaqs } from "@/lib/pricingFaq";
+
+const otherFaqs: { question: string; answer: string }[] = [
   {
     question: "What does Vocemi leave to a person?",
     answer:
-      "A next step is booked only inside rules you approve. Anything else waits for a human. Pricing exceptions, unusual requests, and judgment calls wait for an approved person, and unusual jobs pause for your sign-off.",
+      "It tells callers it's an AI. It doesn't give insurance quotes, coverage advice, medical or veterinary advice, or prices you haven't approved. It hands those to your team.",
   },
   {
     question: "What can the AI receptionist workflow handle?",
     answer:
-      "The AI receptionist page says it answers from information you approve, collects the caller details your team needs, offers appointment times within your booking rules, and routes urgent, unusual, or sensitive calls to a person. The guide is at /services/ai-receptionist.",
+      "It answers the calls you miss, books appointments into your calendar, and texts you a summary. Pricing is on /pricing.",
   },
   {
     question: "What do you approve before an AI receptionist goes live?",
     answer:
-      "You approve the call flow, the answers it may give, and the booking rules before launch. The page's steps are to pick the call type, write those rules, test expected calls and edge cases, then go live and review real calls.",
+      "You approve the call flow, the answers it may give, and the booking rules before launch. It's live in 7 days.",
   },
   {
-    question: "How is a lead reactivation campaign limited?",
-    answer:
-      "You choose the contacts, the message, the offer, the booking rules, and the situations that require a person. The agent stays inside the approved message and offer. Unusual questions wait for your team, and outcomes can be reviewed before the next run. The guide on Canada's calling rules says these workflows start with the contact list, the consent basis, and the script before anyone is called. The lead reactivation page, including whether those calls are legal, is at /services/lead-reactivation.",
+    question: "How is a Comeback Sprint limited?",
+    answer: `${comebackConsent} Up to 300 contacts per sprint. The first sprint is free when you move from the free trial to any paid plan. More Comeback Sprints are $497 each (C$699). The guide is at /services/lead-reactivation.`,
   },
   {
     question: "What does the site say about outbound AI calls in Canada?",
@@ -49,27 +33,27 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "Which industries have a published Vocemi guide?",
     answer:
-      "There are guides for med spas, dental practices, HVAC and plumbing companies, and insurance brokerages. Each one covers the calls worth automating first and where the handoff to a person belongs. The /start page also lists accounting, home services, roofing, automotive, and professional services.",
+      "Insurance, med spas, HVAC & plumbing, and vet clinics. Each page covers what the AI handles, what it won't do, and the handoff to your team.",
   },
   {
     question: "Can an AI receptionist book into a calendar?",
     answer:
-      "Yes. Vocemi connects Google Calendar, Outlook, and Cal.com. The agent offers real times inside your booking rules. A booking confirmation goes out by SMS and by email.",
+      "Yes. Booking into Google Calendar, Outlook or Cal.com, within your rules.",
   },
   {
     question: "What does the owner receive after calls?",
     answer:
-      "The homepage workflow says tools update automatically and a daily summary lands in your inbox. The owner dashboard says every call is transcribed, logged, and searchable. The AI receptionist guide says calls and outcomes can be included in an owner report.",
+      "Emails you a summary of every call. Growth and Scale include a daily digest of all calls. Urgent calls are flagged to you right away.",
   },
   {
     question: "What is written down before a client Voice AI project goes live?",
     answer:
-      "The security page says a client project can use different tools and data from this website, so the exact recording, access, retention, and deletion rules are documented before launch. That write-up covers what gets recorded or stored, which providers process it, who can access it, how exceptions reach a person, how long information is retained, and how correction or deletion requests are handled.",
+      "We give you a written note covering what's recorded, where it's stored and how long it's kept.",
   },
   {
     question: "Which providers does the vocemi.com website use?",
     answer:
-      "The security page names four. Vercel Analytics counts visits and selected actions. The live voice demo uses Retell AI and Google reCAPTCHA, and only after you start it. Booking links open Cal.com. The contact form is delivered with Resend. The privacy page says Vocemi does not sell the information you submit, and does not share it except with those providers.",
+      "The security page names the website systems. Vercel Analytics counts visits and selected actions. The live voice demo runs only after you start it, with Google reCAPTCHA. Booking links open Cal.com. The contact form is delivered with Resend. The privacy page says Vocemi does not sell the information you submit, and does not share it except with those providers.",
   },
   {
     question: "How do I contact Vocemi?",
@@ -79,18 +63,12 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "Who founded Vocemi, and where is the business based?",
     answer:
-      "Pankajpreet Singh is the founder. The about page describes Vocemi as a Calgary-based Voice AI business focused on answering, qualification, booking, follow-up, and clear reporting. He is a Senior Developer at Arctic Wolf and holds a B.Tech in Computer Science and Engineering from Punjab Technical University.",
-  },
-  {
-    question:
-      "How does the site compare an AI employee with hiring a person for the phones?",
-    answer:
-      "The homepage comparison says a person can take months to hire and train, works scheduled hours, handles one queue, can be out sick, and updates tools by hand. It says an AI employee can be live in 2–4 weeks, answers 24/7, answers several calls at once, does not call in sick, and updates your tools automatically.",
+      "Pankajpreet Singh is the founder. Vocemi is based in Calgary and serves Canada and the US. He is a Senior Developer at Arctic Wolf and holds a B.Tech in Computer Science and Engineering from Punjab Technical University.",
   },
   {
     question: "Does Vocemi work with businesses outside Calgary?",
     answer:
-      "The AI receptionist and lead reactivation pages describe Vocemi as Calgary-based and serving Canada, the United States, and the United Kingdom. No street address is published.",
+      "Yes. We're based in Calgary, and we serve Canada and the US. No street address is published.",
   },
   {
     question: "Does Vocemi publish a list of languages the voice agent speaks?",
@@ -100,11 +78,13 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "What call-recording notice do callers hear?",
     answer:
-      "The greeting, including any recording notice, is written for that client. Vocemi is not a self-serve platform.",
+      "The greeting, including any recording notice, is written for that client. It tells callers it's an AI.",
   },
   {
     question: "What kinds of calls are handed to a licensed or on-call person?",
     answer:
-      "Med spa guides say clinical questions, including suitability and side effects, go to licensed staff and the agent does not give medical advice. Dental guides say the agent never gives clinical advice, and anything the office defines as an emergency goes to the team. Insurance guides say coverage questions go to a licensed broker, and the agent does not say whether something is covered. HVAC and plumbing guides say emergencies are triaged with your rules and the on-call technician is alerted, and that a gas-smell script (leave the building and call 911 or the gas utility from outside) is approved before launch.",
+      "Insurance: quote prices, binding policies, and coverage advice stay with a licensed broker. Med spas: medical or treatment advice stays with your team. HVAC and plumbing: emergencies go to your on-call tech, and prices stay inside your approved price list. Vet clinics: it does not diagnose, recommend doses, or give veterinary advice. Urgent pet calls go to your emergency partner.",
   },
-]
+];
+
+export const pageFaqs = [...pricingFaqs, ...otherFaqs];
