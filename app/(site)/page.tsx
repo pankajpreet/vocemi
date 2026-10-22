@@ -1,58 +1,60 @@
 import type { Metadata } from "next";
-import Hero, { HeroCallDemo } from "@/components/home/Hero";
-import HowItWorks from "@/components/home/HowItWorks";
-import Services from "@/components/home/Services";
-import OwnerDashboard from "@/components/home/OwnerDashboard";
-import Benefits from "@/components/home/Benefits";
-import RoiCalculator from "@/components/home/RoiCalculator";
-import Comparison from "@/components/home/Comparison";
-import Pricing from "@/components/home/Pricing";
-import CaseStudies from "@/components/home/CaseStudies";
-import HomeFaq from "@/components/home/HomeFaq";
-import CtaSection from "@/components/home/CtaSection";
+import FaqList from "@/components/site/FaqList";
 import {
-  FaqStructuredData,
-  ServiceStructuredData,
-} from "@/components/StructuredData";
-import { homeFaqs } from "@/lib/homeContent";
+  HeroSection,
+  HowItWorks,
+  IndustryPicker,
+  PricingPreviewNote,
+  Promises,
+  ProofStrip,
+  WontDo,
+} from "@/components/site/MarketingSections";
+import PlanCards from "@/components/site/PlanCards";
+import CallDemoLink from "@/components/site/CallDemoLink";
+import { FaqStructuredData } from "@/components/StructuredData";
+import { auditBookingUrl } from "@/lib/bookingUrls";
 import { pageMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/config";
-import VoiceDemo from "@/components/start/VoiceDemo";
+import { homeFaqs } from "@/lib/pricingFaq";
+import { btnPrimary, h2, sectionWrap } from "@/components/site/styles";
+import Link from "next/link";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Voice AI Receptionist & Business Automation | Vocemi",
+  title: "Stop sending your callers to voicemail | Vocemi",
   absoluteTitle: true,
   description:
-    "Calgary-based Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
+    "Vocemi sets up and runs an AI receptionist built for your industry. It answers the calls you miss, books appointments into your calendar, and tells callers it's an AI. Live in 7 days. Free for the first 14.",
   path: "/",
 });
 
 export default function Home() {
-  const structuredFaqs = homeFaqs.map((faq) => ({
-    question: faq.q,
-    answer: faq.a,
-  }));
-
   return (
     <>
-      <ServiceStructuredData />
-      <FaqStructuredData faqs={structuredFaqs} />
-      <Hero />
-      {siteConfig.voiceDemoAvailable ? (
-        <VoiceDemo page="/" />
-      ) : (
-        <HeroCallDemo />
-      )}
-      <HowItWorks />
-      <Services />
-      <OwnerDashboard />
-      <Benefits />
-      <RoiCalculator />
-      <Comparison />
-      <Pricing />
-      <CaseStudies />
-      <HomeFaq />
-      <CtaSection />
+      <FaqStructuredData faqs={homeFaqs} />
+      <HeroSection />
+      <ProofStrip />
+      <IndustryPicker />
+      <HowItWorks heading="How it works" />
+      <section className={`${sectionWrap} py-16 md:py-20`}>
+        <h2 className={`${h2} mb-8`}>Pricing</h2>
+        <PlanCards
+          ids={["starter", "growth", "scale"]}
+          auditHref={auditBookingUrl("home_pricing")}
+          auditPlacement="home_pricing"
+        />
+        <PricingPreviewNote />
+      </section>
+      <Promises />
+      <WontDo />
+      <section className={`${sectionWrap} py-16 md:py-20`}>
+        <h2 className={`${h2} mb-6`}>FAQ</h2>
+        <FaqList faqs={homeFaqs} idPrefix="home-faq" />
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-8">
+          <CallDemoLink placement="home_final" label="hear" className={btnPrimary} />
+          <Link href="/free-trial" className={btnPrimary}>
+            Start free trial
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

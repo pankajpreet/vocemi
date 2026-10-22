@@ -1,5 +1,4 @@
 import { siteConfig } from "@/lib/config";
-import { auditCreditNote } from "@/lib/homeContent";
 import TrackedLink from "@/components/start/TrackedLink";
 import Reveal from "./Reveal";
 
@@ -45,9 +44,6 @@ export default function CtaSection() {
                   : "See how it works"}
               </TrackedLink>
             </div>
-            <p className="text-[13px] leading-snug text-white/80 m-0 mt-3">
-              {auditCreditNote}
-            </p>
           </div>
         </div>
       </Reveal>

@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   title: "AI Lead Reactivation Calls to Past Customers | Vocemi",
   absoluteTitle: true,
   description:
-    "Consent-first AI calls to past customers and dormant leads: clean lists, approved scripts, opt-outs, follow-up and a results report. Canada, US and UK.",
+    "Comeback Sprint: $497 per sprint, up to 300 contacts. The AI reaches out to past customers who've agreed to hear from you and books them back in. The first sprint is free when you move to a paid plan.",
   path: "/services/lead-reactivation",
   socialTitle:
     "Vocemi AI lead reactivation: bring past customers back, the compliant way",
@@ -50,7 +50,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "They're already my customers. Do I still need their consent?",
     pieces: [
       {
-        text: "Usually yes for a sales call. In Canada the existing-customer exemption covers the Do Not Call List, not automated-voice consent. In the US, TCPA consent applies to AI voices. In the UK, consent must name automated calls.",
+        text: "Usually yes for a sales call. In Canada the existing-customer exemption covers the Do Not Call List, not automated-voice consent. In the US, TCPA consent applies to AI voices. We only contact people who've bought from you or asked about your services recently enough to allow it. Every message names your business and includes an opt-out.",
       },
     ],
   },
@@ -82,10 +82,8 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "What results should I expect?",
     pieces: [
       {
-        text: "No typical rate is quoted. You review the report before the next batch. ",
+        text: "No typical rate is quoted. You review the report before the next batch.",
       },
-      { text: "Estimate it with your own numbers", href: "/#calculator" },
-      { text: "." },
     ],
   },
   {
@@ -143,7 +141,6 @@ const graph = {
       areaServed: [
         { "@type": "Country", name: "Canada" },
         { "@type": "Country", name: "United States" },
-        { "@type": "Country", name: "United Kingdom" },
       ],
       audience: {
         "@type": "BusinessAudience",
@@ -227,8 +224,8 @@ export default function LeadReactivationPage() {
             unconverted enquiries, and quotes that were not booked, and offers
             one approved next step, usually booking back in. Before anyone is
             called, the list and the consent basis for each contact are checked.
-            AI-voice sales calls need prior express consent in Canada and the US,
-            and specific consent in the UK. The agent stays inside your script,
+            AI-voice sales calls need prior express consent in Canada and the US.
+            The agent stays inside your script,
             honours opt-outs, and you get a report of who was reached, who
             booked, and who opted out.
           </p>
@@ -281,7 +278,7 @@ export default function LeadReactivationPage() {
             </h2>
             <ul className="m-0 pl-5 flex flex-col gap-2 text-[16px] leading-[1.65] text-white/85">
               <li>Source: an export from your CRM, booking software, or a spreadsheet. You approve the final list.</li>
-              <li>Remove duplicates, bad numbers, and your internal do-not-call list. Where a National DNCL, National DNC Registry, or TPS/CTPS registration applies, that registration is the client&apos;s responsibility.</li>
+              <li>Remove duplicates, bad numbers, and your internal do-not-call list. Where a National DNCL or National DNC Registry registration applies, that registration is the client&apos;s responsibility.</li>
               <li>Leave out anyone without the consent that call needs.</li>
             </ul>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0 mt-3">
@@ -292,7 +289,7 @@ export default function LeadReactivationPage() {
 
           <section id="calling-rules" className="scroll-mt-24">
             <h2 className="font-display text-2xl font-extrabold m-0 mb-3">
-              Step 2: Consent and calling rules in Canada, the US and the UK
+              Step 2: Consent and calling rules in Canada and the US
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/60 m-0 mb-4">
               Calling, texting and do-not-call rules vary by country and
@@ -352,22 +349,6 @@ export default function LeadReactivationPage() {
               Opt-outs are honoured on the call.
             </p>
 
-            <h3 className="font-display text-lg font-bold m-0 mb-2">
-              United Kingdom
-            </h3>
-            <p className="text-[16px] leading-[1.7] text-white/85 m-0 mb-4">
-              PECR regulation 19 requires specific prior consent to automated
-              calls. General marketing consent, or consent to live calls, is
-              not enough. A service message is not marketing until an offer is
-              added. Calls must name
-              the business and give a contact number (
-              <a className={ext} href="https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/electronic-and-telephone-marketing/telephone-marketing/" target="_blank" rel="noopener noreferrer">
-                ICO: telephone marketing
-              </a>
-              ). The ICO describes a live call as a live person speaking, so
-              the cautious reading is that an AI voice is not a live call.
-              Penalties are significant.
-            </p>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
               The greeting is written for that client. It is not a fixed default,
               and this is not a self-serve platform.
@@ -394,7 +375,7 @@ export default function LeadReactivationPage() {
               inside the recipient&apos;s legal window. An example only, not a
               Vocemi guarantee, is 3–5 attempts over 7–14 days. Follow-up can
               be SMS or WhatsApp, and that message still
-              needs the consent CASL, TCPA, or PECR requires for the channel.
+              needs the consent CASL or TCPA requires for the channel.
             </p>
           </section>
 
@@ -405,12 +386,7 @@ export default function LeadReactivationPage() {
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
               Each contact is marked called, reached, voicemail, interested,
               booked, callback, opted out, wrong number, or escalated. Outcomes
-              are reviewed before the next batch. The client dashboard is
-              available anytime.{" "}
-              <Link href="/#calculator" className={ext}>
-                Estimate it with your own numbers
-              </Link>
-              .
+              are reviewed before the next batch.
             </p>
           </section>
 
@@ -430,8 +406,11 @@ export default function LeadReactivationPage() {
               What it costs
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
-              Reactivation pricing is customized. There is no public price.
-              The quote is prepared for that list and that campaign.
+              Comeback Sprint: $497 per sprint (C$699), up to 300 contacts. The
+              first sprint is free when you move from the free trial to a paid
+              plan. We only contact people who&apos;ve bought from you or asked
+              about your services recently enough to allow it. Every message
+              names your business and includes an opt-out.
             </p>
           </section>
 
@@ -450,8 +429,8 @@ export default function LeadReactivationPage() {
                 HVAC and plumbing
               </Link>
               ,{" "}
-              <Link href="/industries/dental" className={ext}>
-                dental practices
+              <Link href="/industries/vet-clinics" className={ext}>
+                vet clinics
               </Link>
               .
             </p>
@@ -522,8 +501,7 @@ export default function LeadReactivationPage() {
                 {siteConfig.contact.email}
               </a>
               {" · "}
-              Based in Calgary. Campaigns run for businesses in Canada, the
-              United States and the United Kingdom.
+              Based in Calgary · Serving Canada &amp; the US.
             </p>
           </div>
         </section>

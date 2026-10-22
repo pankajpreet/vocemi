@@ -2,24 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/lib/config";
-import TrackedLink from "@/components/start/TrackedLink";
-import { trackEvent } from "@/lib/analytics";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { industryGuides } from "@/lib/industryContent";
+import CallDemoLink from "@/components/site/CallDemoLink";
+import { btnPrimary, btnSecondary } from "@/components/site/styles";
 
-// Rooted at "/" so they also work from /services, /faq and the other inner
-// pages; on the homepage itself handleNavClick smooth-scrolls instead.
-const navLinks = [
-  { label: "How it works", href: "/#how-it-works" },
-  { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
-  { label: "ROI Calculator", href: "/#calculator" },
-  { label: "Pricing", href: "/#pricing" },
-  {
-    label: siteConfig.voiceDemoAvailable ? "Live demo" : "How AI works",
-    href: siteConfig.voiceDemoAvailable ? "/start#talk" : "/start",
-  },
-  { label: "Blog", href: "/blog" },
+const links = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "How it works", href: "/how-it-works" },
+  { label: "Results", href: "/results" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -36,111 +27,112 @@ function LogoMark() {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-    placement: string
-  ) => {
-    setIsOpen(false);
-    if (href.startsWith("/start")) {
-      trackEvent("demo_cta_clicked", {
-        page: window.location.pathname,
-        placement,
-      });
-    }
-    if (!href.startsWith("/#") || window.location.pathname !== "/") return;
-    const element = document.querySelector(href.slice(1));
-    if (element) {
-      e.preventDefault();
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const [industriesOpen, setIndustriesOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-cream/85 backdrop-blur-[10px] border-b border-ink/10">
-      <div className="max-w-[1180px] mx-auto px-6">
-        <div className="flex items-center justify-between gap-4 py-4">
-          <Link
-            href="/"
-            onClick={(e) => {
-              if (window.location.pathname === "/") {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }
-            }}
-            className="flex-shrink-0 hover:opacity-80 transition-opacity"
-          >
+    <nav className="sticky top-0 z-50 bg-cream/90 backdrop-blur-[10px] border-b border-ink/10">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between gap-3 py-3.5">
+          <Link href="/" className="flex-shrink-0 hover:opacity-80 transition-opacity">
             <LogoMark />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-[22px] text-sm font-medium text-ink/70">
-            {navLinks.map((link) => (
-              <a
+          <div className="hidden lg:flex items-center gap-5 text-sm font-medium text-ink/75">
+            <div
+              className="relative"
+              onMouseEnter={() => setIndustriesOpen(true)}
+              onMouseLeave={() => setIndustriesOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={industriesOpen}
+                aria-haspopup="true"
+                className="inline-flex items-center gap-1 hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                onClick={() => setIndustriesOpen((open) => !open)}
+              >
+                Industries
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
+              {industriesOpen ? (
+                <div className="absolute left-0 top-full pt-2">
+                  <div className="min-w-[220px] rounded-xl border border-ink/10 bg-white p-2 shadow-lg">
+                    {industryGuides.map((industry) => (
+                      <Link
+                        key={industry.slug}
+                        href={`/industries/${industry.slug}`}
+                        className="block rounded-lg px-3 py-2 text-ink/80 hover:bg-sand hover:text-brand"
+                        onClick={() => setIndustriesOpen(false)}
+                      >
+                        {industry.navLabel}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+            {links.map((link) => (
+              <Link
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href, "navbar_desktop")}
-                className="whitespace-nowrap hover:text-brand transition-colors"
+                className="whitespace-nowrap hover:text-brand"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
-          <div className="hidden lg:block flex-shrink-0">
-            <TrackedLink
-              href={siteConfig.bookCallUrl("navbar_desktop")}
-              event="book_call_clicked"
-              properties={{ placement: "navbar_desktop" }}
-              external
-              className="inline-block bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
-            >
-              Book a free call
-            </TrackedLink>
+          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+            <CallDemoLink
+              placement="navbar_desktop"
+              label="hear"
+              className={btnSecondary}
+            />
+            <Link href="/free-trial" className={btnPrimary}>
+              Start free trial
+            </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-ink/70 hover:text-ink transition-colors p-1"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            className="lg:hidden text-ink/70 hover:text-ink p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {isOpen && (
+      {isOpen ? (
         <div className="lg:hidden bg-cream border-t border-ink/10">
-          <div className="px-6 pt-2 pb-4 space-y-1">
-            {navLinks.map((link) => (
-              <a
+          <div className="px-4 pt-2 pb-4 space-y-1">
+            <p className="px-3 pt-2 text-[12px] font-bold uppercase tracking-wider text-ink/55 m-0">
+              Industries
+            </p>
+            {industryGuides.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/industries/${industry.slug}`}
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2.5 text-ink/75 hover:text-brand font-medium"
+              >
+                {industry.navLabel}
+              </Link>
+            ))}
+            {links.map((link) => (
+              <Link
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href, "navbar_mobile")}
-                className="block px-3 py-2.5 text-ink/70 hover:text-brand hover:bg-sand rounded-md transition-colors font-medium"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2.5 text-ink/75 hover:text-brand font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <div className="pt-2">
-              <TrackedLink
-                href={siteConfig.bookCallUrl("navbar_mobile")}
-                event="book_call_clicked"
-                properties={{ placement: "navbar_mobile" }}
-                external
-                className="block text-center bg-ink text-white px-[18px] py-2.5 rounded-lg text-sm font-semibold hover:bg-brand transition-colors"
-              >
-                Book a free call
-              </TrackedLink>
-            </div>
           </div>
         </div>
-      )}
+      ) : null}
     </nav>
   );
 }

@@ -1,99 +1,52 @@
-"use client";
-
-import { motion } from "framer-motion";
-import FAQAccordion from "@/components/FAQAccordion";
-import BookCallButton from "@/components/BookCallButton";
+import Link from "next/link";
+import FaqList from "@/components/site/FaqList";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
 import { pageFaqs } from "@/lib/faqContent";
+import { btnPrimary, btnSecondary, sectionWrap } from "@/components/site/styles";
 
 export default function FAQPage() {
-  const faqs = pageFaqs;
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-          >
-            Frequently Asked Questions
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            Quick answers to common Voice AI questions
-          </motion.p>
+    <div className={`${sectionWrap} pt-12 pb-16 md:pt-16`}>
+      <div className="max-w-[800px]">
+        <h1 className="font-display text-[34px] sm:text-[48px] leading-[1.08] tracking-[-0.03em] font-extrabold text-ink m-0 mb-4">
+          Frequently asked questions
+        </h1>
+        <p className="text-[17px] leading-[1.6] text-ink/75 m-0 mb-8">
+          Pricing, the free trial, and what the AI leaves to your team.
+        </p>
+        <FaqList faqs={pageFaqs} idPrefix="page-faq" />
+        <p className="mt-8 text-[15px] leading-relaxed text-ink/75 m-0">
+          <Link href="/pricing" className="text-brand font-semibold">
+            Pricing
+          </Link>
+          {" · "}
+          <Link href="/services/ai-receptionist" className="text-brand font-semibold">
+            AI receptionist
+          </Link>
+          {" · "}
+          <Link href="/services/lead-reactivation" className="text-brand font-semibold">
+            Comeback Sprint
+          </Link>
+        </p>
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-8">
+          <Link href="/free-trial" className={btnPrimary}>
+            Start free trial
+          </Link>
           <TrackedLink
-            href={siteConfig.bookCallUrl("faq_hero")}
+            href={siteConfig.bookCallUrl("faq_page")}
             event="book_call_clicked"
-            properties={{ placement: "faq_hero" }}
+            properties={{ placement: "faq_page" }}
             external
-            className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
+            className={btnSecondary}
           >
-            Book a free call
+            Book a call
           </TrackedLink>
+          <Link href="/contact" className={btnSecondary}>
+            Contact
+          </Link>
         </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FAQAccordion faqs={faqs} />
-          <p className="mt-8 text-[15px] leading-relaxed text-gray-300 m-0">
-            <a
-              className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
-              href="/services/ai-receptionist"
-            >
-              AI receptionist
-            </a>
-            {" · "}
-            <a
-              className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
-              href="/services/lead-reactivation"
-            >
-              Lead reactivation and calling rules
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-dark via-primary-dark-alt to-primary-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold mb-4 text-white">Still have questions?</h2>
-            <p className="text-lg text-gray-300 mb-8">
-              We&apos;re here to help! Get in touch and we&apos;ll answer any questions you
-              may have.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookCallButton variant="primary">
-                Book a free call
-              </BookCallButton>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base bg-transparent border-2 border-primary-accent-on-dark text-primary-accent-on-dark hover:border-primary-accent hover:bg-primary-accent hover:text-white transition-all duration-300"
-              >
-                Contact Us
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
-

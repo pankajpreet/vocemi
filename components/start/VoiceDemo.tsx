@@ -115,6 +115,7 @@ export default function VoiceDemo({ page = "/start" }: { page?: string }) {
   // Captured at attach time so teardown never depends on a DOM search, which
   // can miss the host while Retell is mid-re-render.
   const hostRef = useRef<HTMLElement | null>(null);
+  const vendorObserverRef = useRef<MutationObserver | null>(null);
 
   const { retellPublicKey, retellVoiceAgentId, retellRecaptchaKey } =
     siteConfig;
@@ -178,6 +179,31 @@ export default function VoiceDemo({ page = "/start" }: { page?: string }) {
         style.textContent = WIDGET_CSS;
         root.appendChild(style);
       }
+      const scrubVendor = () => {
+        root.querySelectorAll("*").forEach((el) => {
+          el.childNodes.forEach((node) => {
+            if (
+              node.nodeType === Node.TEXT_NODE &&
+              node.textContent &&
+              /retell/i.test(node.textContent)
+            ) {
+              node.textContent = node.textContent
+                .replace(/powered by\s*retell\s*ai/gi, "")
+                .replace(/retell\s*ai/gi, "")
+                .replace(/retell/gi, "");
+            }
+          });
+        });
+      };
+      scrubVendor();
+      vendorObserverRef.current?.disconnect();
+      const vendorObserver = new MutationObserver(scrubVendor);
+      vendorObserverRef.current = vendorObserver;
+      vendorObserver.observe(root, {
+        subtree: true,
+        childList: true,
+        characterData: true,
+      });
       target.appendChild(host);
       hostRef.current = host;
       trackEvent("voice_demo_ready", { page });
@@ -190,6 +216,7 @@ export default function VoiceDemo({ page = "/start" }: { page?: string }) {
       unpatchFetch();
       window.clearInterval(timer);
       window.clearTimeout(giveUp);
+      vendorObserverRef.current?.disconnect();
     };
   }, [started, retellPublicKey, retellVoiceAgentId, retellRecaptchaKey, page]);
 

@@ -1,5 +1,4 @@
 import { siteConfig } from "@/lib/config";
-import { auditCreditNote } from "@/lib/homeContent";
 import TrackedLink from "@/components/start/TrackedLink";
 import LogoStrip from "./LogoStrip";
 
@@ -9,9 +8,9 @@ const waveBars = Array.from({ length: 24 }, (_, i) => ({
 }));
 
 const heroStats = [
-  { value: "24/7", label: "always answering" },
-  { value: "2–4 wks", label: "to first launch" },
-  { value: "100%", label: "calls logged & reported" },
+  { value: "7 days", label: "to go live" },
+  { value: "14 days", label: "free to try" },
+  { value: "$0", label: "setup" },
 ];
 
 export default function Hero() {
@@ -26,11 +25,7 @@ export default function Hero() {
             Voice AI for growing businesses
           </div>
           <h1 className="font-display text-[42px] md:text-[60px] leading-[1.03] tracking-[-0.025em] font-extrabold text-ink m-0 mb-3 md:mb-4">
-            Never miss another{" "}
-            <span className="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
-              call, lead, or booking
-            </span>
-            .
+            Stop sending your callers to voicemail.
           </h1>
           <h2 className="font-display text-[22px] md:text-[28px] leading-[1.25] font-bold text-ink m-0 mb-4 md:mb-5 max-w-[640px]">
             AI receptionist and voice AI employees for service businesses
@@ -59,9 +54,6 @@ export default function Hero() {
               Book a free call
             </TrackedLink>
           </div>
-          <p className="text-[13px] leading-snug text-ink/70 m-0 mb-3 md:mb-5">
-            {auditCreditNote}
-          </p>
           <div className="grid grid-cols-3 gap-x-3 sm:flex sm:gap-8 text-[13.5px] text-ink/65">
             {heroStats.map((stat) => (
               <div key={stat.value}>

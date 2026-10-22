@@ -1,7 +1,7 @@
 ---
 title: "Voice AI can now listen while it talks. Here's what that changes on a business phone line"
 metaTitle: "What Full-Duplex Voice AI Changes for Business Calls"
-description: "OpenAI's GPT-Live and Google's Gemini 3.8 Live brought full-duplex, tool-using voice models in 2026. What that means for clinics, trades, and insurance offices, with practical use cases."
+description: "Full-duplex voice models can listen and speak at the same time. What that means for clinics, trades, and insurance offices, with practical use cases."
 date: 2026-09-28
 category: AI news
 ---
@@ -10,13 +10,11 @@ For most of the short history of AI phone agents, the conversation worked like a
 
 Two releases in 2026 changed that.
 
-## What was announced
+## What changed
 
-**OpenAI GPT-Live (July 8, 2026).** OpenAI [introduced GPT-Live](https://openai.com/index/introducing-gpt-live/), a new generation of voice models built on a *full-duplex* design: the model listens and speaks at the same time. It can say "mhmm" while you talk, handle being interrupted, and stay quiet when you need a moment to think. Harder requests are handed to a larger model in the background while the conversation continues ([TechCrunch coverage](https://techcrunch.com/2026/07/08/openai-releases-new-voice-models-for-more-natural-live-conversations/)). It launched in ChatGPT first. OpenAI has since [announced GPT-Live-1 for developers](https://openai.com/index/introducing-gpt-live-1-in-the-api/) through its API.
+Newer voice models use a *full-duplex* design: the model listens and speaks at the same time. It can handle being interrupted, and stay quiet when you need a moment to think. Harder requests can be handled in the background while the conversation continues.
 
-**Google Gemini 3.8 Live (September 15, 2026).** Google [released Gemini 3.8 Live and 3.8 Live Extended Thinking](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/), aimed squarely at production voice agents. According to Google, the models run tools and API calls in the background while continuing the conversation. They also detect and switch between 97 languages mid-conversation. The [developer documentation](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live) lists non-blocking function calls as the default.
-
-Put simply, the newest voice models can **talk, listen, and do things at the same time**.
+Put simply, newer voice models can **talk, listen, and do things at the same time**.
 
 ## Why this matters on a phone call
 
@@ -32,9 +30,9 @@ None of this makes an agent *know* more about your business. It makes the conver
 
 These are example scenarios to show where the new capabilities help. They are not client results.
 
-### Dental and medical clinics: rescheduling without friction
+### Clinics: rescheduling without friction
 
-A patient calls to move a cleaning. The agent offers Tuesday at 10. The patient cuts in: "Actually, mornings don't work at all anymore, anything after three?" A turn-based system would finish its offer and then start again. A full-duplex agent drops the morning options and checks afternoons while acknowledging the change. Rescheduling calls are short, frequent, and repetitive, so they are a good fit for automation with clear rules. More in our [dental practices](/industries/dental) guide.
+A patient calls to move an appointment. The agent offers Tuesday at 10. The patient cuts in: "Actually, mornings don't work at all anymore, anything after three?" A turn-based system would finish its offer and then start again. A full-duplex agent drops the morning options and checks afternoons while acknowledging the change. Rescheduling calls are short, frequent, and repetitive, so they are a good fit for automation with clear rules.
 
 ### HVAC and plumbing: triage while the caller explains
 

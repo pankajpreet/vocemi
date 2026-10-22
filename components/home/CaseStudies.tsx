@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
  *
  * Framed as the work each AI employee handles rather than as headline
  * metrics: the only figure any client has given us is the ~10 minutes per
- * quote at iSmart, and a row of invented numbers beside it would undo the
+ * quote, and a row of invented numbers beside it would undo the
  * credibility the real one buys.
  */
 export default function CaseStudies() {

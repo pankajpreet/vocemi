@@ -23,21 +23,21 @@ export interface Capability {
  */
 export const heroHeadline = {
   lead: "Meet your AI employee",
-  emphasis: "that answers every call",
+  emphasis: "that answers the calls you miss",
 };
 
 export const heroStats = [
-  { value: "24/7", label: "always answering" },
-  { value: "2–4 wks", label: "to first launch" },
-  { value: "100%", label: "calls logged" },
+  { value: "7 days", label: "to go live" },
+  { value: "14 days", label: "free to try" },
+  { value: "$0", label: "setup" },
 ];
 
 export const capabilities: Capability[] = [
   {
     icon: "phone",
     tint: "#EEF0FE",
-    title: "Answers every call",
-    desc: "First ring, every time — after hours, weekends, and while you're already on a job.",
+    title: "Answers the calls you miss",
+    desc: "After hours, weekends, and while you're already on a job.",
   },
   {
     icon: "calendar",
@@ -64,15 +64,10 @@ export const capabilities: Capability[] = [
  * `slug` links the chip to its /industries page where one exists.
  */
 export const industries: { name: string; slug?: string }[] = [
-  { name: "Med Spas", slug: "med-spas" },
-  { name: "Dental", slug: "dental" },
-  { name: "HVAC & Plumbing", slug: "hvac-plumbing" },
-  { name: "Accounting" },
   { name: "Insurance", slug: "insurance" },
-  { name: "Home Services" },
-  { name: "Roofing" },
-  { name: "Automotive" },
-  { name: "Professional Services" },
+  { name: "Med Spas", slug: "med-spas" },
+  { name: "HVAC & Plumbing", slug: "hvac-plumbing" },
+  { name: "Vet Clinics", slug: "vet-clinics" },
 ];
 
 /** Shown inside the live-demo card so the visitor knows what to try. */

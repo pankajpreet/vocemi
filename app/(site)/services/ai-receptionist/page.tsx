@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   title: "AI Receptionist: 24/7 Call Answering & Booking | Vocemi",
   absoluteTitle: true,
   description:
-    "A done-for-you AI receptionist that answers calls 24/7, qualifies callers, books inside your rules and sends a daily owner report. See pricing and FAQs.",
+    "A done-for-you AI receptionist that answers the calls you miss, books into your calendar, and tells callers it's an AI. Live in 7 days. See pricing.",
   path: "/services/ai-receptionist",
   socialTitle: "Vocemi AI Receptionist: answers, qualifies and books calls 24/7",
 });
@@ -26,8 +26,11 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How much does an AI receptionist cost?",
     pieces: [
       {
-        text: "Prices are USD only. One-Workflow is $1,500 USD setup plus from $300 USD/mo. Managed is $3,000 USD setup plus $1,500 USD/mo. The $250 USD audit is credited toward setup.",
+        text: "See pricing. There is no setup fee, and the missed-call audit is free. The first 14 days are free (30 days for HVAC & plumbing).",
       },
+      { text: " ", },
+      { text: "Pricing", href: "/pricing" },
+      { text: "." },
     ],
   },
   {
@@ -72,7 +75,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How long does it take to set up?",
     pieces: [
       {
-        text: "Simple workflows usually launch in 2–4 weeks. Comprehensive custom builds take 6–12 weeks. The timeline is confirmed in the audit.",
+        text: "Live in 7 days.",
       },
     ],
   },
@@ -90,7 +93,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "Can I keep my current business phone number?",
     pieces: [
       {
-        text: "Vocemi provides a new local number. You can forward calls from your own number to it, or publish the new number and use it directly.",
+        text: "Yes. You forward unanswered or busy calls to your AI. Nothing changes for your customers.",
       },
     ],
   },
@@ -147,7 +150,6 @@ const graph = {
       areaServed: [
         { "@type": "Country", name: "Canada" },
         { "@type": "Country", name: "United States" },
-        { "@type": "Country", name: "United Kingdom" },
         { "@type": "City", name: "Calgary" },
       ],
       audience: {
@@ -232,12 +234,10 @@ export default function AiReceptionistPage() {
             An AI receptionist that answers, qualifies and books your calls, 24/7
           </h1>
           <p className="text-[17px] leading-[1.65] text-ink/80 m-0 mb-6">
-            A Vocemi AI receptionist answers your business calls 24/7, including
-            after hours and when several people call at once. It answers from
-            information you approve, collects caller details, and books inside
-            your rules. Urgent or unusual calls go to your team. Vocemi builds
-            and tunes it, usually within 2–4 weeks, and sends a daily report of
-            every call.
+            A Vocemi AI receptionist answers the calls you miss, books appointments
+            into your calendar, and tells callers it&apos;s an AI. Live in 7 days.
+            Urgent or unusual calls go to your team. You get a summary of every
+            call.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <TrackedLink
@@ -350,16 +350,21 @@ export default function AiReceptionistPage() {
               Updates the tools you already use
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Connected tools are Google Calendar, Outlook, and Cal.com. The
-              Managed plan also covers phone, inbox, and CRM.
+              Booking uses Google Calendar, Outlook or Cal.com, within your rules.
+              The Custom plan updates your CRM, agency management system (e.g.
+              Applied Epic), ServiceTitan or Jobber. See{" "}
+              <Link href="/pricing" className={linkClass}>
+                pricing
+              </Link>
+              .
             </p>
             <h3 className="font-display text-lg font-bold mt-5 mb-2">
               Integration scope is confirmed before launch
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Vocemi provides a new local number. You can forward your own
-              number to it, or use the new number directly. If a calendar
-              connection is not ready, staff confirm the booking request.
+              Keep your number. Forward the calls you don&apos;t answer to us.
+              If a calendar connection is not ready, staff confirm the booking
+              request.
             </p>
           </section>
 
@@ -369,9 +374,7 @@ export default function AiReceptionistPage() {
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               You approve the call flow, the answers, and the booking rules
-              before launch. Every call is transcribed, logged, and searchable.
-              100% of calls are logged and reported, and a daily summary lands
-              in your inbox. The{" "}
+              before launch. You get a summary of every call. The{" "}
               <Link href="/#owner-visibility" className={linkClass}>
                 owner visibility
               </Link>{" "}
@@ -381,10 +384,10 @@ export default function AiReceptionistPage() {
 
           <section>
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
-              From first call to live in 2–4 weeks
+              Live in 7 days
             </h2>
             <ol className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>Pick the call type that is costing you the most, such as after-hours new enquiries. The $250 USD AI Employee Audit can do this mapping, and it is credited toward setup.</li>
+              <li>Pick the call type that is costing you the most, such as after-hours new enquiries. A free missed-call audit can do this mapping.</li>
               <li>Write the rules: questions, approved answers, booking rules and escalation paths.</li>
               <li>Test expected calls and edge cases, including a question it should not know.</li>
               <li>Go live, review real calls, and improve.</li>
@@ -396,12 +399,9 @@ export default function AiReceptionistPage() {
               Client example: 3D Lifestyle, a Calgary med spa
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              3D Lifestyle is a med spa in Calgary NE. The receptionist answers
-              while the front desk is with a client, so a routine enquiry does
-              not pull staff away. iSmart Insurance is a separate published
-              example: intake collects quote details without a broker on the
-              call, saving roughly 10 minutes per quote, a client-supplied
-              figure. No client quote or logo is shown.{" "}
+              3D Lifestyle, Calgary NE, answers after-hours calls and brings
+              lapsed clients back. An insurance brokerage result from April 2026
+              is on the results page.{" "}
               <Link href="/industries/med-spas" className={linkClass}>
                 See how it works for med spas
               </Link>
@@ -417,17 +417,12 @@ export default function AiReceptionistPage() {
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
               What an AI receptionist costs with Vocemi
             </h2>
-            <ul className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>AI Employee Audit: $250 USD, one-time, credited toward setup.</li>
-              <li>One-Workflow AI Employee: $1,500 USD one-time setup + from $300 USD/mo.</li>
-              <li>Managed AI Employee: $3,000 USD setup + $1,500 USD/mo.</li>
-            </ul>
-            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mt-3">
-              Prices are USD only. Scope is confirmed on a free call.{" "}
-              <Link href="/#pricing" className={linkClass}>
-                Pricing
-              </Link>
-              .
+            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
+              Plans, minutes and the free trial are on the{" "}
+              <Link href="/pricing" className={linkClass}>
+                pricing
+              </Link>{" "}
+              page. There is no setup fee. The missed-call audit is free.
             </p>
           </section>
 
@@ -466,19 +461,18 @@ export default function AiReceptionistPage() {
                 med spas
               </Link>
               ,{" "}
-              <Link href="/industries/dental" className={linkClass}>
-                dental practices
-              </Link>
-              ,{" "}
               <Link href="/industries/hvac-plumbing" className={linkClass}>
                 HVAC and plumbing
               </Link>
-              , and{" "}
+              ,{" "}
               <Link href="/industries/insurance" className={linkClass}>
-                insurance brokerages
+                insurance
               </Link>
-              . Jag Duggal&apos;s published property-management workflow handles
-              tenant enquiries day or night. For other languages, read{" "}
+              , and{" "}
+              <Link href="/industries/vet-clinics" className={linkClass}>
+                vet clinics
+              </Link>
+              . For other languages, read{" "}
               <Link
                 href="/blog/multilingual-voice-ai-calgary"
                 className={linkClass}
@@ -568,7 +562,7 @@ export default function AiReceptionistPage() {
                 {siteConfig.contact.email}
               </a>
               {" · "}
-              Calgary-based, serving Canada, the US and the UK.
+              Based in Calgary · Serving Canada &amp; the US.
             </p>
           </div>
         </section>

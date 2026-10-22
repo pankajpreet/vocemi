@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/config";
 
 const title = "Meet Your AI Employee | Vocemi";
 const description =
-  "Vocemi builds AI employees that answer every call, qualify the caller, and book the job — 24/7. Talk to one right now, then book a free consultation.";
+  "Vocemi sets up and runs an AI receptionist built for your industry. It answers the calls you miss, books appointments into your calendar, and tells callers it's an AI. Live in 7 days.";
 
 export const metadata: Metadata = {
   // Overrides the root template so the tab reads cleanly for a landing page.

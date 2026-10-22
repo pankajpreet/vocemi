@@ -36,21 +36,7 @@ export const clientLogos: ClientLogo[] = [
     ink: "#C0326F",
     industry: "Med spa",
     outcomes: [
-      "Answers every call, so a client is never missed because the front desk was busy with someone in the room.",
-      "A lead reactivation agent works through past clients and brings them back in.",
-    ],
-  },
-  {
-    name: "iSmart Insurance",
-    accent: "iSmart",
-    sub: "Jag Duggal",
-    initials: "iS",
-    tint: "#EAF3FB",
-    ink: "#2C6FB0",
-    industry: "Insurance",
-    outcomes: [
-      "Collects quote details without a broker on the call — roughly 10 minutes saved on every quote.",
-      "Clients start a quote request whenever it suits them, instead of waiting for a broker to be free.",
+      "Answers after-hours calls and brings lapsed clients back.",
     ],
   },
   {
@@ -196,73 +182,12 @@ export const humanCons = [
 ];
 
 export const aiPros = [
-  "Live in 2–4 weeks",
+  "Live in 7 days",
   "Answers 24/7, every day",
   "Answers several calls at once",
   "Never calls in sick",
   "Updates your tools automatically",
 ];
-
-export interface PricingTier {
-  name: string;
-  tagline: string;
-  price: string;
-  priceSub: string;
-  featured: boolean;
-  ctaLabel: string;
-  features: string[];
-}
-
-export const pricingTiers: PricingTier[] = [
-  {
-    name: "AI Employee Audit",
-    tagline: "Map the first workflow worth automating.",
-    price: "$250",
-    priceSub: "USD, one-time, credited toward setup",
-    featured: false,
-    ctaLabel: "Book the audit",
-    features: [
-      "Workflow & channel map",
-      "Approval rules defined",
-      "Clear finish line",
-      "Build recommendation",
-    ],
-  },
-  {
-    name: "One-Workflow AI Employee",
-    tagline: "One defined workflow, fully handled.",
-    price: "$1,500",
-    priceSub: "USD, one-time setup + from $300 USD/mo",
-    featured: true,
-    ctaLabel: "Book a free call",
-    features: [
-      "One AI employee role",
-      "Phone, inbox, or forms",
-      "Approval gates",
-      "Daily owner report",
-    ],
-  },
-  {
-    name: "Managed AI Employee",
-    tagline: "A managed employee across your tools.",
-    price: "$3,000",
-    priceSub: "USD, setup + $1,500 USD/mo",
-    featured: false,
-    ctaLabel: "Book a free call",
-    features: [
-      "Phone, inbox, calendar, CRM",
-      "Booking & follow-up",
-      "Escalation rules",
-      "Monthly improvement review",
-    ],
-  },
-];
-
-/**
- * The AI Employee Audit price line, already shown on the pricing cards.
- * Joined here so booking CTAs can surface it without a new claim.
- */
-export const auditCreditNote = `${pricingTiers[0].name}: ${pricingTiers[0].price} ${pricingTiers[0].priceSub}`;
 
 export const homeFaqs = [
   {
@@ -271,7 +196,7 @@ export const homeFaqs = [
   },
   {
     q: "How long does it take to implement?",
-    a: "Simple voice bots typically launch in 2–4 weeks. Comprehensive custom builds can take 6–12 weeks. We confirm a timeline during your audit.",
+    a: "Live in 7 days.",
   },
   {
     q: "Do I need technical expertise?",
