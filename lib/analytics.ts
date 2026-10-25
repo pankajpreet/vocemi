@@ -23,7 +23,13 @@ export type AnalyticsEvent =
   | "email_clicked"
   | "tap_to_call"
   | "tap_to_text"
-  | "lead_form_opened";
+  | "lead_form_opened"
+  | "call_demo_click"
+  | "trial_cta_clicked"
+  | "trial_signup"
+  | "trial_signup_failed"
+  | "audit_click"
+  | "pricing_currency_toggle";
 
 export function trackEvent(
   event: AnalyticsEvent,
