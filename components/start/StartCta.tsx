@@ -1,6 +1,6 @@
 import { Mail, MessageSquare, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/config";
-import { auditCreditNote } from "@/lib/homeContent";
+import { CallDemoButton, TrialButton } from "@/components/offer/CtaButtons";
 import Reveal from "@/components/home/Reveal";
 import TrackedLink from "./TrackedLink";
 
@@ -19,24 +19,16 @@ export default function StartCta() {
             }}
           />
           <h2 className="font-display text-[28px] md:text-[42px] font-extrabold tracking-[-0.025em] leading-[1.1] text-white m-0 mb-3.5 relative">
-            Ready to stop missing calls?
+            Hear it before you decide.
           </h2>
           <p className="text-[16px] md:text-[16.5px] text-white/60 leading-[1.6] m-0 mb-8 relative max-w-[440px] mx-auto">
-            Book a free 30-minute consultation. We&apos;ll map the first workflow
-            worth automating in your business &mdash; no charge, no pitch deck.
+            Try it free for 14 days (30 for HVAC &amp; plumbing). No card, no
+            login. We build it for you and it&apos;s live in 7 days.
           </p>
-          <TrackedLink
-            href={siteConfig.bookCallUrl("start_final_cta")}
-            event="book_call_clicked"
-            properties={{ placement: "start_final_cta" }}
-            external
-            className="relative inline-block bg-brand text-white px-[30px] py-4 rounded-[9px] font-semibold text-[15.5px] hover:bg-[#5A70FF] transition-colors"
-          >
-            Book a free call
-          </TrackedLink>
-          <p className="relative text-[13px] leading-snug text-white/80 m-0 mt-3">
-            {auditCreditNote}
-          </p>
+          <div className="relative flex flex-col sm:flex-row gap-3 justify-center">
+            <TrialButton placement="start_final_cta" label="Start my free trial" variant="dark" size="lg" />
+            <CallDemoButton placement="start_final_cta" variant="ghostDark" size="lg" />
+          </div>
 
           {siteConfig.leadFormUrl && (
             <div className="relative mt-5">

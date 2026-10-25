@@ -3,21 +3,21 @@ import Link from "next/link";
 import TrackedLink from "@/components/start/TrackedLink";
 import { siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/metadata";
+import { getPlan, planPrice } from "@/lib/plans";
+import { AuditButton, CallDemoButton, TrialButton } from "@/components/offer/CtaButtons";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Receptionist: 24/7 Call Answering & Booking | Vocemi",
+  title: "AI Receptionist: $0 Setup, Live in 7 Days, Free Trial | Vocemi",
   absoluteTitle: true,
   description:
-    "A done-for-you AI receptionist that answers calls 24/7, qualifies callers, books inside your rules and sends a daily owner report. See pricing and FAQs.",
+    "A done-for-you AI receptionist that answers the calls you miss, books inside your rules, tells callers it's an AI and texts you about urgent calls. $0 setup, live in 7 days, free for 14.",
   path: "/services/ai-receptionist",
-  socialTitle: "Vocemi AI Receptionist: answers, qualifies and books calls 24/7",
+  socialTitle: "Vocemi AI Receptionist: answers the calls you miss, live in 7 days",
 });
 
-const serviceUtm = {
-  source: "vocemi",
-  medium: "service_page",
-  campaign: "ai_receptionist",
-} as const;
+const starter = getPlan("starter");
+const startingPrice = planPrice(starter, "usd");
+const startingPriceCad = planPrice(starter, "cad");
 
 type Piece = { text: string; href?: string; external?: boolean };
 
@@ -26,15 +26,17 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How much does an AI receptionist cost?",
     pieces: [
       {
-        text: "Prices are USD only. One-Workflow is $1,500 USD setup plus from $300 USD/mo. Managed is $3,000 USD setup plus $1,500 USD/mo. The $250 USD audit is credited toward setup.",
+        text: `Plans start at ${startingPrice} USD a month (${startingPriceCad}) with $0 setup, and the first 14 days are free. Plans differ only by minutes and support. `,
       },
+      { text: "See pricing", href: "/pricing" },
+      { text: "." },
     ],
   },
   {
     question: "Will callers know they're talking to an AI?",
     pieces: [
       {
-        text: "The greeting is written for that client. It is not a fixed default, and Vocemi is not a self-serve platform. If the call is recorded, that notice is part of the greeting. See the Office of the Privacy Commissioner of Canada's ",
+        text: "Yes. It tells callers it's an AI assistant and passes them to your team when they need a person. The rest of the greeting is written for each client, and if the call is recorded, that notice is part of it. See the Office of the Privacy Commissioner of Canada's ",
       },
       {
         text: "guidance on recording customer calls",
@@ -64,7 +66,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "Does it answer after hours and when several people call at once?",
     pieces: [
       {
-        text: "It answers 24/7, every day, and it can answer several calls at once. You set what happens after hours: book, take details, or escalate emergencies.",
+        text: "Yes. It answers the calls you forward to it, day or night, and it can answer several calls at once. You set what happens after hours: book, take details, or flag urgent calls to you right away.",
       },
     ],
   },
@@ -72,7 +74,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "How long does it take to set up?",
     pieces: [
       {
-        text: "Simple workflows usually launch in 2–4 weeks. Comprehensive custom builds take 6–12 weeks. The timeline is confirmed in the audit.",
+        text: "Live in 7 days. We build it for you; there is no DIY setup. Custom plans that connect to your own software are scoped after a free audit.",
       },
     ],
   },
@@ -141,13 +143,12 @@ const graph = {
       name: "AI Receptionist",
       serviceType: "AI receptionist / AI phone answering service",
       description:
-        "A done-for-you AI receptionist that answers business calls 24/7, answers questions from approved information, collects caller details, books appointments inside your rules and routes exceptions to your team, with a daily owner report.",
+        "A done-for-you AI receptionist that answers the calls a business misses, answers questions from approved information, collects caller details, books appointments inside your rules and routes exceptions to your team.",
       url: "https://www.vocemi.com/services/ai-receptionist",
       provider: { "@id": "https://www.vocemi.com/#organization" },
       areaServed: [
         { "@type": "Country", name: "Canada" },
         { "@type": "Country", name: "United States" },
-        { "@type": "Country", name: "United Kingdom" },
         { "@type": "City", name: "Calgary" },
       ],
       audience: {
@@ -202,8 +203,6 @@ export default function AiReceptionistPage() {
   const demoLabel = siteConfig.voiceDemoAvailable
     ? "Try the live demo"
     : "See how it works";
-  const book = (placement: string) =>
-    siteConfig.bookCallUrl(placement, serviceUtm);
 
   return (
     <>
@@ -229,40 +228,37 @@ export default function AiReceptionistPage() {
             AI Receptionist · Done for you by a Calgary-based team
           </p>
           <h1 className="font-display text-[2rem] md:text-[2.75rem] leading-[1.12] font-extrabold tracking-[-0.02em] m-0 mb-5">
-            An AI receptionist that answers, qualifies and books your calls, 24/7
+            An AI receptionist that answers the calls you miss and books them in
           </h1>
           <p className="text-[17px] leading-[1.65] text-ink/80 m-0 mb-6">
-            A Vocemi AI receptionist answers your business calls 24/7, including
-            after hours and when several people call at once. It answers from
-            information you approve, collects caller details, and books inside
-            your rules. Urgent or unusual calls go to your team. Vocemi builds
-            and tunes it, usually within 2–4 weeks, and sends a daily report of
-            every call.
+            A Vocemi AI receptionist answers the calls you can&apos;t get to,
+            including after hours and when several people call at once. It
+            tells callers it&apos;s an AI, answers from information you approve,
+            collects caller details, and books inside your rules. Urgent or
+            unusual calls go to your team. We build it for you, it&apos;s live in
+            7 days, and the first 14 days are free.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <TrackedLink
-              href={demoHref}
-              event="demo_cta_clicked"
-              properties={{
-                placement: "ai_receptionist_hero",
-                service: "ai-receptionist",
-              }}
-              className="inline-flex items-center justify-center bg-brand text-white px-5 py-3 rounded-md font-semibold hover:bg-brand-dark"
-            >
-              {demoLabel}
-            </TrackedLink>
-            <TrackedLink
-              href={book("ai_receptionist_hero")}
-              event="book_call_clicked"
-              properties={{
-                placement: "ai_receptionist_hero",
-                service: "ai-receptionist",
-              }}
-              external
-              className="inline-flex items-center justify-center border border-ink/20 px-5 py-3 rounded-md font-semibold hover:border-ink/50"
-            >
-              Book a free call
-            </TrackedLink>
+            <TrialButton
+              placement="ai_receptionist_hero"
+              label="Start my free trial"
+              className="rounded-md px-5 py-3"
+            />
+            {siteConfig.demoCallAvailable ? (
+              <CallDemoButton placement="ai_receptionist_hero" className="rounded-md px-5 py-3" />
+            ) : (
+              <TrackedLink
+                href={demoHref}
+                event="demo_cta_clicked"
+                properties={{
+                  placement: "ai_receptionist_hero",
+                  service: "ai-receptionist",
+                }}
+                className="inline-flex items-center justify-center border border-ink/20 px-5 py-3 rounded-md font-semibold hover:border-ink/50"
+              >
+                {demoLabel}
+              </TrackedLink>
+            )}
           </div>
         </header>
 
@@ -276,7 +272,7 @@ export default function AiReceptionistPage() {
               before launch.
             </p>
             <ol className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>It answers on the first ring, in your greeting and brand voice, and says it is an automated assistant.</li>
+              <li>It answers in your greeting and brand voice, and says it is an AI assistant.</li>
               <li>It works out why the person is calling.</li>
               <li>It answers from approved information: hours, services, prices or ranges you approved, and policies.</li>
               <li>It collects name, number, reason, and urgency.</li>
@@ -289,7 +285,7 @@ export default function AiReceptionistPage() {
               </figcaption>
               <ol className="m-0 pl-5 text-[15px] leading-[1.6] text-ink/80 flex flex-col gap-1">
                 <li>Caller: I would like a first visit Thursday afternoon.</li>
-                <li>Assistant: I am the clinic&apos;s automated assistant. Thursday at 2:30 or 4:15 is open. Which should I hold?</li>
+                <li>Assistant: I am the clinic&apos;s AI assistant. Thursday at 2:30 or 4:15 is open. Which should I hold?</li>
                 <li>Caller: 2:30. Can you waive the booking fee?</li>
                 <li>Assistant: I can book 2:30. A fee exception waits for the team, so I will flag it with your name and number.</li>
               </ol>
@@ -324,8 +320,8 @@ export default function AiReceptionistPage() {
               After-hours, weekend and busy-hour coverage
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              It answers 24/7, every day, including lunch, evenings, and
-              weekends, and it answers several calls at once. In a 2016 study of 85 US
+              It picks up the calls you forward to it, including lunch, evenings
+              and weekends, and it answers several calls at once. In a 2016 study of 85 US
               businesses by 411 Locals, 62% of calls were not answered by a
               person (voicemail or no response).{" "}
               <Link href="/blog/missed-call-statistics" className={linkClass}>
@@ -350,28 +346,31 @@ export default function AiReceptionistPage() {
               Updates the tools you already use
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Connected tools are Google Calendar, Outlook, and Cal.com. The
-              Managed plan also covers phone, inbox, and CRM.
+              Connected tools are Google Calendar, Outlook, and Cal.com. The{" "}
+              <Link href="/pricing#custom" className={linkClass}>
+                Custom plan
+              </Link>{" "}
+              also updates your CRM, agency management system, ServiceTitan or
+              Jobber.
             </p>
             <h3 className="font-display text-lg font-bold mt-5 mb-2">
               Integration scope is confirmed before launch
             </h3>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Vocemi provides a new local number. You can forward your own
-              number to it, or use the new number directly. If a calendar
+              Keep your number. You forward the calls you don&apos;t answer to
+              your AI, and nothing changes for your customers. If a calendar
               connection is not ready, staff confirm the booking request.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
-              Approvals, transcripts and a daily owner report
+              Approvals, call summaries and urgent alerts
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               You approve the call flow, the answers, and the booking rules
-              before launch. Every call is transcribed, logged, and searchable.
-              100% of calls are logged and reported, and a daily summary lands
-              in your inbox. The{" "}
+              before launch. You get an email summary of every call and an
+              instant text about urgent calls; Growth adds a daily digest. The{" "}
               <Link href="/#owner-visibility" className={linkClass}>
                 owner visibility
               </Link>{" "}
@@ -381,13 +380,13 @@ export default function AiReceptionistPage() {
 
           <section>
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
-              From first call to live in 2–4 weeks
+              From first call to live in 7 days
             </h2>
             <ol className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>Pick the call type that is costing you the most, such as after-hours new enquiries. The $250 USD AI Employee Audit can do this mapping, and it is credited toward setup.</li>
-              <li>Write the rules: questions, approved answers, booking rules and escalation paths.</li>
-              <li>Test expected calls and edge cases, including a question it should not know.</li>
-              <li>Go live, review real calls, and improve.</li>
+              <li>Optional: a free missed-call audit shows which calls you&apos;re missing and when.</li>
+              <li>We build it in 7 days: questions, approved answers, booking rules and escalation paths, tested against edge cases.</li>
+              <li>Your free 14-day trial (30 days for HVAC and plumbing): forward the calls you miss and watch it work.</li>
+              <li>Keep it on a plan, or walk away and owe nothing.</li>
             </ol>
           </section>
 
@@ -398,10 +397,13 @@ export default function AiReceptionistPage() {
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
               3D Lifestyle is a med spa in Calgary NE. The receptionist answers
               while the front desk is with a client, so a routine enquiry does
-              not pull staff away. iSmart Insurance is a separate published
-              example: intake collects quote details without a broker on the
-              call, saving roughly 10 minutes per quote, a client-supplied
-              figure. No client quote or logo is shown.{" "}
+              not pull staff away, and it answers after-hours calls. Separately,
+              an AI intake agent we ran for an insurance brokerage answered 776
+              calls in April 2026.{" "}
+              <Link href="/results" className={linkClass}>
+                See results
+              </Link>
+              .{" "}
               <Link href="/industries/med-spas" className={linkClass}>
                 See how it works for med spas
               </Link>
@@ -417,15 +419,12 @@ export default function AiReceptionistPage() {
             <h2 className="font-display text-[1.65rem] leading-tight font-extrabold m-0 mb-3">
               What an AI receptionist costs with Vocemi
             </h2>
-            <ul className="m-0 pl-5 flex flex-col gap-2 text-[16.5px] leading-[1.65] text-ink/80">
-              <li>AI Employee Audit: $250 USD, one-time, credited toward setup.</li>
-              <li>One-Workflow AI Employee: $1,500 USD one-time setup + from $300 USD/mo.</li>
-              <li>Managed AI Employee: $3,000 USD setup + $1,500 USD/mo.</li>
-            </ul>
-            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mt-3">
-              Prices are USD only. Scope is confirmed on a free call.{" "}
-              <Link href="/#pricing" className={linkClass}>
-                Pricing
+            <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
+              $0 setup, and the first 14 days are free. Plans start at{" "}
+              {startingPrice} USD a month ({startingPriceCad}), with the same AI
+              on every plan; they differ only by minutes and support.{" "}
+              <Link href="/pricing" className={linkClass}>
+                See plans and pricing
               </Link>
               .
             </p>
@@ -461,13 +460,13 @@ export default function AiReceptionistPage() {
               Built for phone-heavy service businesses
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0">
-              Published guides:{" "}
+              Built for:{" "}
               <Link href="/industries/med-spas" className={linkClass}>
                 med spas
               </Link>
               ,{" "}
-              <Link href="/industries/dental" className={linkClass}>
-                dental practices
+              <Link href="/industries/vet-clinics" className={linkClass}>
+                vet clinics
               </Link>
               ,{" "}
               <Link href="/industries/hvac-plumbing" className={linkClass}>
@@ -499,7 +498,7 @@ export default function AiReceptionistPage() {
               Want the AI to call past clients and old leads back, rather than
               answer incoming calls? That is a separate, consent-first workflow:{" "}
               <Link href="/services/lead-reactivation" className={linkClass}>
-                AI lead reactivation calls
+                Comeback Sprints
               </Link>
               .
             </p>
@@ -531,8 +530,8 @@ export default function AiReceptionistPage() {
             </h2>
             <p className="text-[16.5px] leading-[1.7] text-ink/80 m-0 mb-5">
               {siteConfig.voiceDemoAvailable
-                ? "Call the live demo and try to book, ask about pricing, or ask something it should not know. Or book a free 30-minute call and we will map the first call workflow worth automating."
-                : "Book a free 30-minute call and we will map the first call workflow worth automating."}
+                ? "Call the live demo and try to book, ask about pricing, or ask something it should not know. Or start your free trial: no card, no login, live in 7 days."
+                : "Start your free trial: no card, no login, live in 7 days. Or get a free missed-call audit first."}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-4">
               <TrackedLink
@@ -546,18 +545,17 @@ export default function AiReceptionistPage() {
               >
                 {demoLabel}
               </TrackedLink>
-              <TrackedLink
-                href={book("ai_receptionist_final")}
-                event="book_call_clicked"
-                properties={{
-                  placement: "ai_receptionist_final",
-                  service: "ai-receptionist",
-                }}
-                external
-                className="inline-flex items-center justify-center border border-ink/20 bg-white px-5 py-3 rounded-md font-semibold hover:border-ink/50"
-              >
-                Book a free call
-              </TrackedLink>
+              <TrialButton
+                placement="ai_receptionist_final"
+                label="Start my free trial"
+                variant="secondary"
+                className="rounded-md px-5 py-3 bg-white"
+              />
+              <AuditButton
+                placement="ai_receptionist_final"
+                label="Get a free missed-call audit"
+                className="rounded-md px-5 py-3 bg-white"
+              />
             </div>
             <p className="text-[15px] leading-relaxed text-ink/80 m-0">
               <a className={linkClass} href={`tel:${siteConfig.contact.phoneTel}`}>
@@ -568,7 +566,7 @@ export default function AiReceptionistPage() {
                 {siteConfig.contact.email}
               </a>
               {" · "}
-              Calgary-based, serving Canada, the US and the UK.
+              Based in Calgary, serving Canada and the US.
             </p>
           </div>
         </section>

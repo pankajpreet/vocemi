@@ -2,9 +2,7 @@
 
 import { motion } from "framer-motion";
 import FAQAccordion from "@/components/FAQAccordion";
-import BookCallButton from "@/components/BookCallButton";
-import TrackedLink from "@/components/start/TrackedLink";
-import { siteConfig } from "@/lib/config";
+import { CallDemoButton, TrialButton } from "@/components/offer/CtaButtons";
 import { pageFaqs } from "@/lib/faqContent";
 
 export default function FAQPage() {
@@ -29,17 +27,12 @@ export default function FAQPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Quick answers to common Voice AI questions
+            Pricing, the free trial, and what the AI will and won&apos;t do
           </motion.p>
-          <TrackedLink
-            href={siteConfig.bookCallUrl("faq_hero")}
-            event="book_call_clicked"
-            properties={{ placement: "faq_hero" }}
-            external
-            className="inline-flex items-center justify-center mt-8 bg-brand text-white px-[26px] py-4 rounded-[9px] text-[15.5px] font-semibold text-center hover:bg-brand-dark transition-colors"
-          >
-            Book a free call
-          </TrackedLink>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <TrialButton placement="faq_hero" label="Start my free trial" variant="dark" className="py-4" />
+            <CallDemoButton placement="faq_hero" variant="ghostDark" className="py-4" />
+          </div>
         </div>
       </section>
 
@@ -59,7 +52,14 @@ export default function FAQPage() {
               className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
               href="/services/lead-reactivation"
             >
-              Lead reactivation and calling rules
+              Comeback Sprints and calling rules
+            </a>
+            {" · "}
+            <a
+              className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
+              href="/pricing"
+            >
+              Pricing
             </a>
           </p>
         </div>
@@ -80,9 +80,7 @@ export default function FAQPage() {
               may have.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookCallButton variant="primary">
-                Book a free call
-              </BookCallButton>
+              <TrialButton placement="faq_final_cta" label="Start my free trial" variant="dark" />
               <a
                 href="/contact"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base bg-transparent border-2 border-primary-accent-on-dark text-primary-accent-on-dark hover:border-primary-accent hover:bg-primary-accent hover:text-white transition-all duration-300"

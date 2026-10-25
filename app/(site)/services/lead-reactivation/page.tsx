@@ -1,28 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import TrackedLink from "@/components/start/TrackedLink";
+import { AuditButton, TrialButton } from "@/components/offer/CtaButtons";
 import { siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/metadata";
+import { comebackSprint, sprintPrice } from "@/lib/plans";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Lead Reactivation Calls to Past Customers | Vocemi",
+  title: "Comeback Sprints: AI Lead Reactivation, $497 per Sprint | Vocemi",
   absoluteTitle: true,
   description:
-    "Consent-first AI calls to past customers and dormant leads: clean lists, approved scripts, opt-outs, follow-up and a results report. Canada, US and UK.",
+    "Comeback Sprints: the AI reaches out to past customers who've agreed to hear from you and books them back in. Up to 300 contacts, $497 per sprint, first sprint free on a paid plan. Canada and US.",
   path: "/services/lead-reactivation",
   socialTitle:
-    "Vocemi AI lead reactivation: bring past customers back, the compliant way",
+    "Vocemi Comeback Sprints: bring past customers back, the compliant way",
 });
-
-const campaignUtm = {
-  source: "vocemi",
-  medium: "service_page",
-  campaign: "lead_reactivation",
-} as const;
 
 type Piece = { text: string; href?: string; external?: boolean };
 
+const sprintPriceLine = `${sprintPrice("usd")} USD (${sprintPrice("cad")}) per sprint, up to ${comebackSprint.contacts} contacts`;
+
+const consentNote =
+  "We only contact people who've bought from you or asked about your services recently enough to allow it. Every message names your business and includes an opt-out.";
+
 const answeredFaqs: { question: string; pieces: Piece[] }[] = [
+  {
+    question: "What does a Comeback Sprint cost?",
+    pieces: [
+      {
+        text: `${sprintPriceLine}. Your first sprint is free when you move from the free trial to any paid plan. `,
+      },
+      { text: "See pricing", href: "/pricing" },
+      { text: "." },
+    ],
+  },
   {
     question: "What is a lead reactivation (database reactivation) campaign?",
     pieces: [
@@ -50,7 +61,7 @@ const answeredFaqs: { question: string; pieces: Piece[] }[] = [
     question: "They're already my customers. Do I still need their consent?",
     pieces: [
       {
-        text: "Usually yes for a sales call. In Canada the existing-customer exemption covers the Do Not Call List, not automated-voice consent. In the US, TCPA consent applies to AI voices. In the UK, consent must name automated calls.",
+        text: "Usually yes for a sales call. In Canada the existing-customer exemption covers the Do Not Call List, not automated-voice consent. In the US, TCPA consent applies to AI voices.",
       },
     ],
   },
@@ -134,8 +145,8 @@ const graph = {
     {
       "@type": "Service",
       "@id": "https://www.vocemi.com/services/lead-reactivation#service",
-      name: "AI Lead Reactivation",
-      serviceType: "Lead reactivation / database reactivation calling campaign",
+      name: "Comeback Sprint (AI lead reactivation)",
+      serviceType: "Lead reactivation / database reactivation campaign",
       description:
         "Consent-first AI voice campaigns that call past customers and unconverted enquiries from an approved list, by SMS, WhatsApp, and phone, offer an approved next step such as booking, honour opt-outs, and report results in a client dashboard.",
       url: "https://www.vocemi.com/services/lead-reactivation",
@@ -143,8 +154,14 @@ const graph = {
       areaServed: [
         { "@type": "Country", name: "Canada" },
         { "@type": "Country", name: "United States" },
-        { "@type": "Country", name: "United Kingdom" },
       ],
+      offers: {
+        "@type": "Offer",
+        name: "Comeback Sprint",
+        price: comebackSprint.usd,
+        priceCurrency: "USD",
+        description: `Up to ${comebackSprint.contacts} contacts per sprint.`,
+      },
       audience: {
         "@type": "BusinessAudience",
         audienceType: "Service businesses with past-customer or lead databases",
@@ -180,7 +197,7 @@ const graph = {
         {
           "@type": "ListItem",
           position: 3,
-          name: "Lead Reactivation",
+          name: "Comeback Sprints",
           item: "https://www.vocemi.com/services/lead-reactivation",
         },
       ],
@@ -193,8 +210,6 @@ export default function LeadReactivationPage() {
   const demoLabel = siteConfig.voiceDemoAvailable
     ? "Try the live demo"
     : "See how it works";
-  const book = (placement: string) =>
-    siteConfig.bookCallUrl(placement, campaignUtm);
 
   return (
     <>
@@ -214,37 +229,57 @@ export default function LeadReactivationPage() {
               Services
             </Link>
             <span aria-hidden="true"> / </span>
-            <span>Lead Reactivation</span>
+            <span>Comeback Sprints</span>
           </nav>
           <p className="text-[12px] uppercase tracking-[0.14em] text-brand-light m-0 mb-3">
-            Lead Reactivation · Outbound campaigns, done for you
+            Comeback Sprint · Lead reactivation, done for you
           </p>
           <h1 className="font-display text-[1.85rem] md:text-[2.6rem] leading-[1.08] font-extrabold m-0 mb-5">
-            AI lead reactivation: consent-first calls to past customers and old leads
+            Comeback Sprints: consent-first outreach that books past customers back in
           </h1>
           <p className="text-[16.5px] leading-[1.65] text-white/85 m-0 mb-6">
             Vocemi calls people already in your records, such as past customers,
             unconverted enquiries, and quotes that were not booked, and offers
             one approved next step, usually booking back in. Before anyone is
             called, the list and the consent basis for each contact are checked.
-            AI-voice sales calls need prior express consent in Canada and the US,
-            and specific consent in the UK. The agent stays inside your script,
+            AI-voice sales calls need prior express consent in Canada and the
+            US. The agent stays inside your script,
             honours opt-outs, and you get a report of who was reached, who
             booked, and who opted out.
           </p>
+          <div className="grid sm:grid-cols-3 gap-px bg-white/15 border border-white/15 mb-6">
+            <div className="bg-coal p-4">
+              <div className="font-display text-[26px] font-extrabold leading-none mb-1">
+                {sprintPrice("usd")}
+              </div>
+              <div className="text-[13px] text-white/70">
+                per sprint ({sprintPrice("cad")})
+              </div>
+            </div>
+            <div className="bg-coal p-4">
+              <div className="font-display text-[26px] font-extrabold leading-none mb-1">
+                {comebackSprint.contacts}
+              </div>
+              <div className="text-[13px] text-white/70">contacts per sprint</div>
+            </div>
+            <div className="bg-coal p-4">
+              <div className="font-display text-[26px] font-extrabold leading-none mb-1 text-brand-light">
+                Free
+              </div>
+              <div className="text-[13px] text-white/70">
+                first sprint on any paid plan
+              </div>
+            </div>
+          </div>
+          <p className="text-[15px] leading-[1.65] text-white/85 m-0 mb-6 border-l-2 border-brand-light pl-4">
+            {consentNote}
+          </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <TrackedLink
-              href={book("lead_reactivation_hero")}
-              event="book_call_clicked"
-              properties={{
-                placement: "lead_reactivation_hero",
-                service: "lead-reactivation",
-              }}
-              external
-              className="inline-flex items-center justify-center bg-white text-coal px-5 py-3 font-semibold hover:bg-sand"
-            >
-              Book a free call
-            </TrackedLink>
+            <TrialButton
+              placement="lead_reactivation_hero"
+              label="Start my free trial"
+              className="rounded-none bg-white text-coal px-5 py-3 hover:bg-sand"
+            />
             <TrackedLink
               href={demoHref}
               event="demo_cta_clicked"
@@ -281,7 +316,7 @@ export default function LeadReactivationPage() {
             </h2>
             <ul className="m-0 pl-5 flex flex-col gap-2 text-[16px] leading-[1.65] text-white/85">
               <li>Source: an export from your CRM, booking software, or a spreadsheet. You approve the final list.</li>
-              <li>Remove duplicates, bad numbers, and your internal do-not-call list. Where a National DNCL, National DNC Registry, or TPS/CTPS registration applies, that registration is the client&apos;s responsibility.</li>
+              <li>Remove duplicates, bad numbers, and your internal do-not-call list. Where a National DNCL or National DNC Registry registration applies, that registration is the client&apos;s responsibility.</li>
               <li>Leave out anyone without the consent that call needs.</li>
             </ul>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0 mt-3">
@@ -292,7 +327,7 @@ export default function LeadReactivationPage() {
 
           <section id="calling-rules" className="scroll-mt-24">
             <h2 className="font-display text-2xl font-extrabold m-0 mb-3">
-              Step 2: Consent and calling rules in Canada, the US and the UK
+              Step 2: Consent and calling rules in Canada and the US
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/60 m-0 mb-4">
               Calling, texting and do-not-call rules vary by country and
@@ -352,22 +387,6 @@ export default function LeadReactivationPage() {
               Opt-outs are honoured on the call.
             </p>
 
-            <h3 className="font-display text-lg font-bold m-0 mb-2">
-              United Kingdom
-            </h3>
-            <p className="text-[16px] leading-[1.7] text-white/85 m-0 mb-4">
-              PECR regulation 19 requires specific prior consent to automated
-              calls. General marketing consent, or consent to live calls, is
-              not enough. A service message is not marketing until an offer is
-              added. Calls must name
-              the business and give a contact number (
-              <a className={ext} href="https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/electronic-and-telephone-marketing/telephone-marketing/" target="_blank" rel="noopener noreferrer">
-                ICO: telephone marketing
-              </a>
-              ). The ICO describes a live call as a live person speaking, so
-              the cautious reading is that an AI voice is not a live call.
-              Penalties are significant.
-            </p>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
               The greeting is written for that client. It is not a fixed default,
               and this is not a self-serve platform.
@@ -394,7 +413,7 @@ export default function LeadReactivationPage() {
               inside the recipient&apos;s legal window. An example only, not a
               Vocemi guarantee, is 3–5 attempts over 7–14 days. Follow-up can
               be SMS or WhatsApp, and that message still
-              needs the consent CASL, TCPA, or PECR requires for the channel.
+              needs the consent CASL or the TCPA requires for the channel.
             </p>
           </section>
 
@@ -430,8 +449,12 @@ export default function LeadReactivationPage() {
               What it costs
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
-              Reactivation pricing is customized. There is no public price.
-              The quote is prepared for that list and that campaign.
+              {sprintPriceLine}. Your first Comeback Sprint is free when you move
+              from the free trial to any paid plan.{" "}
+              <Link href="/pricing" className={ext}>
+                See all pricing
+              </Link>
+              .
             </p>
           </section>
 
@@ -450,8 +473,8 @@ export default function LeadReactivationPage() {
                 HVAC and plumbing
               </Link>
               ,{" "}
-              <Link href="/industries/dental" className={ext}>
-                dental practices
+              <Link href="/industries/vet-clinics" className={ext}>
+                vet clinics
               </Link>
               .
             </p>
@@ -459,7 +482,7 @@ export default function LeadReactivationPage() {
 
           <section>
             <h2 className="font-display text-2xl font-extrabold m-0 mb-4">
-              Lead reactivation FAQs
+              Comeback Sprint FAQs
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {answeredFaqs.map((faq, index) => (
@@ -485,22 +508,14 @@ export default function LeadReactivationPage() {
               Have a list of past customers? Let&apos;s check it first
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0 mb-5">
-              Book a free 30-minute call. We will look at the list, the consent
-              you have, and the one campaign worth running first.
+              Book a free audit. We will look at the list, the consent you have,
+              and the one sprint worth running first.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-4">
-              <TrackedLink
-                href={book("lead_reactivation_final")}
-                event="book_call_clicked"
-                properties={{
-                  placement: "lead_reactivation_final",
-                  service: "lead-reactivation",
-                }}
-                external
-                className="inline-flex items-center justify-center bg-white text-coal px-5 py-3 font-semibold hover:bg-sand"
-              >
-                Book a free call
-              </TrackedLink>
+              <AuditButton
+                placement="lead_reactivation_final"
+                className="rounded-none bg-white text-coal border-0 px-5 py-3 hover:bg-sand"
+              />
               <TrackedLink
                 href={demoHref}
                 event="demo_cta_clicked"
@@ -522,8 +537,8 @@ export default function LeadReactivationPage() {
                 {siteConfig.contact.email}
               </a>
               {" · "}
-              Based in Calgary. Campaigns run for businesses in Canada, the
-              United States and the United Kingdom.
+              Based in Calgary. Campaigns run for businesses in Canada and the
+              United States.
             </p>
           </div>
         </section>

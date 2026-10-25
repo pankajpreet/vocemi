@@ -1,26 +1,11 @@
+import { pricingFaqs } from "@/lib/plans";
+
 /**
- * /faq questions. None of these strings are the homepage FAQ.
- * Every question here is a real answer and is included in FAQPage JSON-LD.
+ * /faq questions. The pricing answers come from lib/plans.ts so they match
+ * /pricing word for word. Every question here is included in FAQPage JSON-LD.
  */
 
-export const pageFaqs: { question: string; answer: string }[] = [
-  {
-    question: "What does the AI Employee Audit include, and what does it cost?",
-    answer:
-      "The AI Employee Audit is $250 USD, one-time, and credited toward setup. It maps the workflow and channels, defines the approval rules, sets a clear finish line, and ends with a build recommendation. Prices are USD only. Every engagement is scoped to your actual call volume and tools on a free call.",
-  },
-  {
-    question:
-      "What does the One-Workflow AI Employee include, and what does it cost?",
-    answer:
-      "The One-Workflow AI Employee is $1,500 USD one-time setup, plus from $300 USD/mo. It covers one AI employee role on phone, inbox, or forms, with approval gates and a daily owner report. The pricing section marks this tier as the most common start.",
-  },
-  {
-    question:
-      "What does the Managed AI Employee include, and what does it cost?",
-    answer:
-      "The Managed AI Employee is $3,000 USD setup plus $1,500 USD/mo. It covers phone, inbox, calendar, and CRM, plus booking and follow-up, escalation rules, and a monthly improvement review.",
-  },
+const generalFaqs: { question: string; answer: string }[] = [
   {
     question: "What does Vocemi leave to a person?",
     answer:
@@ -37,7 +22,7 @@ export const pageFaqs: { question: string; answer: string }[] = [
       "You approve the call flow, the answers it may give, and the booking rules before launch. The page's steps are to pick the call type, write those rules, test expected calls and edge cases, then go live and review real calls.",
   },
   {
-    question: "How is a lead reactivation campaign limited?",
+    question: "How is a Comeback Sprint (lead reactivation) limited?",
     answer:
       "You choose the contacts, the message, the offer, the booking rules, and the situations that require a person. The agent stays inside the approved message and offer. Unusual questions wait for your team, and outcomes can be reviewed before the next run. The guide on Canada's calling rules says these workflows start with the contact list, the consent basis, and the script before anyone is called. The lead reactivation page, including whether those calls are legal, is at /services/lead-reactivation.",
   },
@@ -47,9 +32,9 @@ export const pageFaqs: { question: string; answer: string }[] = [
       "The guide on AI voice calls and Canada's telemarketing rules says outbound calls in Canada fall under the CRTC's Unsolicited Telecommunications Rules, which cover telemarketing, the National Do Not Call List, and automated calls. It says the safe assumption is that an AI voice agent placing calls falls under the rules for automatic dialing-announcing devices, that sales or marketing calls made that way need the person's express consent, and that follow-up texts and emails fall under Canada's anti-spam law (CASL), not the telemarketing rules. The guide is a plain-language overview, not legal advice, and it says to check with a lawyer before running an outbound calling program. It is published at /blog/ai-voice-calls-canada-crtc-rules.",
   },
   {
-    question: "Which industries have a published Vocemi guide?",
+    question: "Which industries is Vocemi built for?",
     answer:
-      "There are guides for med spas, dental practices, HVAC and plumbing companies, and insurance brokerages. Each one covers the calls worth automating first and where the handoff to a person belongs. The /start page also lists accounting, home services, roofing, automotive, and professional services.",
+      "Vocemi is built for four industries: insurance brokerages, med spas, HVAC and plumbing companies, and vet clinics. Each has its own page covering what the AI handles, what it won't do, and the recommended plan. Businesses that need the AI connected to their own software can use the Custom plan, priced after a free audit.",
   },
   {
     question: "Can an AI receptionist book into a calendar?",
@@ -59,7 +44,7 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "What does the owner receive after calls?",
     answer:
-      "The homepage workflow says tools update automatically and a daily summary lands in your inbox. The owner dashboard says every call is transcribed, logged, and searchable. The AI receptionist guide says calls and outcomes can be included in an owner report.",
+      "On every plan you get an email summary of every call and an instant text about urgent calls. Growth adds a daily digest of all calls and a monthly tuning call with us. Plan details are on /pricing.",
   },
   {
     question: "What is written down before a client Voice AI project goes live?",
@@ -69,12 +54,12 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "Which providers does the vocemi.com website use?",
     answer:
-      "The security page names four. Vercel Analytics counts visits and selected actions. The live voice demo uses Retell AI and Google reCAPTCHA, and only after you start it. Booking links open Cal.com. The contact form is delivered with Resend. The privacy page says Vocemi does not sell the information you submit, and does not share it except with those providers.",
+      "The security page lists them: an analytics service that counts visits and selected actions, the voice provider and bot check behind the live demo (only after you start it), the booking scheduler, and the email service that delivers the contact form. The privacy page says Vocemi does not sell the information you submit, and does not share it except with those providers.",
   },
   {
     question: "How do I contact Vocemi?",
     answer:
-      "Email business@vocemi.com, use the form on /contact, or book a call. Booking links open Cal.com, which collects the details needed to arrange the consultation. Vocemi is in Calgary, Alberta, Canada, and the published phone number is (437) 332-5220.",
+      "Email business@vocemi.com, use the form on /contact, start a free trial at /free-trial, or book a free audit. Vocemi is in Calgary, Alberta, Canada, and the published phone number is (437) 332-5220.",
   },
   {
     question: "Who founded Vocemi, and where is the business based?",
@@ -82,15 +67,14 @@ export const pageFaqs: { question: string; answer: string }[] = [
       "Pankajpreet Singh is the founder. The about page describes Vocemi as a Calgary-based Voice AI business focused on answering, qualification, booking, follow-up, and clear reporting. He is a Senior Developer at Arctic Wolf and holds a B.Tech in Computer Science and Engineering from Punjab Technical University.",
   },
   {
-    question:
-      "How does the site compare an AI employee with hiring a person for the phones?",
+    question: "How long does it take to go live?",
     answer:
-      "The homepage comparison says a person can take months to hire and train, works scheduled hours, handles one queue, can be out sick, and updates tools by hand. It says an AI employee can be live in 2–4 weeks, answers 24/7, answers several calls at once, does not call in sick, and updates your tools automatically.",
+      "Live in 7 days. We build it for you, with your greeting, approved answers, booking rules and handoffs, and then your free trial starts: 14 days, or 30 for HVAC and plumbing.",
   },
   {
     question: "Does Vocemi work with businesses outside Calgary?",
     answer:
-      "The AI receptionist and lead reactivation pages describe Vocemi as Calgary-based and serving Canada, the United States, and the United Kingdom. No street address is published.",
+      "Yes. Vocemi is based in Calgary and serves businesses across Canada and the US. Prices are available in USD and CAD. No street address is published.",
   },
   {
     question: "Does Vocemi publish a list of languages the voice agent speaks?",
@@ -105,6 +89,11 @@ export const pageFaqs: { question: string; answer: string }[] = [
   {
     question: "What kinds of calls are handed to a licensed or on-call person?",
     answer:
-      "Med spa guides say clinical questions, including suitability and side effects, go to licensed staff and the agent does not give medical advice. Dental guides say the agent never gives clinical advice, and anything the office defines as an emergency goes to the team. Insurance guides say coverage questions go to a licensed broker, and the agent does not say whether something is covered. HVAC and plumbing guides say emergencies are triaged with your rules and the on-call technician is alerted, and that a gas-smell script (leave the building and call 911 or the gas utility from outside) is approved before launch.",
+      "At med spas, medical and treatment questions go to licensed staff. At brokerages, quotes, binding and coverage advice always go to a licensed broker. At vet clinics, it never diagnoses or recommends doses, and red-flag symptom calls go to the emergency hospital you choose. For HVAC and plumbing, emergencies are triaged by your rules, the on-call tech is alerted, and your gas-smell safety script is read first.",
   },
 ]
+
+export const pageFaqs: { question: string; answer: string }[] = [
+  ...pricingFaqs,
+  ...generalFaqs,
+];

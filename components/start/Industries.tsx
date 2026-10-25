@@ -8,7 +8,7 @@ export default function Industries() {
       <div className="max-w-[860px] mx-auto px-6 py-14 md:py-20">
         <Reveal>
           <h2 className="font-display text-[28px] md:text-4xl font-extrabold tracking-[-0.025em] text-ink m-0 mb-3">
-            Built for businesses where every call is a customer
+            Built for businesses where every caller is a customer
           </h2>
           <p className="text-[16px] text-ink/65 leading-[1.6] m-0 mb-7 max-w-[520px]">
             If a missed call means a lost job, this is for you.
