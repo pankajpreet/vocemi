@@ -12,7 +12,7 @@ export default function OwnerDashboard() {
           Owner visibility
         </div>
         <h2 className="font-display text-3xl md:text-[42px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink m-0 mb-[18px]">
-          See exactly what your AI employee did today.
+          See exactly what your AI receptionist did today.
         </h2>
         <p className="text-[16.5px] leading-[1.65] text-ink/60 m-0 mb-[26px]">
           Every call, booking, and edge case rolls up into one daily report.
@@ -47,7 +47,7 @@ export default function OwnerDashboard() {
               <span className="w-[9px] h-[9px] rounded-full bg-white/25" />
             </div>
             <span className="text-white/60 text-[12.5px] ml-2">
-              Illustrative Owner Report &middot; Example day
+              Sample report &middot; Example day
             </span>
           </div>
           <div className="p-[26px]">

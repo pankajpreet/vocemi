@@ -36,21 +36,21 @@ export const clientLogos: ClientLogo[] = [
     ink: "#C0326F",
     industry: "Med spa",
     outcomes: [
-      "Answers every call, so a client is never missed because the front desk was busy with someone in the room.",
-      "A lead reactivation agent works through past clients and brings them back in.",
+      "Answers after-hours calls, so an evening enquiry gets a reply instead of voicemail.",
+      "A Comeback Sprint works through past clients who've agreed to hear from the spa and books them back in.",
     ],
   },
   {
-    name: "iSmart Insurance",
-    accent: "iSmart",
-    sub: "Jag Duggal",
-    initials: "iS",
+    name: "Jag Duggal",
+    accent: "Jag",
+    sub: "Insurance broker",
+    initials: "JD",
     tint: "#EAF3FB",
     ink: "#2C6FB0",
     industry: "Insurance",
     outcomes: [
-      "Collects quote details without a broker on the call — roughly 10 minutes saved on every quote.",
-      "Clients start a quote request whenever it suits them, instead of waiting for a broker to be free.",
+      "Takes new-quote details when the broker can't get to the phone, and hands them over with a summary.",
+      "Clients start a quote whenever it suits them, instead of waiting for a call back.",
     ],
   },
   {
@@ -65,7 +65,7 @@ export const clientLogos: ClientLogo[] = [
     industry: "Property management",
     outcomes: [
       "Handles tenant enquiries and complaints as they come in, day or night.",
-      "Takes the routine property management admin off the team, cutting the hours and staffing cost behind it.",
+      "Takes the routine property management admin off the team.",
     ],
   },
 ];
@@ -134,23 +134,23 @@ export const homeServices: {
 export const workflowSteps = [
   {
     num: "01",
-    title: "Inquiry arrives",
-    desc: "Call, text, form, or web chat — Vocemi is listening on every channel.",
+    title: "Free missed-call audit",
+    desc: "Optional. We look at when calls go unanswered and what they're worth.",
   },
   {
     num: "02",
-    title: "AI qualifies",
-    desc: "Service, urgency, and details are captured in a natural conversation.",
+    title: "We build it in 7 days",
+    desc: "Your greeting, answers, booking rules and handoffs, set up for your industry.",
   },
   {
     num: "03",
-    title: "Next step is booked",
-    desc: "Only inside your approved rules — anything else waits for a human.",
+    title: "Free 14-day trial",
+    desc: "Forward the calls you miss and watch it work. 30 days for HVAC & plumbing.",
   },
   {
     num: "04",
-    title: "You get the report",
-    desc: "Tools update automatically and a daily summary lands in your inbox.",
+    title: "Keep it or walk away",
+    desc: "Pick a plan, or owe nothing. No card needed to start.",
   },
 ];
 
@@ -181,8 +181,8 @@ export type BenefitIcon = "productivity" | "experience" | "available" | "cost" |
 export const homeBenefits: { icon: BenefitIcon; title: string; desc: string }[] = [
   { icon: "productivity", title: "Increased Productivity", desc: "Automate routine calls and free your team for higher-value work." },
   { icon: "experience", title: "Better Customer Experience", desc: "24/7 personalized interactions that improve satisfaction." },
-  { icon: "available", title: "Always Available", desc: "Round-the-clock coverage without downtime or missed shifts." },
-  { icon: "cost", title: "Cost Reduction", desc: "Cut manual overhead and route budget to growth instead." },
+  { icon: "available", title: "After-hours coverage", desc: "Evening and weekend calls answered instead of sent to voicemail." },
+  { icon: "cost", title: "$0 setup", desc: "We build it for you, and the first 14 days are free." },
   { icon: "insights", title: "Data-Driven Insights", desc: "Every call becomes a data point you can act on." },
   { icon: "growth", title: "Scalable Growth", desc: "Handle more volume without a proportional headcount increase." },
 ];
@@ -196,93 +196,9 @@ export const humanCons = [
 ];
 
 export const aiPros = [
-  "Live in 2–4 weeks",
-  "Answers 24/7, every day",
+  "Live in 7 days",
+  "Answers after hours and when you're busy",
   "Answers several calls at once",
-  "Never calls in sick",
+  "Covers the calls your team can't get to",
   "Updates your tools automatically",
-];
-
-export interface PricingTier {
-  name: string;
-  tagline: string;
-  price: string;
-  priceSub: string;
-  featured: boolean;
-  ctaLabel: string;
-  features: string[];
-}
-
-export const pricingTiers: PricingTier[] = [
-  {
-    name: "AI Employee Audit",
-    tagline: "Map the first workflow worth automating.",
-    price: "$250",
-    priceSub: "USD, one-time, credited toward setup",
-    featured: false,
-    ctaLabel: "Book the audit",
-    features: [
-      "Workflow & channel map",
-      "Approval rules defined",
-      "Clear finish line",
-      "Build recommendation",
-    ],
-  },
-  {
-    name: "One-Workflow AI Employee",
-    tagline: "One defined workflow, fully handled.",
-    price: "$1,500",
-    priceSub: "USD, one-time setup + from $300 USD/mo",
-    featured: true,
-    ctaLabel: "Book a free call",
-    features: [
-      "One AI employee role",
-      "Phone, inbox, or forms",
-      "Approval gates",
-      "Daily owner report",
-    ],
-  },
-  {
-    name: "Managed AI Employee",
-    tagline: "A managed employee across your tools.",
-    price: "$3,000",
-    priceSub: "USD, setup + $1,500 USD/mo",
-    featured: false,
-    ctaLabel: "Book a free call",
-    features: [
-      "Phone, inbox, calendar, CRM",
-      "Booking & follow-up",
-      "Escalation rules",
-      "Monthly improvement review",
-    ],
-  },
-];
-
-/**
- * The AI Employee Audit price line, already shown on the pricing cards.
- * Joined here so booking CTAs can surface it without a new claim.
- */
-export const auditCreditNote = `${pricingTiers[0].name}: ${pricingTiers[0].price} ${pricingTiers[0].priceSub}`;
-
-export const homeFaqs = [
-  {
-    q: "What is Voice AI and how can it help my business?",
-    a: "Voice AI uses natural language processing and speech recognition to understand and respond to callers. It automates support, provides 24/7 coverage, and handles routine inquiries so your team can focus on judgment calls.",
-  },
-  {
-    q: "How long does it take to implement?",
-    a: "Simple voice bots typically launch in 2–4 weeks. Comprehensive custom builds can take 6–12 weeks. We confirm a timeline during your audit.",
-  },
-  {
-    q: "Do I need technical expertise?",
-    a: "No. We handle development, integration, and give you a plain-language dashboard. Training and documentation are included.",
-  },
-  {
-    q: "How do you handle data privacy and security?",
-    a: "Before anything goes live, we walk you through exactly what gets recorded, where it is stored, which providers process it, and who can access it. You retain ownership of your data.",
-  },
-  {
-    q: "What industries can benefit?",
-    a: "Healthcare, retail, finance, hospitality, real estate, home services, and any business with regular customer calls.",
-  },
 ];

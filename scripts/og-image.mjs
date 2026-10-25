@@ -35,12 +35,12 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
         letter-spacing="-0.8" fill="#16181C">Vocemi</text>
 
   <text x="80" y="252" font-family="${FONT}" font-size="70" font-weight="700"
-        letter-spacing="-2.4" fill="#16181C">Never miss another</text>
+        letter-spacing="-2.4" fill="#16181C">Stop sending your callers</text>
   <text x="80" y="336" font-family="${FONT}" font-size="70" font-weight="700"
-        letter-spacing="-2.4" fill="#3B54F4">call, lead, or booking.</text>
+        letter-spacing="-2.4" fill="#3B54F4">to voicemail.</text>
 
   <text x="80" y="400" font-family="${FONT}" font-size="27" font-weight="400"
-        fill="#5C5F66">AI employees that answer, qualify, and book — 24/7.</text>
+        fill="#5C5F66">AI receptionist · $0 setup · Live in 7 days · Free for 14</text>
 
   ${bars}
 
@@ -48,7 +48,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <text x="80" y="580" font-family="${FONT}" font-size="23" font-weight="600"
         fill="#16181C" opacity="0.55">vocemi.com</text>
   <text x="1120" y="580" text-anchor="end" font-family="${FONT}" font-size="23"
-        font-weight="400" fill="#16181C" opacity="0.4">Calgary, Alberta</text>
+        font-weight="400" fill="#16181C" opacity="0.4">Calgary · Canada &amp; the US</text>
 </svg>`;
 
 // Rendered at 2x then resized down, so the type keeps clean edges at the

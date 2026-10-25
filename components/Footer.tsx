@@ -1,16 +1,7 @@
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "@/components/start/TrackedLink";
 import NapLine, { ProfileLinks } from "@/components/NapLine";
-import { serviceGuides } from "@/lib/serviceContent";
 import { industryGuides } from "@/lib/industryContent";
-
-const serviceLinks = [
-  ...serviceGuides.map((service) => ({
-    label: service.name,
-    href: `/services/${service.slug}`,
-  })),
-  { label: "All services", href: "/services" },
-];
 
 const industryLinks = [
   ...industryGuides.map((industry) => ({
@@ -20,13 +11,21 @@ const industryLinks = [
   { label: "All industries", href: "/industries" },
 ];
 
-const exploreLinks = [
+const serviceLinks = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "Start free trial", href: "/free-trial" },
+  { label: "Lead reactivation", href: "/services/lead-reactivation" },
+  { label: "Custom automation", href: "/pricing#custom" },
+  { label: "Marketing services", href: "/services" },
+];
+
+const companyLinks = [
   { label: "About", href: "/about" },
+  { label: "Results", href: "/results" },
   { label: "How it works", href: "/#how-it-works" },
-  { label: "ROI Calculator", href: "/#calculator" },
-  { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
+  { label: "Data & privacy", href: "/security" },
   {
     label: siteConfig.voiceDemoAvailable ? "Live demo" : "How AI works",
     href: siteConfig.voiceDemoAvailable ? "/start#talk" : "/start",
@@ -46,6 +45,9 @@ export default function Footer() {
             </span>
             Vocemi
           </div>
+          <p className="text-[14px] leading-[1.6] text-ink/65 m-0 max-w-[220px]">
+            {siteConfig.servingLine}
+          </p>
         </div>
 
         <div>
@@ -84,10 +86,10 @@ export default function Footer() {
 
         <div>
           <div className="text-[12.5px] font-bold uppercase tracking-wider text-ink/65 mb-3.5">
-            Explore
+            Company
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            {exploreLinks.map((link) =>
+            {companyLinks.map((link) =>
               link.href.startsWith("/start") ? (
                 <TrackedLink
                   key={link.href}
@@ -128,7 +130,7 @@ export default function Footer() {
               href="/contact"
               className="text-ink/70 hover:text-brand transition-colors"
             >
-              Contact form
+              Contact
             </a>
             <TrackedLink
               href={siteConfig.bookCallUrl("footer")}

@@ -27,11 +27,10 @@ export default function HowItWorks() {
           How it works
         </div>
         <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-ink m-0 mb-3.5">
-          One workflow, fully handled
+          From missed call to live in 7 days
         </h2>
         <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0">
-          Start with the repeatable work &mdash; answering, qualifying, booking
-          &mdash; and watch it run end to end.
+          We do the building. You try it free, then keep it or walk away.
         </p>
       </motion.div>
 
