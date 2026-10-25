@@ -35,7 +35,10 @@ const siteShell = [
   'components/Navbar.tsx',
   'components/StructuredData.tsx',
   'components/NapLine.tsx',
+  'components/offer/CtaButtons.tsx',
+  'components/offer/SiteStickyCta.tsx',
   'lib/config.ts',
+  'lib/industryContent.ts',
 ]
 
 const startSources = [
@@ -79,9 +82,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages: MetadataRoute.Sitemap = [
     pageEntry(
       baseUrl,
-      [...siteShell, 'app/(site)/page.tsx', 'lib/homeContent.ts'],
+      [...siteShell, 'app/(site)/page.tsx', 'lib/homeContent.ts', 'lib/plans.ts'],
       'monthly',
       1
+    ),
+    pageEntry(
+      `${baseUrl}/pricing`,
+      [...siteShell, 'app/(site)/pricing/page.tsx', 'lib/plans.ts'],
+      'monthly',
+      0.9
+    ),
+    pageEntry(
+      `${baseUrl}/free-trial`,
+      [
+        ...siteShell,
+        'app/(site)/free-trial/page.tsx',
+        'components/FreeTrialContent.tsx',
+        'components/TrialForm.tsx',
+      ],
+      'monthly',
+      0.9
+    ),
+    pageEntry(
+      `${baseUrl}/results`,
+      [...siteShell, 'app/(site)/results/page.tsx', 'lib/homeContent.ts'],
+      'monthly',
+      0.8
     ),
     pageEntry(`${baseUrl}/start`, startSources, 'monthly', 0.9),
     pageEntry(
@@ -115,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         'app/(site)/faq/page.tsx',
         'app/(site)/faq/layout.tsx',
         'lib/faqContent.ts',
+        'lib/plans.ts',
       ],
       'monthly',
       0.7
@@ -165,6 +192,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...siteShell,
         'app/(site)/industries/[slug]/page.tsx',
         'lib/industryContent.ts',
+        'lib/plans.ts',
       ],
       'monthly',
       0.8
