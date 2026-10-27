@@ -37,7 +37,7 @@ export const clientLogos: ClientLogo[] = [
     industry: "Med spa",
     outcomes: [
       "Answers after-hours calls, so an evening enquiry gets a reply instead of voicemail.",
-      "A Comeback Sprint works through past clients who've agreed to hear from the spa and books them back in.",
+      "A lead reactivation campaign works through past clients who've agreed to hear from the spa and books them back in.",
     ],
   },
   {

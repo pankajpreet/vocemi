@@ -14,8 +14,8 @@ export const serviceGuides: ServiceGuide[] = [
   },
   {
     slug: "lead-reactivation",
-    name: "Comeback Sprints",
+    name: "Lead Reactivation",
     description:
-      "The AI reaches out to past customers who've agreed to hear from you, books them back in, and routes anything outside the script to your team. Up to 300 contacts per sprint.",
+      "The AI reaches out to past customers who've agreed to hear from you, books them back in, and routes anything outside the script to your team. Up to 300 contacts per campaign.",
   },
 ];

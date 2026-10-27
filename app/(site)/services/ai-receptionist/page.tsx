@@ -498,7 +498,7 @@ export default function AiReceptionistPage() {
               Want the AI to call past clients and old leads back, rather than
               answer incoming calls? That is a separate, consent-first workflow:{" "}
               <Link href="/services/lead-reactivation" className={linkClass}>
-                Comeback Sprints
+                Lead reactivation campaigns
               </Link>
               .
             </p>

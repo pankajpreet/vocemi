@@ -4,31 +4,31 @@ import TrackedLink from "@/components/start/TrackedLink";
 import { AuditButton, TrialButton } from "@/components/offer/CtaButtons";
 import { siteConfig } from "@/lib/config";
 import { pageMetadata } from "@/lib/metadata";
-import { comebackSprint, sprintPrice } from "@/lib/plans";
+import { campaignPrice, leadReactivation } from "@/lib/plans";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Comeback Sprints: AI Lead Reactivation, $497 per Sprint | Vocemi",
+  title: "AI Lead Reactivation: Bring Past Customers Back, $497 | Vocemi",
   absoluteTitle: true,
   description:
-    "Comeback Sprints: the AI reaches out to past customers who've agreed to hear from you and books them back in. Up to 300 contacts, $497 per sprint, first sprint free on a paid plan. Canada and US.",
+    "Lead reactivation: the AI reaches out to past customers who've agreed to hear from you and books them back in. Up to 300 contacts, $497 per campaign, first campaign free on a paid plan. Canada and US.",
   path: "/services/lead-reactivation",
   socialTitle:
-    "Vocemi Comeback Sprints: bring past customers back, the compliant way",
+    "Vocemi lead reactivation: bring past customers back, the compliant way",
 });
 
 type Piece = { text: string; href?: string; external?: boolean };
 
-const sprintPriceLine = `${sprintPrice("usd")} USD (${sprintPrice("cad")}) per sprint, up to ${comebackSprint.contacts} contacts`;
+const campaignPriceLine = `${campaignPrice("usd")} USD (${campaignPrice("cad")}) per campaign, up to ${leadReactivation.contacts} contacts`;
 
 const consentNote =
   "We only contact people who've bought from you or asked about your services recently enough to allow it. Every message names your business and includes an opt-out.";
 
 const answeredFaqs: { question: string; pieces: Piece[] }[] = [
   {
-    question: "What does a Comeback Sprint cost?",
+    question: "What does a lead reactivation campaign cost?",
     pieces: [
       {
-        text: `${sprintPriceLine}. Your first sprint is free when you move from the free trial to any paid plan. `,
+        text: `${campaignPriceLine}. Your first campaign is free when you move from the free trial to any paid plan. `,
       },
       { text: "See pricing", href: "/pricing" },
       { text: "." },
@@ -145,7 +145,7 @@ const graph = {
     {
       "@type": "Service",
       "@id": "https://www.vocemi.com/services/lead-reactivation#service",
-      name: "Comeback Sprint (AI lead reactivation)",
+      name: "AI Lead Reactivation",
       serviceType: "Lead reactivation / database reactivation campaign",
       description:
         "Consent-first AI voice campaigns that call past customers and unconverted enquiries from an approved list, by SMS, WhatsApp, and phone, offer an approved next step such as booking, honour opt-outs, and report results in a client dashboard.",
@@ -157,10 +157,10 @@ const graph = {
       ],
       offers: {
         "@type": "Offer",
-        name: "Comeback Sprint",
-        price: comebackSprint.usd,
+        name: "Lead reactivation campaign",
+        price: leadReactivation.usd,
         priceCurrency: "USD",
-        description: `Up to ${comebackSprint.contacts} contacts per sprint.`,
+        description: `Up to ${leadReactivation.contacts} contacts per campaign.`,
       },
       audience: {
         "@type": "BusinessAudience",
@@ -197,7 +197,7 @@ const graph = {
         {
           "@type": "ListItem",
           position: 3,
-          name: "Comeback Sprints",
+          name: "Lead Reactivation",
           item: "https://www.vocemi.com/services/lead-reactivation",
         },
       ],
@@ -229,13 +229,13 @@ export default function LeadReactivationPage() {
               Services
             </Link>
             <span aria-hidden="true"> / </span>
-            <span>Comeback Sprints</span>
+            <span>Lead Reactivation</span>
           </nav>
           <p className="text-[12px] uppercase tracking-[0.14em] text-brand-light m-0 mb-3">
-            Comeback Sprint · Lead reactivation, done for you
+            Lead Reactivation · Done for you
           </p>
           <h1 className="font-display text-[1.85rem] md:text-[2.6rem] leading-[1.08] font-extrabold m-0 mb-5">
-            Comeback Sprints: consent-first outreach that books past customers back in
+            Lead reactivation: consent-first outreach that books past customers back in
           </h1>
           <p className="text-[16.5px] leading-[1.65] text-white/85 m-0 mb-6">
             Vocemi calls people already in your records, such as past customers,
@@ -250,24 +250,24 @@ export default function LeadReactivationPage() {
           <div className="grid sm:grid-cols-3 gap-px bg-white/15 border border-white/15 mb-6">
             <div className="bg-coal p-4">
               <div className="font-display text-[26px] font-extrabold leading-none mb-1">
-                {sprintPrice("usd")}
+                {campaignPrice("usd")}
               </div>
               <div className="text-[13px] text-white/70">
-                per sprint ({sprintPrice("cad")})
+                per campaign ({campaignPrice("cad")})
               </div>
             </div>
             <div className="bg-coal p-4">
               <div className="font-display text-[26px] font-extrabold leading-none mb-1">
-                {comebackSprint.contacts}
+                {leadReactivation.contacts}
               </div>
-              <div className="text-[13px] text-white/70">contacts per sprint</div>
+              <div className="text-[13px] text-white/70">contacts per campaign</div>
             </div>
             <div className="bg-coal p-4">
               <div className="font-display text-[26px] font-extrabold leading-none mb-1 text-brand-light">
                 Free
               </div>
               <div className="text-[13px] text-white/70">
-                first sprint on any paid plan
+                first campaign on any paid plan
               </div>
             </div>
           </div>
@@ -449,7 +449,7 @@ export default function LeadReactivationPage() {
               What it costs
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0">
-              {sprintPriceLine}. Your first Comeback Sprint is free when you move
+              {campaignPriceLine}. Your first campaign is free when you move
               from the free trial to any paid plan.{" "}
               <Link href="/pricing" className={ext}>
                 See all pricing
@@ -482,7 +482,7 @@ export default function LeadReactivationPage() {
 
           <section>
             <h2 className="font-display text-2xl font-extrabold m-0 mb-4">
-              Comeback Sprint FAQs
+              Lead reactivation FAQs
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {answeredFaqs.map((faq, index) => (
@@ -509,7 +509,7 @@ export default function LeadReactivationPage() {
             </h2>
             <p className="text-[16px] leading-[1.7] text-white/85 m-0 mb-5">
               Book a free audit. We will look at the list, the consent you have,
-              and the one sprint worth running first.
+              and the one campaign worth running first.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-4">
               <AuditButton

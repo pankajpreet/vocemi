@@ -22,7 +22,7 @@ const generalFaqs: { question: string; answer: string }[] = [
       "You approve the call flow, the answers it may give, and the booking rules before launch. The page's steps are to pick the call type, write those rules, test expected calls and edge cases, then go live and review real calls.",
   },
   {
-    question: "How is a Comeback Sprint (lead reactivation) limited?",
+    question: "How is a lead reactivation campaign limited?",
     answer:
       "You choose the contacts, the message, the offer, the booking rules, and the situations that require a person. The agent stays inside the approved message and offer. Unusual questions wait for your team, and outcomes can be reviewed before the next run. The guide on Canada's calling rules says these workflows start with the contact list, the consent basis, and the script before anyone is called. The lead reactivation page, including whether those calls are legal, is at /services/lead-reactivation.",
   },

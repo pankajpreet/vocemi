@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { RotateCcw } from "lucide-react";
-import { comebackSprint, everyPlanIncludes, sprintPrice } from "@/lib/plans";
+import { campaignPrice, everyPlanIncludes, leadReactivation } from "@/lib/plans";
 import { useCurrency } from "./Currency";
 import { AnimatedPrice } from "./PlanCard";
 
@@ -65,14 +65,14 @@ export function AddOnBlock() {
           Add-on
         </div>
         <h3 className="font-display text-[21px] md:text-[24px] font-extrabold tracking-[-0.01em] text-ink m-0 mb-2">
-          More {comebackSprint.name}s:{" "}
-          <AnimatedPrice value={sprintPrice(currency)} /> each
+          More lead reactivation campaigns:{" "}
+          <AnimatedPrice value={campaignPrice(currency)} /> each
         </h3>
         <p className="text-[15px] leading-[1.65] text-ink/65 m-0">
           The AI reaches out to past customers who&apos;ve agreed to hear from
           you (old quotes, lapsed clients, overdue tune-ups and check-ups) and
-          books them back in. Up to {comebackSprint.contacts} contacts per
-          sprint. Every message names your business and includes an opt-out.
+          books them back in. Up to {leadReactivation.contacts} contacts per
+          campaign. Every message names your business and includes an opt-out.
         </p>
       </div>
     </div>

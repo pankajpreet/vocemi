@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Gift } from "lucide-react";
-import { comebackSprint, sprintPrice } from "@/lib/plans";
+import { campaignPrice } from "@/lib/plans";
 import { useCurrency } from "./Currency";
 import { AnimatedPrice } from "./PlanCard";
 
-/** "Your first Comeback Sprint, free" with a slowly travelling gradient edge. */
+/** Free first lead reactivation campaign, with a slowly travelling gradient edge. */
 export default function BonusBlock({ compact = false }: { compact?: boolean }) {
   const { currency } = useCurrency();
   return (
@@ -35,15 +35,15 @@ export default function BonusBlock({ compact = false }: { compact?: boolean }) {
             Bonus
           </div>
           <h3 className="font-display text-[21px] md:text-[24px] font-extrabold tracking-[-0.01em] text-ink m-0 mb-2">
-            Your first {comebackSprint.name}, free{" "}
+            We bring back your past customers, free{" "}
             <span className="text-ink/65 font-bold text-[0.8em]">
-              (<AnimatedPrice value={sprintPrice(currency)} /> value)
+              (<AnimatedPrice value={campaignPrice(currency)} /> value)
             </span>
           </h3>
           <p className="text-[15px] leading-[1.65] text-ink/65 m-0">
             When you move from the free trial to any paid plan, we run your first
-            Comeback Sprint at no charge. The AI reaches out to past customers
-            who&apos;ve agreed to hear from you and books them back in.
+            lead reactivation campaign at no charge. The AI reaches out to past
+            customers who&apos;ve agreed to hear from you and books them back in.
           </p>
         </div>
       </div>

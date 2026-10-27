@@ -36,7 +36,7 @@ export interface IndustryGuide {
     | { kind: "first"; text: string; detail: string };
   recommended: { planId: PlanId; note: string };
   trialDays: number;
-  /** Free first Comeback Sprint called out with the plan. */
+  /** Free first lead reactivation campaign called out with the plan. */
   bonus?: boolean;
   exampleCall: {
     setup: string;
@@ -154,7 +154,7 @@ export const industryGuides: IndustryGuide[] = [
         desc: "Answered from your approved list, word for word.",
       },
       {
-        title: "Comeback Sprints",
+        title: "Lead reactivation",
         desc: "Reaches lapsed clients who've agreed to hear from you and books them back in.",
       },
     ],
@@ -167,7 +167,7 @@ export const industryGuides: IndustryGuide[] = [
     },
     recommended: {
       planId: "growth",
-      note: "Growth, plus your free first Comeback Sprint when you move to a paid plan.",
+      note: "Growth, plus a free lead reactivation campaign to bring past clients back when you move to a paid plan.",
     },
     trialDays: 14,
     bonus: true,

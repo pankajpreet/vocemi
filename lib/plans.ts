@@ -173,15 +173,16 @@ export function trialDays(industry: string | undefined): number {
 
 // --- Shared offer copy ----------------------------------------------
 
-export const comebackSprint = {
-  name: "Comeback Sprint",
+/** A lead reactivation campaign: one round of outreach to past customers. */
+export const leadReactivation = {
+  name: "Lead reactivation campaign",
   usd: 497,
   cad: 699,
   contacts: 300,
 };
 
-export function sprintPrice(currency: Currency) {
-  return money(currency === "cad" ? comebackSprint.cad : comebackSprint.usd, currency);
+export function campaignPrice(currency: Currency) {
+  return money(currency === "cad" ? leadReactivation.cad : leadReactivation.usd, currency);
 }
 
 export const everyPlanIncludes = [

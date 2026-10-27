@@ -52,7 +52,7 @@ export default function FAQPage() {
               className="text-primary-accent-on-dark underline hover:text-primary-accent-on-dark-hover focus:text-primary-accent-on-dark-hover focus-visible:text-primary-accent-on-dark-hover transition-colors"
               href="/services/lead-reactivation"
             >
-              Comeback Sprints and calling rules
+              Lead reactivation and calling rules
             </a>
             {" · "}
             <a
