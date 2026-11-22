@@ -17,27 +17,25 @@ export interface Capability {
 }
 
 /**
- * Distinct from the homepage H1 ("Never miss another call, lead, or booking.").
- * Both parts are claims already on the site: the page title is "Meet Your AI
- * Employee", and "Answers every call" is the first capability below.
+ * Distinct from the homepage H1 ("Stop sending your callers to voicemail.").
  */
 export const heroHeadline = {
-  lead: "Meet your AI employee",
-  emphasis: "that answers every call",
+  lead: "Meet the AI receptionist",
+  emphasis: "that picks up the calls you miss",
 };
 
 export const heroStats = [
-  { value: "24/7", label: "always answering" },
-  { value: "2–4 wks", label: "to first launch" },
-  { value: "100%", label: "calls logged" },
+  { value: "7 days", label: "to go live" },
+  { value: "14 days", label: "free to try" },
+  { value: "$0", label: "setup" },
 ];
 
 export const capabilities: Capability[] = [
   {
     icon: "phone",
     tint: "#EEF0FE",
-    title: "Answers every call",
-    desc: "First ring, every time — after hours, weekends, and while you're already on a job.",
+    title: "Answers the calls you miss",
+    desc: "After hours, weekends, and while you're already on a job. It tells callers it's an AI.",
   },
   {
     icon: "calendar",
@@ -48,8 +46,8 @@ export const capabilities: Capability[] = [
   {
     icon: "followup",
     tint: "#FDF6E8",
-    title: "Follows up on leads",
-    desc: "Texts and calls the people who didn't book yet, so quotes stop going cold.",
+    title: "Flags urgent calls",
+    desc: "Texts you right away when a call can't wait, and hands it to your team.",
   },
   {
     icon: "automate",
@@ -60,19 +58,14 @@ export const capabilities: Capability[] = [
 ];
 
 /**
- * Ordered by where Vocemi sells best — the first two carry the most weight.
+ * The four industries Vocemi is built for, in nav order.
  * `slug` links the chip to its /industries page where one exists.
  */
 export const industries: { name: string; slug?: string }[] = [
-  { name: "Med Spas", slug: "med-spas" },
-  { name: "Dental", slug: "dental" },
-  { name: "HVAC & Plumbing", slug: "hvac-plumbing" },
-  { name: "Accounting" },
   { name: "Insurance", slug: "insurance" },
-  { name: "Home Services" },
-  { name: "Roofing" },
-  { name: "Automotive" },
-  { name: "Professional Services" },
+  { name: "Med Spas", slug: "med-spas" },
+  { name: "HVAC & Plumbing", slug: "hvac-plumbing" },
+  { name: "Vet Clinics", slug: "vet-clinics" },
 ];
 
 /** Shown inside the live-demo card so the visitor knows what to try. */

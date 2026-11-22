@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/config";
-import TrackedLink from "@/components/start/TrackedLink";
+import { TrialButton } from "@/components/offer/CtaButtons";
 
 type TabId = "missed" | "reactivation";
 
@@ -64,15 +63,11 @@ function ResultValue({ value, label, size = "sm" }: { value: string; label: stri
 
 function BookButton() {
   return (
-    <TrackedLink
-      href={siteConfig.bookCallUrl("homepage_opportunity_estimator")}
-      event="book_call_clicked"
-      properties={{ placement: "homepage_opportunity_estimator" }}
-      external
-      className="block bg-ink text-white text-center py-[13px] rounded-[9px] font-semibold text-[14.5px] hover:bg-brand transition-colors"
-    >
-      Book a free call
-    </TrackedLink>
+    <TrialButton
+      placement="homepage_opportunity_estimator"
+      label="Start my free trial"
+      className="w-full bg-ink hover:bg-brand"
+    />
   );
 }
 

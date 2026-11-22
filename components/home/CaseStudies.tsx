@@ -4,10 +4,9 @@ import Reveal from "./Reveal";
 /**
  * Where Vocemi is running today.
  *
- * Framed as the work each AI employee handles rather than as headline
- * metrics: the only figure any client has given us is the ~10 minutes per
- * quote at iSmart, and a row of invented numbers beside it would undo the
- * credibility the real one buys.
+ * Framed as the work each AI receptionist handles rather than as headline
+ * metrics. The one published figure (776 calls for a former brokerage)
+ * lives on /results; nothing is invented to sit alongside these cards.
  */
 export default function CaseStudies() {
   return (
@@ -20,8 +19,12 @@ export default function CaseStudies() {
           Already working for these businesses
         </h2>
         <p className="text-[16.5px] text-ink/60 leading-[1.6] m-0">
-          Three businesses, three very different workflows &mdash; each one
-          started with the calls nobody had time to answer.
+          Three businesses, three very different workflows. Each one started
+          with the calls nobody had time to answer.{" "}
+          <a href="/results" className="text-brand font-semibold hover:text-brand-dark">
+            See results
+          </a>
+          .
         </p>
       </Reveal>
 

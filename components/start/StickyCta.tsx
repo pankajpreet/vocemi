@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Mic } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import TrackedLink from "./TrackedLink";
+import { TrialButton } from "@/components/offer/CtaButtons";
 
 /**
  * Mobile-only action bar.
@@ -85,16 +86,11 @@ export default function StickyCta() {
             Talk to AI
           </TrackedLink>
         )}
-        <TrackedLink
-          href={siteConfig.bookCallUrl("start_sticky_mobile")}
-          event="book_call_clicked"
-          properties={{ placement: "start_sticky_mobile" }}
-          external
+        <TrialButton
+          placement="start_sticky_mobile"
           tabIndex={visible ? undefined : -1}
-          className="flex-1 inline-flex items-center justify-center bg-brand text-white py-3.5 rounded-[9px] text-[14.5px] font-semibold"
-        >
-          Book a free call
-        </TrackedLink>
+          className="flex-1 py-3.5 px-3 text-[14.5px]"
+        />
       </div>
     </div>
   );

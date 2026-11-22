@@ -39,8 +39,9 @@ const WIDGET_ID = "retell-widget";
  * changing. If a future bundle renames them, the widget reverts to floating
  * rather than vanishing.
  *
- * "Powered by Retell" is deliberately left alone -- data-white-label is the
- * supported way to drop attribution and needs a token from them.
+ * The provider's attribution line is not hidden in CSS -- data-white-label
+ * is the supported way to drop it and needs a token from them. Set
+ * NEXT_PUBLIC_VOICE_WIDGET_WHITE_LABEL and it is passed through.
  */
 const WIDGET_CSS = `
   [class*="_container_"] {
@@ -136,7 +137,7 @@ export default function VoiceDemo({ page = "/start" }: { page?: string }) {
       s.type = "module";
       s.dataset.voicePublicKey = retellPublicKey;
       s.dataset.voiceAgentId = retellVoiceAgentId;
-      s.dataset.title = "Vocemi AI Employee";
+      s.dataset.title = "Vocemi AI Receptionist";
       // Not data-color: their bundle resolves it ahead of data-theme-color,
       // which would paint the widget's background brand blue. It sits on a
       // light panel here, so set the two separately.
@@ -153,6 +154,9 @@ export default function VoiceDemo({ page = "/start" }: { page?: string }) {
       // the popup component, which renders null when this is off.
       s.dataset.showAiPopup = "false";
       if (retellRecaptchaKey) s.dataset.recaptchaKey = retellRecaptchaKey;
+      if (siteConfig.voiceWidgetWhiteLabel) {
+        s.dataset.whiteLabel = siteConfig.voiceWidgetWhiteLabel;
+      }
       document.body.appendChild(s);
     };
 

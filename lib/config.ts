@@ -4,6 +4,20 @@ const retellVoiceAgentId =
 
 const bookCallBaseUrl = process.env.NEXT_PUBLIC_BOOK_CALL_URL || "/contact";
 
+/** Shown until the owner supplies the real demo line. */
+export const DEMO_NUMBER_PLACEHOLDER = "[DEMO NUMBER]";
+const demoNumber =
+  process.env.NEXT_PUBLIC_DEMO_NUMBER?.trim() || DEMO_NUMBER_PLACEHOLDER;
+const demoDigits = demoNumber.replace(/[^\d+]/g, "");
+// Hide every "Call our AI" button rather than render a broken tel: link.
+const demoCallAvailable =
+  demoNumber !== DEMO_NUMBER_PLACEHOLDER && demoDigits.replace(/\D/g, "").length >= 10;
+
+function envFlag(value: string | undefined, fallback: boolean) {
+  if (value === undefined || value.trim() === "") return fallback;
+  return value.trim().toLowerCase() === "true";
+}
+
 export type BookCallUtm = {
   source?: string;
   medium?: string;
@@ -19,17 +33,21 @@ export type BookCallUtm = {
  * are returned unchanged.
  */
 export function bookCallHref(placement: string, utm?: BookCallUtm): string {
-  if (!/^https?:\/\//.test(bookCallBaseUrl)) return bookCallBaseUrl;
+  return withCalUtm(bookCallBaseUrl, placement, utm);
+}
+
+function withCalUtm(baseUrl: string, placement: string, utm?: BookCallUtm) {
+  if (!/^https?:\/\//.test(baseUrl)) return baseUrl;
 
   let url: URL;
   try {
-    url = new URL(bookCallBaseUrl);
+    url = new URL(baseUrl);
   } catch {
-    return bookCallBaseUrl;
+    return baseUrl;
   }
 
   const host = url.hostname.toLowerCase();
-  if (host !== "cal.com" && !host.endsWith(".cal.com")) return bookCallBaseUrl;
+  if (host !== "cal.com" && !host.endsWith(".cal.com")) return baseUrl;
 
   url.searchParams.set("utm_source", utm?.source ?? "vocemi.com");
   url.searchParams.set("utm_medium", utm?.medium ?? "website");
@@ -38,11 +56,22 @@ export function bookCallHref(placement: string, utm?: BookCallUtm): string {
   return url.toString();
 }
 
+const auditBookingBaseUrl = process.env.NEXT_PUBLIC_AUDIT_BOOKING_URL || "";
+
+/**
+ * "Book a free audit" / "Get a free missed-call audit". Falls back to the
+ * general booking link until a dedicated audit scheduler is configured.
+ */
+export function auditBookingHref(placement: string): string {
+  if (!auditBookingBaseUrl) return bookCallHref(placement, { campaign: "free_audit" });
+  return withCalUtm(auditBookingBaseUrl, placement, { campaign: "free_audit" });
+}
+
 export const siteConfig = {
   name: "Vocemi",
-  tagline: "Voice AI Receptionist & Business Automation",
+  tagline: "AI Receptionist for Insurance, Med Spas, HVAC & Vet Clinics",
   description:
-    "Vocemi builds voice AI employees that answer calls, qualify enquiries, book appointments, and report what needs your attention.",
+    "Vocemi sets up and runs an AI receptionist built for your industry. It answers the calls you miss, books appointments into your calendar, and tells callers it's an AI. Live in 7 days, free for the first 14.",
   // The live site redirects the bare domain to www, so canonicals, the
   // sitemap, and OG URLs must use www or they all point at a redirect.
   url: "https://www.vocemi.com",
@@ -72,6 +101,23 @@ export const siteConfig = {
   },
   // Service-area line for visible NAP. No street address is published.
   serviceArea: "Calgary, Alberta, Canada",
+  servingLine: "Based in Calgary · Serving Canada & the US",
+
+  // --- New offer (Oct 2026 spec) ----------------------------------------
+  // The "Call our AI" line. Every call button renders from these and hides
+  // itself while the number is still the placeholder.
+  demoNumber,
+  demoNumberTel: demoDigits.startsWith("+") ? demoDigits : `+1${demoDigits.replace(/^1(?=\d{10}$)/, "")}`,
+  demoCallAvailable,
+  // Shown on the free-trial thank-you state. Button hides when empty.
+  kickoffBookingUrl: process.env.NEXT_PUBLIC_KICKOFF_BOOKING_URL || "",
+  auditBookingUrl: auditBookingHref,
+  flags: {
+    // Named broker reference on /results and the insurance page.
+    showJagdeepReference: envFlag(process.env.NEXT_PUBLIC_SHOW_JAGDEEP_REFERENCE, true),
+    // "Live dashboard" line on the Scale plan.
+    showScaleDashboard: envFlag(process.env.NEXT_PUBLIC_SHOW_SCALE_DASHBOARD, true),
+  },
   // Keep booking CTAs useful in preview deployments that do not have the
   // scheduler URL configured yet. Pass the button placement.
   bookCallUrl: bookCallHref,
@@ -87,6 +133,9 @@ export const siteConfig = {
   // reCAPTCHA v3 site key. Required whenever reCAPTCHA is switched on for the
   // agent in Retell -- v2 keys are not supported by their widget.
   retellRecaptchaKey: process.env.NEXT_PUBLIC_RETELL_RECAPTCHA_KEY || "",
+  // White-label token from the voice provider. When set, the widget drops its
+  // own attribution line. Optional.
+  voiceWidgetWhiteLabel: process.env.NEXT_PUBLIC_VOICE_WIDGET_WHITE_LABEL || "",
   // Google Form for visitors who aren't ready to book. Link hides when empty.
   leadFormUrl: process.env.NEXT_PUBLIC_LEAD_FORM_URL || "",
   // Confirmed public profiles. sameAs on the Organization schema is this list.

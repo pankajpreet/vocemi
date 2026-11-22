@@ -36,7 +36,7 @@ export default function Comparison() {
           <h3 className="font-display text-lg font-bold text-ink m-0 mb-1.5">
             Human hire
           </h3>
-          <div className="text-[26px] font-extrabold font-display text-ink/50 line-through mb-1">
+          <div className="text-[26px] font-extrabold font-display text-ink/65 line-through mb-1">
             ~$4,500&ndash;$6,000/mo
           </div>
           <div className="text-[12.5px] text-ink/65 mb-5">

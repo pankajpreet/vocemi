@@ -5,7 +5,7 @@ const defaultImage = {
   url: "/og-image.png",
   width: 1200,
   height: 630,
-  alt: "Vocemi - Never miss another call, lead, or booking",
+  alt: "Vocemi - Stop sending your callers to voicemail",
 };
 
 interface PageMetadataOptions {

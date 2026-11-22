@@ -22,13 +22,13 @@ const areaServed = [
   { '@type': 'City', name: 'Toronto' },
   { '@type': 'Country', name: 'Canada' },
   { '@type': 'Country', name: 'United States' },
-  { '@type': 'Country', name: 'United Kingdom' },
 ]
 
 export const organizationId = `${siteConfig.url}/#organization`
 
 export default function StructuredData() {
-  // Published prices are USD. This graph has no price, priceRange, or Offer.
+  // Prices (USD, with fixed CAD equivalents) are on /pricing, which carries
+  // its own Offer markup. This graph has no price, priceRange, or Offer.
   // Google Business Profile hours are by appointment only. Do not add
   // openingHoursSpecification.
   const organizationGraph = {
@@ -62,7 +62,7 @@ export default function StructuredData() {
           contactType: 'customer service',
           email: siteConfig.contact.email,
           telephone: siteConfig.contact.phoneSchema,
-          areaServed: ['CA', 'US', 'GB'],
+          areaServed: ['CA', 'US'],
           availableLanguage: ['English'],
         },
         founder: {
@@ -82,6 +82,10 @@ export default function StructuredData() {
         knowsAbout: [
           'Voice AI',
           'AI receptionist',
+          'Insurance brokerage call intake',
+          'Med spa appointment booking',
+          'HVAC and plumbing after-hours answering',
+          'Veterinary clinic after-hours calls',
           'Lead reactivation',
           'Appointment booking automation',
           'Call analytics',
@@ -104,7 +108,7 @@ export function ServiceStructuredData() {
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Voice AI Solutions',
+    serviceType: 'AI receptionist',
     url: `${siteConfig.url}/services`,
     provider: { '@id': organizationId },
     areaServed,
@@ -213,3 +217,55 @@ export function IndustryStructuredData({
   return <JsonLd data={serviceSchema} />
 }
 
+
+/** /pricing: one Service with a USD Offer per plan. Only visible prices. */
+export function PricingStructuredData({
+  plans,
+}: {
+  plans: (
+    | { id: string; name: string; tagline: string; usd: number; quoted?: false }
+    | { id: string; name: string; tagline: string; fromUsd: number; quoted: true }
+  )[]
+}) {
+  const url = `${siteConfig.url}/pricing`
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'AI receptionist',
+    name: 'Vocemi AI receptionist',
+    url,
+    provider: { '@id': organizationId },
+    areaServed,
+    offers: plans.map((plan) => ({
+      '@type': 'Offer',
+      name: plan.name,
+      description: plan.tagline,
+      url: `${url}#${plan.id}`,
+      priceCurrency: 'USD',
+      ...(plan.quoted
+        ? {
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              minPrice: plan.fromUsd,
+              priceCurrency: 'USD',
+            },
+          }
+        : {
+            price: plan.usd,
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: plan.usd,
+              priceCurrency: 'USD',
+              unitCode: 'MON',
+              referenceQuantity: {
+                '@type': 'QuantitativeValue',
+                value: 1,
+                unitCode: 'MON',
+              },
+            },
+          }),
+    })),
+  }
+
+  return <JsonLd data={schema} />
+}
